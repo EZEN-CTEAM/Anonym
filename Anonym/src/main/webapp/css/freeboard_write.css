@@ -1,0 +1,109 @@
+/* section(왼) + aside(오) */
+.main-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* section(왼) */
+.free-form-section {
+    margin-bottom: 30px;
+    flex: 3;
+    margin-right: 20px;
+}
+
+.free-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    align-items: center;
+    margin-top: 30px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+textarea {
+    height: 400px;
+    resize: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #da3238;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* aside(오) */
+.rcmd_list h2 {
+    /* padding: 16px 18px 5px; */
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.rcmd_list {
+    margin: 30px 0 30px 0;
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 22px 23px;
+}
+
+.rcmd_list a:before {
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    content: '';
+    background: #fb5757;
+}
+
+.rcmd_list a:first-of-type {
+    margin-top: 17px;
+}
+
+.rcmd_list a {
+    display: block;
+    position: relative;
+    margin-top: 11px;
+    padding-left: 14px;
+    font-size: 14px;
+    line-height: 1.43em;
+    text-decoration: none;
+    color: black;
+}

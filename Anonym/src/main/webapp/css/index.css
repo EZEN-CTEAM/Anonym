@@ -1,0 +1,209 @@
+a {
+  text-decoration: none;
+  color: rgb(61, 61, 61);
+}
+
+ul {
+  list-style: none;
+}
+
+.dropdown_content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.implyeement_apply {
+  margin: 10px 0px;
+}
+
+.volunteer_management {
+  margin: 10px 0px;
+}
+
+.implyeement_apply:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.volunteer_management:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+li:hover .dropdown_content {
+  display: block;
+}
+
+.volunteer_management {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.freeboard:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.companyinfo:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.applyinfo:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.companyservice:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* 메인 컨테이너 간격 조정 */
+.main-container {
+  padding: 50px 20px;
+}
+
+.intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.intro p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* 인트로 검색 */
+.main_apply {
+  text-align: center;
+}
+
+/* 인트로 검색 */
+.intro input {
+  height: 40px;
+  border: 1px solid #c9c9c9;
+  border-radius: 20px;
+  padding: 0px 20px;
+  font-size: 0.9rem;
+}
+
+.intro input::placeholder {
+  font-size: 0.9rem;
+}
+
+/* 인기글 리스트(자유 게시판) */
+.board-container {
+  width: 80%;
+  margin: 0px auto 100px auto;
+}
+
+.free_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 40px auto 10px auto;
+  border-bottom: 1px solid rgb(206, 206, 206);
+  padding-bottom: 10px;
+}
+
+.free_title a {
+  font-size: 0.75rem;
+}
+
+.img_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.free_list {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0px auto;
+  font-size: 0.9rem;
+}
+
+.list_title {
+  margin: 5px;
+}
+
+.goodcomment_count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 5px;
+}
+
+.goodcomment_count img {
+  padding: 0px 2px;
+}
+
+/* 인기글 리스트(채용정보) */
+.apply_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 40px auto 10px auto;
+  border-bottom: 1px solid rgb(206, 206, 206);
+  padding-bottom: 10px;
+}
+
+.apply_list {
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.company_logo {
+  border: 1px solid rgb(241, 241, 241);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.company_name {
+  font-size: 0.8rem;
+  color: rgb(124, 124, 124);
+}
+
+.company_title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: rgb(73, 73, 73);
+  padding: 5px 0px;
+}
+
+.company_score {
+  font-size: 0.7rem;
+  color: rgb(124, 124, 124);
+}
+
+.ad_banner {
+  position: absolute;
+  right: 12%;
+  border: 1px solid rgb(218, 218, 218);
+}
+
+.main-container {
+  padding: 80px 20px;
+  text-align: center;
+  width : 90%;
+  max-width: 1200px;
+  height: 925px;
+  margin: 0 auto;
+}

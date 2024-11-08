@@ -1,0 +1,197 @@
+a {
+  text-decoration: none;
+  color: rgb(61, 61, 61);
+}
+
+ul {
+  list-style: none;
+}
+
+/* �궡鍮꾧쾶�씠�뀡 硫붾돱 */
+.nav-menu {
+  display: flex;
+  font-size: 1.1rem;
+}
+
+.nav-menu li {
+  margin: 0px 35px;
+}
+
+.implyeement_apply {
+  margin: 5px 0px;
+}
+
+.volunteer_management {
+  margin: 5px 0px;
+}
+
+.implyeement_apply:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.volunteer_management:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.freeboard:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.companyinfo:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.applyinfo:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.companyservice:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* 濡쒓렇�씤 �쉶�썝媛��엯 */
+.login:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.join:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* 硫붿씤 而⑦뀒�씠�꼫 媛꾧꺽 議곗젙 */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.div_container {
+  width: 100%; /* �븘�슂�뿉 �뵲�씪 �꼫鍮� �꽕�젙 */
+  max-width: 800px; /* 理쒕� �꼫鍮� �꽕�젙 (�븘�슂�뿉 �뵲�씪 議곗젙) */
+  margin: 0 auto; /* 以묒븰 �젙�젹 */
+  display: flex; /* Flexbox �궗�슜 */
+  flex-direction: column; /* �꽭濡� 諛⑺뼢�쑝濡� �젙�젹 */
+  align-items: center; 
+}
+
+/* �씤湲곌� 由ъ뒪�듃(�옄�쑀 寃뚯떆�뙋) */
+.board-container {
+  width: 80%; /* 湲곗〈 �꼫鍮� �쑀吏� */
+  margin: 0 auto 80px auto; /* 以묒븰 �젙�젹 */
+  display: flex;
+  flex-direction: column; /* �꽭濡� 諛⑺뼢�쑝濡� �젙�젹 */
+  align-items: center; /* 媛��슫�뜲 �젙�젹 */
+}
+
+/* �씤湲곌� 由ъ뒪�듃(梨꾩슜�젙蹂�) */
+.apply_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgb(206, 206, 206);
+  padding-bottom: 10px;
+}
+
+.apply_list {
+  width: 100%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.apply_position {
+  position: relative;
+}
+
+.post {
+  position: absolute;
+  right: 5%;
+  top: 3%;
+}
+
+.company_logo {
+  border: none;
+}
+
+.company_name {
+  font-size: 0.8rem;
+  color: rgb(124, 124, 124);
+}
+
+.company_title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: rgb(73, 73, 73);
+  padding: 5px 0px;
+}
+
+.company_score {
+  font-size: 0.7rem;
+  color: rgb(124, 124, 124);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.company_apply {
+  margin: 20px 40px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+  width: 100%;
+}
+
+.pagination a {
+  color: #333;
+  padding: 8px 16px;
+  text-decoration: none;
+  /* border: 1px solid #ddd; */
+  margin: 0 4px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.pagination a:hover,
+.pagination a.active {
+  font-weight: bold;
+}
+
+.implyeement_area {
+  width: 75%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px auto -20px;
+}
+
+.implyeement_write {
+  text-align: center;
+  display: block;
+  width: 7%;
+  line-height: 20px;
+  padding: 3px;
+  background-color: #4c7bc9;
+  color: white;
+  font-weight: bold;
+  font-size: 0.75rem;
+  border-radius: 5px;
+  margin-top: 20px;
+}

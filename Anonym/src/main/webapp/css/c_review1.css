@@ -1,0 +1,145 @@
+.main-container {
+    padding: 80px 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* 寃��깋李� 媛��슫�뜲 �젙�젹 */
+.search-container {
+    max-width: 700px; /* 理쒕� �꼫鍮� */
+    margin: 20px auto; /* �긽�븯 以묒븰 �젙�젹 */
+    position: relative;
+}
+.intro h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.intro p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    padding: 12px 40px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #ff5252;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #e04848;
+}
+
+.board-container {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.board-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.boards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.board {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 4px;
+    /* width: 30%; */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    width: 320px;
+    height: 110px;
+}
+
+.board:hover {
+    transform: translateY(-5px);
+}
+
+.board h3 a {
+    text-decoration: none;
+    color: #333;
+}
+
+.board img{
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+
+.image-review-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px; /* �씠誘몄��� 踰꾪듉 �궗�씠 媛꾧꺽 */
+    margin-top: 40px;
+    width: 100%;
+}
+
+.image-container {
+    height: 300px; /* �씠誘몄� �겕湲� �솗�옣 */
+}
+
+.image-container img {
+    /* width: 100%; */
+    height: 100%;
+    object-fit: cover;
+    /* border-radius: 15px; */
+}
+
+.review-button {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 250px;
+}
+
+.review-button:hover {
+    background-color: #e04848;
+}
+
+.review{
+    text-align: left;
+}
+
+.review h3{
+    margin-top: 60px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.review p{
+    margin-top: 15px;
+    color: #94969b;
+}
+
+.review button{
+    margin-top: 15px; 
+    font-size: 1rem;
+}

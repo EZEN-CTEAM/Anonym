@@ -1,0 +1,137 @@
+/* 기본적으로 dropdown-content는 숨김 */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+}
+
+/* 드롭다운 항목 스타일 */
+.dropdown-content li {
+    list-style: none;
+}
+
+.dropdown-content li a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+/* 드롭다운 항목 내의 이미지 스타일 */
+.menu-icon {
+    width: 16px; /* 이미지 너비 설정 */
+    height: 16px; /* 이미지 높이 설정 */
+    margin-right: 8px; /* 텍스트와 이미지 사이의 간격 */
+    vertical-align: middle; /* 텍스트와 이미지의 수직 정렬 */
+}
+
+/* 드롭다운 항목에 마우스를 올렸을 때 배경 색 변경 */
+.dropdown-content li a:hover {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+/* 마우스를 올렸을 때 드롭다운 내용 보이기 */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.radioButtonStyle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.radioStyle {
+    display: flex;
+    align-items: center;
+}
+
+.radioStyle [type='radio']{
+    display: none;
+}
+
+.radioStyle span{
+    text-align: center;
+    height: auto;
+    width:150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: #ffffff;
+    margin:10px;
+    padding:15px;
+    box-shadow: 3px 3px 10px #dcdcdc;
+    border:2px solid #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.radioStyle [type='radio']:checked + span{
+    border:2px solid #ff5252;
+    background-color: #fff5ee;
+}
+
+.a-button {
+    margin:10px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #ff5252;
+    border: none;
+    border-radius: 17px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.a-button:hover {
+    background-color: #e04848;
+}
+
+.apply-count-div {
+    display: inline-block;
+    margin: 30px 20px auto;
+    width: 150px;
+    height: 150px;
+    border: none;
+    border-radius: 50%;
+    background-color: #f4f4f4;
+}
+
+.apply-count-div div {
+    font-weight: bold;
+    margin: auto;
+    padding:20px;
+}
+
+.apply-list table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.apply-list thead {
+    background-color: #f4f4f4;
+}
+
+.apply-list th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+img {
+    width: 25px;
+    height: 25px;
+}

@@ -1,0 +1,247 @@
+.main-container {
+    padding: 80px 20px;
+    text-align: center;
+    width : 90%;
+    max-width: 1200px;
+    height: 925px;
+    margin: 0 auto;
+}
+
+.main-container5{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    height: 925px;
+}
+
+.main-container6 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+
+h2{
+    color: #ff5252;
+}
+
+.mypageIP{
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.myIP{
+    color: gray;
+    text-align: center;
+    margin: 10px auto;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.joinIP {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    width: 100%;
+  }
+
+.modifyIP {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+.modifyIP input[type="text"],
+.modifyIP input[type="password"],
+.modifyIP input[type="file"],
+.modifyIP input[type="date"],
+.modifyIP select,
+.divID {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.cta-button {
+    padding: 8px 30px;
+    margin-top: 10px;
+    margin-right: 5px;
+    border: none;
+    background-color: #ff5252;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background-color: #e04848;
+}
+
+.main-container9{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+.main-container10 {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    height: calc(100vh - 100px);
+}
+
+.approval-section {
+    margin-top: 20px;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 2px solid #f4f4f4;
+    margin-bottom: 20px;
+}
+
+.company-header {
+    text-align: left;
+}
+
+.company-item {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f4f4f4;
+    padding: 15px;
+}
+
+.company-name {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    color: #333;
+    margin-right: 20px;
+    padding: 10px; /* 패딩 추가로 클릭 영역 확대 */
+    transition: background-color 0.3s; /* 부드러운 배경 색상 전환 */
+}
+
+.company-name:hover {
+    background-color: #f9f9f9;
+}
+
+.company-details {
+    display: none; /* 기본적으로 숨김 */
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.company-value{
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.company-value img{
+    width: 100%; /* 반응형 이미지 */
+    max-width: 450px; /* 최대 너비 설정 */
+    height: auto; /* 비율 유지 */
+}
+
+.radioButtonStyle {
+    display: flex;
+    gap: 10px; /* 라디오 버튼 간격 */
+    align-items: center; /* 수직 정렬 */
+    font-size: 0.9em; /* 라디오 버튼 크기 감소 */
+}
+
+.radioStyle {
+    display: flex;
+    align-items: center;
+}
+
+.radioStyle input {
+    margin-right: 5px;
+}
+
+/*우편 번호*/
+.postcode-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#postcode {
+    width: 75%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+#postcodeButton {
+    width: 20%;
+    padding: 8px;
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    margin-bottom: 17px;
+}
+
+#postcodeButton:hover {
+    background-color: #ff3333;
+}

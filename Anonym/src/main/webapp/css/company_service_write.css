@@ -1,0 +1,164 @@
+a {
+  text-decoration: none;
+  color: rgb(61, 61, 61);
+}
+
+ul {
+  list-style: none;
+}
+
+/* �궡鍮꾧쾶�씠�뀡 硫붾돱 */
+.nav-menu {
+  display: flex;
+  font-size: 1.1rem;
+}
+
+.nav-menu li {
+  margin: 0px 35px;
+}
+
+.hover-bold {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.nav-menu li:hover .hover-bold {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.implyeement_apply {
+  margin: 5px 0px;
+}
+
+.volunteer_management {
+  margin: 5px 0px;
+}
+
+.implyeement_apply:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.volunteer_management:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.freeboard:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.companyinfo:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.applyinfo:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.companyservice:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* 濡쒓렇�씤 �쉶�썝媛��엯 */
+.login:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.join:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* 硫붿씤 而⑦뀒�씠�꼫 媛꾧꺽 議곗젙 */
+.main-container {
+  padding: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 寃��깋 寃곌낵 硫섑듃 */
+
+.company_service_container {
+  width: 75%;
+  margin: 0px auto;
+  border: 1px solid rgb(214, 214, 214);
+  border-radius: 5px;
+  background-color: rgb(248, 248, 253);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.company_service_title {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.write_container {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
+  margin: 20px 0;
+}
+
+.write_item {
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: rgb(77, 77, 77);
+  margin: 10px 0px;
+}
+
+.input_area{
+  width: 100%;
+  max-width: 700px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid rgb(214, 214, 214);
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+textarea {
+  width: 100%;
+  max-width: 700px;
+  min-height: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px; 
+}
+
+.file_area {
+  text-align: left;
+}
+
+.save_button {
+  border-radius: 5px;
+  border: 1px solid rgb(214, 214, 214);
+  width: 30%;
+  height: 50px;
+  background-color: #4c7bc9;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.cancle_button {
+  border-radius: 5px;
+  border: 1px solid rgb(214, 214, 214);
+  width: 30%;
+  height: 50px;
+  background-color: #c94c4c;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: bold;
+}

@@ -406,7 +406,8 @@ public class UserController
 		
 		
 		  int size = 10*1024*1024; 
-		  String uploadPath = "D:\\KGW\\teamproject\\test\\src\\main\\webapp\\upload";
+		  String uploadPath = request.getContextPath()+ "\\upload";
+//		  String uploadPath = "D:\\KGW\\teamproject\\test\\src\\main\\webapp\\upload";
 		  uploadPath = request.getServletContext().getRealPath("/upload");
 		  
 		  MultipartRequest multi = null;

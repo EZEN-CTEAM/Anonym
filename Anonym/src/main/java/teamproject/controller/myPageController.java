@@ -26,11 +26,11 @@ public class myPageController
 {
 	public myPageController(HttpServletRequest request, HttpServletResponse response, String[] comments) throws ServletException, IOException 
 	{	
-		// 개인 내 정보
+		// 媛쒖씤 �궡 �젙蹂�
 		if(comments[comments.length-1].equals("personView.do"))
 		{
 			personView(request, response);
-		}// 개인 내정보 수정
+		}// 媛쒖씤 �궡�젙蹂� �닔�젙
 		else if(comments[comments.length-1].equals("personModify.do"))
 		{
 			if(request.getMethod().equals("GET"))
@@ -40,23 +40,23 @@ public class myPageController
 			{
 				personModifyOk(request, response);
 			}
-		}// 비밀번호 확인	
+		}// 鍮꾨�踰덊샇 �솗�씤	
 		else if(comments[comments.length-1].equals("checkPW.do")) 
 		{
 			checkPW(request, response);
-		}// 닉네임 중복 확인
+		}// �땳�꽕�엫 以묐났 �솗�씤
 		else if(comments[comments.length-1].equals("checkNickname.do")) 
 		{
 				checkNickname(request, response);
-		}// 이력서list
+		}// �씠�젰�꽌list
 		else if(comments[comments.length-1].equals("resumeList.do"))
 		{
 			resumeList(request, response);
-		}// 대표 이력서 설정
+		}// ���몴 �씠�젰�꽌 �꽕�젙
 		else if(comments[comments.length-1].equals("setTopResume.do"))
 		{
 			setTopResume(request, response);
-		}//이력서 작성
+		}//�씠�젰�꽌 �옉�꽦
 		else if(comments[comments.length-1].equals("resumeRegister.do"))
 		{
 			if(request.getMethod().equals("GET"))
@@ -66,11 +66,11 @@ public class myPageController
 			{
 				resumeRegisterOk(request, response);
 			}
-		}// 이력서 view
+		}// �씠�젰�꽌 view
 		else if(comments[comments.length-1].equals("resumeView.do"))
 		{
 			resumeView(request, response);
-		}// 이력서 modify
+		}// �씠�젰�꽌 modify
 		else if(comments[comments.length-1].equals("resumeModify.do"))
 		{
 			if(request.getMethod().equals("GET"))
@@ -80,22 +80,22 @@ public class myPageController
 			{
 				resumeModifyOk(request, response);
 			}
-		}// 이력서 삭제
+		}// �씠�젰�꽌 �궘�젣
 		else if(comments[comments.length-1].equals("delete.do"))
 		{
 			System.out.println("delete(request, response)");
 			delete(request, response);
-		}// 지원 현황
+		}// 吏��썝 �쁽�솴
 		else if(comments[comments.length-1].equals("applicationStatus.do"))
 		{
 			applicationStatus(request, response);
 		}
 		
-		// 기업 내 정보
+		// 湲곗뾽 �궡 �젙蹂�
 		else if(comments[comments.length-1].equals("companyView.do"))
 		{
 			companyView(request, response);
-		}// 기업 내정보 수정
+		}// 湲곗뾽 �궡�젙蹂� �닔�젙
 		else if(comments[comments.length-1].equals("companyModify.do"))
 		{
 			if(request.getMethod().equals("GET"))
@@ -105,17 +105,17 @@ public class myPageController
 			{
 				companyModifyOk(request, response);
 			}
-		}// 기업 비밀번호 확인	
+		}// 湲곗뾽 鍮꾨�踰덊샇 �솗�씤	
 		else if(comments[comments.length-1].equals("checkPW.do")) 
 		{
 			checkPW(request, response);
-		}// 사업자등록번호 중복 확인
+		}// �궗�뾽�옄�벑濡앸쾲�샇 以묐났 �솗�씤
 		else if(comments[comments.length-1].equals("checkNickname.do")) 
 		{
 				checkNickname(request, response);
 		}
 		
-		//관리자 기업승인관리
+		//愿�由ъ옄 湲곗뾽�듅�씤愿�由�
 		else if(comments[comments.length-1].equals("admin.do"))
 		{
 			if(request.getMethod().equals("GET"))
@@ -125,7 +125,7 @@ public class myPageController
 			{
 				adminOk(request, response);
 			}
-		}// 글 신고 list
+		}// 湲� �떊怨� list
 		else if(comments[comments.length-1].equals("adminReport.do"))
 		{
 			if(request.getMethod().equals("GET"))
@@ -135,7 +135,7 @@ public class myPageController
 			{
 				adminReportOk(request, response);
 			}
-		}// 비활성 회원 리스트
+		}// 鍮꾪솢�꽦 �쉶�썝 由ъ뒪�듃
 		else if(comments[comments.length-1].equals("adminUser.do"))
 		{
 			adminUser(request, response);
@@ -147,7 +147,7 @@ public class myPageController
 	
 	
 		
-		// 개인 내 정보
+		// 媛쒖씤 �궡 �젙蹂�
 		public void personView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
 			
@@ -192,7 +192,7 @@ public class myPageController
 			}catch(Exception e)
 			{
 				session = request.getSession();
-		        session.setAttribute("errorMessage", "오류가 발생했습니다");
+		        session.setAttribute("errorMessage", "�삤瑜섍� 諛쒖깮�뻽�뒿�땲�떎");
 		        response.sendRedirect(request.getContextPath());
 				e.printStackTrace();
 			}finally
@@ -207,7 +207,7 @@ public class myPageController
 			}
 			
 		}			
-		// 개인 내 정보 수정
+		// 媛쒖씤 �궡 �젙蹂� �닔�젙
 		public void personModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
 			HttpSession session = request.getSession();
@@ -307,10 +307,10 @@ public class myPageController
 		        
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, user_pw);
-				psmt.setString(2, user_nickname);  // 닉네임
-		        psmt.setString(3, user_employment);  // 재직 상태
-		        psmt.setString(4, user_company);  // 회사명
-		        psmt.setInt(5, user_no);  // 사용자 번호
+				psmt.setString(2, user_nickname);  // �땳�꽕�엫
+		        psmt.setString(3, user_employment);  // �옱吏� �긽�깭
+		        psmt.setString(4, user_company);  // �쉶�궗紐�
+		        psmt.setInt(5, user_no);  // �궗�슜�옄 踰덊샇
 				
 				int result = psmt.executeUpdate();
 				
@@ -318,7 +318,7 @@ public class myPageController
 		            response.sendRedirect(request.getContextPath() + "/myPage/personView.do?user_no=" + user_no);
 		        } else {
 		        	HttpSession session = request.getSession();
-		        	session.setAttribute("errorMessage", "정보 수정에 실패했습니다. 다시 시도해 주세요.");
+		        	session.setAttribute("errorMessage", "�젙蹂� �닔�젙�뿉 �떎�뙣�뻽�뒿�땲�떎. �떎�떆 �떆�룄�빐 二쇱꽭�슂.");
 		        	response.sendRedirect(request.getContextPath() + "/myPage/personModify.jsp?user_no=" + user_no);
 		        }
 				
@@ -326,7 +326,7 @@ public class myPageController
 				
 			}catch(Exception e) {
 				HttpSession session = request.getSession();
-		        session.setAttribute("errorMessage", "오류가 발생했습니다");
+		        session.setAttribute("errorMessage", "�삤瑜섍� 諛쒖깮�뻽�뒿�땲�떎");
 		        response.sendRedirect(request.getContextPath()+ "/myPage/personView.do?user_no=" + user_no);
 				e.printStackTrace();
 			}finally {
@@ -335,14 +335,14 @@ public class myPageController
 			
 		}		
 		
-		//개인 비밀번호 확인		
+		//媛쒖씤 鍮꾨�踰덊샇 �솗�씤		
 		public void checkPW(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int user_no = Integer.parseInt(request.getParameter("user_no"));
 			String upw = request.getParameter("upw");
 			
-			Connection conn = null; //DB 연결
-			PreparedStatement psmt = null; //SQL 등록 및 실행
-			ResultSet rs = null; // 조회 결과를 담음
+			Connection conn = null; //DB �뿰寃�
+			PreparedStatement psmt = null; //SQL �벑濡� 諛� �떎�뻾
+			ResultSet rs = null; // 議고쉶 寃곌낵瑜� �떞�쓬
 			
 			try
 			{
@@ -388,14 +388,14 @@ public class myPageController
 			}
 		}		
 				
-		//개인 닉네임 중복 체크
+		//媛쒖씤 �땳�꽕�엫 以묐났 泥댄겕
 		public void checkNickname(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
 			String user_nickname = request.getParameter("user_nickname");
 			
-			Connection conn = null; //DB 연결
-			PreparedStatement psmt = null; //SQL 등록 및 실행
-			ResultSet rs = null; // 조회 결과를 담음
+			Connection conn = null; //DB �뿰寃�
+			PreparedStatement psmt = null; //SQL �벑濡� 諛� �떎�뻾
+			ResultSet rs = null; // 議고쉶 寃곌낵瑜� �떞�쓬
 			
 			try
 			{
@@ -403,8 +403,8 @@ public class myPageController
 				
 				String sql = "SELECT COUNT(*) AS cnt FROM user WHERE user_nickname = ?";
 				
-				psmt = conn.prepareStatement(sql); // 사용할 쿼리 등록
-				psmt.setString(1,user_nickname); // 쿼리 변수 값 등록
+				psmt = conn.prepareStatement(sql); // �궗�슜�븷 荑쇰━ �벑濡�
+				psmt.setString(1,user_nickname); // 荑쇰━ 蹂��닔 媛� �벑濡�
 				
 				rs = psmt.executeQuery();
 				
@@ -415,10 +415,10 @@ public class myPageController
 				if(rs.next()){
 					int result = rs.getInt("cnt");
 					if(result > 0){
-					// System.out.print("isNickname"); // 아이디 존재 시 응답 데이터
+					// System.out.print("isNickname"); // �븘�씠�뵒 議댁옱 �떆 �쓳�떟 �뜲�씠�꽣
 						pw.append("isNickname");
 					}else{
-					// System.out.print("isNotNickname"); // 아이디 존재 않을 시 응답 데이터
+					// System.out.print("isNotNickname"); // �븘�씠�뵒 議댁옱 �븡�쓣 �떆 �쓳�떟 �뜲�씠�꽣
 						pw.append("isNotNickname");
 					}
 				}
@@ -443,7 +443,7 @@ public class myPageController
 			}
 		}
 		
-		//이력서list
+		//�씠�젰�꽌list
 		public void resumeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 		{
 			HttpSession session = request.getSession();
@@ -507,7 +507,7 @@ public class myPageController
 				}
 			}
 		}
-		// 대표 이력서 설정
+		// ���몴 �씠�젰�꽌 �꽕�젙
 		public void setTopResume(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 		{
 	        response.setCharacterEncoding("UTF-8");
@@ -521,12 +521,12 @@ public class myPageController
 	        	
 				conn = DBConn.conn();
 				
-				// 1. 기존의 대표 이력서 상태를 "B"로 변경
+				// 1. 湲곗〈�쓽 ���몴 �씠�젰�꽌 �긽�깭瑜� "B"濡� 蹂�寃�
 				String sql = " UPDATE resume SET resume_top_state = 'B' WHERE resume_top_state = 'T' ";
 				psmt = conn.prepareStatement(sql);
 				psmt.executeUpdate();
 				
-				// 2. 새로운 대표 이력서 상태를 "T"로 변경
+				// 2. �깉濡쒖슫 ���몴 �씠�젰�꽌 �긽�깭瑜� "T"濡� 蹂�寃�
 				String resetTopResumeSql = " UPDATE resume SET resume_top_state = 'T' WHERE resume_no = ? ";
 				psmt = conn.prepareStatement(resetTopResumeSql);
 		        psmt.setInt(1, resume_no);
@@ -535,7 +535,7 @@ public class myPageController
 
 				if(result > 0)
 				{
-					System.out.println("상태가 변경되었습니다.");
+					System.out.println("�긽�깭媛� 蹂�寃쎈릺�뿀�뒿�땲�떎.");
 				}
 				
 				response.sendRedirect("resumeList.do");
@@ -551,7 +551,7 @@ public class myPageController
 	        }
 		}
 		
-		//이력서 작성
+		//�씠�젰�꽌 �옉�꽦
 		public void resumeRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 		{
 			request.getRequestDispatcher("/WEB-INF/myPage/resumeRegister.jsp").forward(request, response);
@@ -628,7 +628,7 @@ public class myPageController
 			
 		}
 		
-		//이력서 view
+		//�씠�젰�꽌 view
 		public void resumeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 		{
 			int resume_no = Integer.parseInt(request.getParameter("resume_no"));
@@ -686,7 +686,7 @@ public class myPageController
 			}
 		}
 		
-		// 이력서 수정
+		// �씠�젰�꽌 �닔�젙
 		public void resumeModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 		{
 			int resume_no = Integer.parseInt(request.getParameter("resume_no"));
@@ -818,7 +818,7 @@ public class myPageController
 			}
 			
 		}
-		// 이력서 삭제
+		// �씠�젰�꽌 �궘�젣
 		public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 		{
 			int resume_no = Integer.parseInt(request.getParameter("resume_no"));
@@ -851,7 +851,7 @@ public class myPageController
 			
 			
 		}
-		//지원 현황
+		//吏��썝 �쁽�솴
 		public void applicationStatus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 		{
 			HttpSession session = request.getSession();
@@ -913,7 +913,7 @@ public class myPageController
 			
 		}
 	
-		//기업 내 정보
+		//湲곗뾽 �궡 �젙蹂�
 		public void companyView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
 			HttpSession session = request.getSession();
@@ -974,7 +974,7 @@ public class myPageController
 			}
 			
 		}			
-		// 기업 내 정보 수정
+		// 湲곗뾽 �궡 �젙蹂� �닔�젙
 		public void companyModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
 			HttpSession session = request.getSession();
@@ -1054,12 +1054,12 @@ public class myPageController
 			
 			String firstItem = addr[0];
 
-		    // 나머지 요소들을 result에 추가
+		    // �굹癒몄� �슂�냼�뱾�쓣 result�뿉 異붽�
 		    for (int i = 1; i < addr.length; i++) {
-		    	clocation += addr[i] + " "; // 공백 추가
+		    	clocation += addr[i] + " "; // 怨듬갚 異붽�
 		    }
 
-		    // 괄호 안에 첫 번째 요소 추가
+		    // 愿꾪샇 �븞�뿉 泥� 踰덉㎏ �슂�냼 異붽�
 		    clocation += "(" + firstItem + ")";
 			
 			Connection conn = null;
@@ -1105,15 +1105,15 @@ public class myPageController
 			
 		}
 		
-		//기업 비밀번호 확인		
+		//湲곗뾽 鍮꾨�踰덊샇 �솗�씤		
 		public void PWCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			int cno = Integer.parseInt(request.getParameter("cno"));
 			
 			String upw = request.getParameter("upw");
 			
-			Connection conn = null; //DB 연결
-			PreparedStatement psmt = null; //SQL 등록 및 실행
-			ResultSet rs = null; // 조회 결과를 담음
+			Connection conn = null; //DB �뿰寃�
+			PreparedStatement psmt = null; //SQL �벑濡� 諛� �떎�뻾
+			ResultSet rs = null; // 議고쉶 寃곌낵瑜� �떞�쓬
 			
 			try
 			{
@@ -1160,14 +1160,14 @@ public class myPageController
 			}
 		}		
 				
-		//기업 사업자등록번호 중복 체크
+		//湲곗뾽 �궗�뾽�옄�벑濡앸쾲�샇 以묐났 泥댄겕
 		public void CBRCCheck(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		{
 			String cbrcnum = request.getParameter("cbrcnum");
 			
-			Connection conn = null; //DB 연결
-			PreparedStatement psmt = null; //SQL 등록 및 실행
-			ResultSet rs = null; // 조회 결과를 담음
+			Connection conn = null; //DB �뿰寃�
+			PreparedStatement psmt = null; //SQL �벑濡� 諛� �떎�뻾
+			ResultSet rs = null; // 議고쉶 寃곌낵瑜� �떞�쓬
 			
 			try
 			{
@@ -1175,8 +1175,8 @@ public class myPageController
 				
 				String sql = "SELECT COUNT(*) AS cnt FROM company WHERE company_brc_num = ?";
 				
-				psmt = conn.prepareStatement(sql); // 사용할 쿼리 등록
-				psmt.setString(1,cbrcnum); // 쿼리 변수 값 등록
+				psmt = conn.prepareStatement(sql); // �궗�슜�븷 荑쇰━ �벑濡�
+				psmt.setString(1,cbrcnum); // 荑쇰━ 蹂��닔 媛� �벑濡�
 				
 				rs = psmt.executeQuery();
 				
@@ -1209,7 +1209,7 @@ public class myPageController
 				}
 			}
 		}
-		// 기업 승인 list
+		// 湲곗뾽 �듅�씤 list
 		public void admin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			List<CompanyVO> clist = new ArrayList<CompanyVO>();
@@ -1293,7 +1293,7 @@ public class myPageController
 			
 		}
 		
-		// 글 신고 list
+		// 湲� �떊怨� list
 		public void adminReport(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			List<ComplaintVO> cplist = new ArrayList<ComplaintVO>();
@@ -1311,7 +1311,8 @@ public class myPageController
 						+ "           pc.post_complaint_state2, "
 						+ "			  p.post_no, " 
 						+ "           p.post_content, "
-						+ "           u.user_id "
+						+ "           u.user_id, "
+						+ "           u.user_state "
 						+ " FROM post_complaint pc "
 						+ " INNER JOIN post p ON pc.post_no = p.post_no "
 						+ " INNER JOIN user u ON pc.user_no = u.user_no ";
@@ -1382,7 +1383,7 @@ public class myPageController
 			
 		}
 		
-		// 비활성 회원 리스트
+		// 鍮꾪솢�꽦 �쉶�썝 由ъ뒪�듃
 		public void adminUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			List<UserVO> ulist = new ArrayList<UserVO>();

@@ -30,22 +30,22 @@ public class companyReviewController
 		// System.out.println(comments[comments.length-1].equals("companyInfo.do"));
 		// System.out.println(comments[comments.length-1]);
 		
-		// ê¸°ì—…ë¦¬ë·° ?¸?±?Š¤
+		// ê¸°ì—…ë¦¬ë·° ì¸ë±ìŠ¤
 		if(comments[comments.length-1].equals("companySearchIndex.do"))
 		{
 			Search(request, response);
 			
-		// ê¸°ì—… ê²??ƒ‰
+		// ê¸°ì—… ê²€ìƒ‰
 		}else if(comments[comments.length-1].equals("companySearch.do"))
 		{
 			CompanyList(request, response);
 		
-		// ê¸°ì—… ? •ë³?
+		// ê¸°ì—… ì •ë³´
 		}else if(comments[comments.length-1].equals("companyInfo.do"))
 		{
 			companyInfo(request, response);
 		
-		// ê¸°ì—… ì¶”ì²œ ?“±ë¡?
+		// ê¸°ì—… ì¶”ì²œ ë“±ë¡
 		}else if(comments[comments.length-1].equals("recommendOk.do"))
 		{
 			recommendOk(request, response);
@@ -61,7 +61,7 @@ public class companyReviewController
 		{
 			reviewView(request, response);
 
-		// ê¸°ì—… ë¦¬ë·° ?“±ë¡?
+		// ê¸°ì—… ë¦¬ë·° ë“±ë¡
 		}else if(comments[comments.length-1].equals("reviewRegister.do")) 
 		{
 			if(request.getMethod().equals("GET"))
@@ -72,7 +72,7 @@ public class companyReviewController
 				reviewRegisterOk(request, response);
 			}
 
-		// ê¸°ì—… ë¦¬ë·° ?ˆ˜? •
+		// ê¸°ì—… ë¦¬ë·° ìˆ˜ì •
 		}else if(comments[comments.length-1].equals("reviewModify.do")) 
 		{
 			if(request.getMethod().equals("GET"))
@@ -83,17 +83,17 @@ public class companyReviewController
 				reviewModifyOk(request, response);
 			}
 			
-		// ê¸°ì—… ë¦¬ë·° ?‚­? œ
+		// ê¸°ì—… ë¦¬ë·° ì‚­ì œ
 		}else if(comments[comments.length-1].equals("reviewDelete.do")) 
 		{
 			reviewDelete(request, response);
 			
-		// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸? ëª©ë¡
+		// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€ ëª©ë¡
 		}else if(comments[comments.length-1].equals("communityList.do"))
 		{
 			communityList(request, response);
 			
-		// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸?,?Œ“ê¸?,ì¢‹ì•„?š”(?ƒ?ƒœ, ê°œìˆ˜) ì¡°íšŒ
+		// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€,ëŒ“ê¸€,ì¢‹ì•„ìš”(ìƒíƒœ, ê°œìˆ˜) ì¡°íšŒ
 		}else if(comments[comments.length-1].equals("communityView.do"))
 		{
 			LikeState(request, response);
@@ -101,7 +101,7 @@ public class companyReviewController
 			commentList(request, response);
 			communityView(request, response);
 			
-		// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸? ?“±ë¡?
+		// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€ ë“±ë¡
 		}else if(comments[comments.length-1].equals("communityRegister.do"))
 		{
 			if(request.getMethod().equals("GET"))
@@ -112,7 +112,7 @@ public class companyReviewController
 				communityRegisterOk(request, response);
 			}
 			
-		// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸? ?ˆ˜? •
+		// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€ ìˆ˜ì •
 		}else if(comments[comments.length-1].equals("communityModify.do")) 
 		{
 			if(request.getMethod().equals("GET"))
@@ -123,39 +123,39 @@ public class companyReviewController
 				communityModifyOk(request, response);
 			}
 			
-		// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸? ?‚­? œ
+		// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€ ì‚­ì œ
 		}else if(comments[comments.length-1].equals("communityDelete.do"))
 		{
 			communityDelete(request, response);
 			
-		// ?Œ“ê¸? ?“±ë¡?
+		// ëŒ“ê¸€ ë“±ë¡
 		}else if(comments[comments.length-1].equals("commentRegister.do")) 
 		{
 			commentRegisterOk(request, response);
 		
-		// ?Œ“ê¸? ?ˆ˜? •
+		// ëŒ“ê¸€ ìˆ˜ì •
 		}else if(comments[comments.length-1].equals("commentModify.do")) 
 		{
 			commentModifyOk(request, response);
 			
-		// ?Œ“ê¸? ?‚­? œ
+		// ëŒ“ê¸€ ì‚­ì œ
 		}else if(comments[comments.length-1].equals("commentDelete.do")) 
 		{
 			commentDeleteOk(request, response);
 			
-		// ì¢‹ì•„?š” ?“±ë¡?
+		// ì¢‹ì•„ìš” ë“±ë¡
 		}else if(comments[comments.length-1].equals("likeOk.do")) 
 		{
 			LikeOk(request, response);
 		
-		// ?‹ ê³? ?“±ë¡?
+		// ì‹ ê³  ë“±ë¡
 		}else if(comments[comments.length-1].equals("complaintOk.do")) 
 		{
 			complaintOk(request, response);
 		}
 	}
 	
-	// ê¸°ì—… ?¸?±?Š¤
+	// ê¸°ì—… ì¸ë±ìŠ¤
 	public void Search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		List<CompanyVO> List = new ArrayList<>();
@@ -189,14 +189,14 @@ public class companyReviewController
 			}
 
 		
-	        // ?•­ëª©ë³„ ?‰ê·? ê³„ì‚° (ë¦¬ë·°ê°? ?ˆ?Š” ê²½ìš°?—ë§?)
+	        // í•­ëª©ë³„ í‰ê·  ê³„ì‚° (ë¦¬ë·°ê°€ ìˆëŠ” ê²½ìš°ì—ë§Œ)
 //	        double avgCareer = reviewCount > 0 ? totalCareer / reviewCount : 0;
 //	        double avgBalance = reviewCount > 0 ? totalBalance / reviewCount : 0;
 //	        double avgCulture = reviewCount > 0 ? totalCulture / reviewCount : 0;
 //	        double avgManagement = reviewCount > 0 ? totalManagement / reviewCount : 0;
 //	        double avgSalary = reviewCount > 0 ? totalSalary / reviewCount : 0;
 	        
-	        // ?š”ì²??— ?°?´?„° ?„¤? •
+	        // ìš”ì²­ì— ë°ì´í„° ì„¤ì •
 //	        request.setAttribute("avgCareer", avgCareer);
 //	        request.setAttribute("avgBalance", avgBalance);
 //	        request.setAttribute("avgCulture", avgCulture);
@@ -210,7 +210,7 @@ public class companyReviewController
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        response.setContentType("application/json; charset=UTF-8");
-	        response.getWriter().write("{\"error\":\"?˜¤ë¥˜ê? ë°œìƒ?–ˆ?Šµ?‹ˆ?‹¤.\"}");
+	        response.getWriter().write("{\"error\":\"ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.\"}");
 	    } finally {
 	        try {
 	            DBConn.close(rs, ptmt, conn);
@@ -221,24 +221,24 @@ public class companyReviewController
 		
 	}
 	
-	// ê¸°ì—… ê²??ƒ‰(?šŒ?‚¬ ëª©ë¡)
+	// ê¸°ì—… ê²€ìƒ‰(íšŒì‚¬ ëª©ë¡)
 	public void CompanyList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		Connection conn = null;
 	    PreparedStatement ptmt = null;
 	    ResultSet rs = null;
 
-	    // ?‚¬?š©?ê°? ?…? ¥?•œ searchValue ê°’ìœ¼ë¡? ?•„?„°ë§?
+	    // ì‚¬ìš©ìê°€ ì…ë ¥í•œ searchValue ê°’ìœ¼ë¡œ í•„í„°ë§
 	    String searchValue = request.getParameter("searchValue");
 	    // System.out.println("searchValue: " + searchValue);
 	    
 	    try {
 	        conn = DBConn.conn();
 	        
-	        // ê²??ƒ‰ ê°’ì´ null?´ê±°ë‚˜ ë¹„ì–´ ?ˆ?Š” ê²½ìš° ì²˜ë¦¬
+	        // ê²€ìƒ‰ ê°’ì´ nullì´ê±°ë‚˜ ë¹„ì–´ ìˆëŠ” ê²½ìš° ì²˜ë¦¬
 	        if (searchValue == null || searchValue.trim().isEmpty()) {
 	            response.setContentType("application/json; charset=UTF-8");
-	            response.getWriter().write("{\"message\":\"ê²??ƒ‰?–´ê°? ë¹„ì–´?ˆ?Šµ?‹ˆ?‹¤.\"}");
+	            response.getWriter().write("{\"message\":\"ê²€ìƒ‰ì–´ê°€ ë¹„ì–´ìˆìŠµë‹ˆë‹¤.\"}");
 	            return;
 	        }
 	        
@@ -251,7 +251,7 @@ public class companyReviewController
 	        
 	        JSONArray jsonArray = new JSONArray();
 	        
-	        // ì°¾ì? ?°?´?„° jsonArray?— ?‹´ê¸?
+	        // ì°¾ì€ ë°ì´í„° jsonArrayì— ë‹´ê¸°
 	        while (rs.next()) {
 	            String company = rs.getString("company_name");
 	            int companyNo = rs.getInt("company_no");
@@ -264,14 +264,14 @@ public class companyReviewController
 	        
 	        // System.out.println("JSON Array: " + jsonArray.toString());
 
-	        // ê²°ê³¼?— ?”°?¼ ?‘?‹µ
+	        // ê²°ê³¼ì— ë”°ë¼ ì‘ë‹µ
 	        response.setContentType("application/json; charset=UTF-8");
 	        
 	        // System.out.println(jsonArray.isEmpty());
 	        
 	        if (jsonArray.isEmpty()) 
 	        {
-	        	response.getWriter().write("{\"message\":\"ê²°ê³¼ê°? ?—†?Šµ?‹ˆ?‹¤.\"}");
+	        	response.getWriter().write("{\"message\":\"ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.\"}");
 	        }else 
 	        {
 	        	response.getWriter().write(jsonArray.toString());
@@ -281,7 +281,7 @@ public class companyReviewController
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        response.setContentType("application/json; charset=UTF-8");
-	        response.getWriter().write("{\"error\":\"?˜¤ë¥˜ê? ë°œìƒ?–ˆ?Šµ?‹ˆ?‹¤.\"}");
+	        response.getWriter().write("{\"error\":\"ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.\"}");
 	    } finally {
 	        try {
 	            DBConn.close(rs, ptmt, conn);
@@ -291,7 +291,7 @@ public class companyReviewController
 	    }
 	}
 	
-	// ?šŒ?‚¬ì¶”ì²œ ?“±ë¡?
+	// íšŒì‚¬ì¶”ì²œ ë“±ë¡
 	public void recommendOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
@@ -301,15 +301,15 @@ public class companyReviewController
 		
 		if (loginUser != null) 
 		{
-			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°? ê°?? ¸?˜¤ê¸?
+			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°’ ê°€ì ¸ì˜¤ê¸°
 		}
 		String cno = request.getParameter("cno");
 		String crstate = request.getParameter("crstate");
 		
-//		System.out.println("ì¢‹ì•„?š” ?“±ë¡?");
+//		System.out.println("ì¢‹ì•„ìš” ë“±ë¡");
 //		System.out.println(uno);
 //		System.out.println(cno);
-//		System.out.println("?ƒ?ƒœ  :" + crstate);
+//		System.out.println("ìƒíƒœ  :" + crstate);
 		
 		Connection conn = null; 
 		PreparedStatement ptmt = null;  
@@ -336,7 +336,7 @@ public class companyReviewController
 				ptmt.setString(2, uno);
 				ptmt.setString(3, cno);
 				
-				System.out.println("ì¢‹ì•„?š” ?ƒ?ƒœ ë³?ê²?" + crstate);
+				System.out.println("ì¢‹ì•„ìš” ìƒíƒœ ë³€ê²½" + crstate);
 				
 			}else{
 				sql = "insert into company_like (company_no, user_no, company_like_state) values (?, ?, ?)";
@@ -347,7 +347,7 @@ public class companyReviewController
 				ptmt.setString(2, uno);
 				ptmt.setString(3, crstate);
 
-				System.out.println("ì¢‹ì•„?š” ?“±ë¡?");
+				System.out.println("ì¢‹ì•„ìš” ë“±ë¡");
 				
 			}
 			
@@ -356,7 +356,7 @@ public class companyReviewController
 			PrintWriter writer = response.getWriter();
 			if(result > 0)
 			{
-				// System.out.println("ì¢‹ì•„?š” ?ƒ?ƒœê°? ë³?ê²½ë˜?—ˆ?Šµ?‹ˆ?‹¤.");
+				// System.out.println("ì¢‹ì•„ìš” ìƒíƒœê°€ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.");
 				writer.write("OK");
 			}else {
 				writer.write("ERROR");
@@ -380,7 +380,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ê¸°ì—… ? •ë³? 
+	// ê¸°ì—… ì •ë³´ 
 	public CompanyVO GetCompanyInfo(HttpServletRequest request, String cno) throws ServletException, IOException 
 	{
 		String crstate = "";
@@ -408,10 +408,10 @@ public class companyReviewController
 		{
 			conn = DBConn.conn();
 			
-			// ?šŒ?‚¬ ? •ë³? ì¡°íšŒ
+			// íšŒì‚¬ ì •ë³´ ì¡°íšŒ
 			String sql = "SELECT * FROM company WHERE company_no = ? ";
 			
-			// System.out.println("?šŒ?‚¬ ? •ë³? ì¡°íšŒ" + sql);
+			// System.out.println("íšŒì‚¬ ì •ë³´ ì¡°íšŒ" + sql);
 			
 			ptmt = conn.prepareStatement(sql);
 			ptmt.setString(1, cno);
@@ -424,15 +424,15 @@ public class companyReviewController
 			
 				switch(companyIndustry)
 				{
-					case "ci1":	name = "? œì¡°ì—…"; break;
-					case "ci2":	name = "ê±´ì„¤?—…"; break;
-					case "ci3":	name = "?„ë§? ë°? ?†Œë§¤ì—…"; break;
-					case "ci4":	name = "?ˆ™ë°? ë°? ?Œ?‹? ?—…"; break;
-					case "ci5":	name = "?š´?ˆ˜?—…"; break;
-					case "ci6":	name = "?†µ?‹ ?—…"; break;
-					case "ci7":	name = "ê¸ˆìœµ ë°? ë³´í—˜?—…"; break;
-					case "ci8":	name = "?‚¬?—…?„œë¹„ìŠ¤?—…"; break;
-					default: name = "ê¸°í?";
+					case "ci1":	name = "ì œì¡°ì—…"; break;
+					case "ci2":	name = "ê±´ì„¤ì—…"; break;
+					case "ci3":	name = "ë„ë§¤ ë° ì†Œë§¤ì—…"; break;
+					case "ci4":	name = "ìˆ™ë°• ë° ìŒì‹ì ì—…"; break;
+					case "ci5":	name = "ìš´ìˆ˜ì—…"; break;
+					case "ci6":	name = "í†µì‹ ì—…"; break;
+					case "ci7":	name = "ê¸ˆìœµ ë° ë³´í—˜ì—…"; break;
+					case "ci8":	name = "ì‚¬ì—…ì„œë¹„ìŠ¤ì—…"; break;
+					default: name = "ê¸°íƒ€";
 				}
 			}
 			
@@ -446,12 +446,12 @@ public class companyReviewController
 			vo.setCindustry(name);
 			vo.setCemployee(rs.getString("company_employee"));
 			
-			// ?šŒ?‚¬ ì¶”ì²œ ?ƒ?ƒœ ì¡°íšŒ
+			// íšŒì‚¬ ì¶”ì²œ ìƒíƒœ ì¡°íšŒ
 			if (uno != null && !uno.equals("")) 
 			{
 				String stateSql = "select company_like_state from company_like where user_no = ? and company_no = ? ";
 
-				// System.out.println("?šŒ?‚¬ ì¶”ì²œ ?ƒ?ƒœ ì¡°íšŒ" + stateSql);
+				// System.out.println("íšŒì‚¬ ì¶”ì²œ ìƒíƒœ ì¡°íšŒ" + stateSql);
 				
 				ptmt = conn.prepareStatement(stateSql);
 				ptmt.setString(1, uno);
@@ -465,10 +465,10 @@ public class companyReviewController
 					vo.setCrstate(crstate);
 				}
 				
-				// ?šŒ?‚¬ ì¶”ì²œ ê°œìˆ˜ ì¡°íšŒ 
+				// íšŒì‚¬ ì¶”ì²œ ê°œìˆ˜ ì¡°íšŒ 
 //				String countSql = "SELECT count(*) AS crcnt FROM company_like WHERE company_no = ? AND company_like_state = 'Y'";
 //				
-//				System.out.println("?šŒ?‚¬ ì¶”ì²œ ?ƒ?ƒœ ì¡°íšŒ" + countSql);
+//				System.out.println("íšŒì‚¬ ì¶”ì²œ ìƒíƒœ ì¡°íšŒ" + countSql);
 //				
 //				ptmt = conn.prepareStatement(countSql);
 //				ptmt.setString(1, cno);
@@ -501,10 +501,10 @@ public class companyReviewController
 		return vo;
 	}
 	
-	// ê¸°ì—… ? •ë³?
+	// ê¸°ì—… ì •ë³´
 	public void companyInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// ?šŒ?‚¬ ?¸?´ë£¨ë“œ ? •ë³?
+		// íšŒì‚¬ ì¸í´ë£¨ë“œ ì •ë³´
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
@@ -519,12 +519,12 @@ public class companyReviewController
 		
 		if (loginUser != null) 
 		{
-			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°? ê°?? ¸?˜¤ê¸?
+			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°’ ê°€ì ¸ì˜¤ê¸°
 		}
 
 		Connection conn = null;
 
-		// ê¸? ëª©ë¡
+		// ê¸€ ëª©ë¡
 		List<PostVO> List = new ArrayList<>();
 
 		PreparedStatement ptmtPost = null;
@@ -534,7 +534,7 @@ public class companyReviewController
 		PreparedStatement ptmtReview = null;
 		ResultSet rsReview = null;
 		
-	    // ?•­ëª©ë³„ ì´í•©?„ ???¥?•  ë³??ˆ˜ ì´ˆê¸°?™”
+	    // í•­ëª©ë³„ ì´í•©ì„ ì €ì¥í•  ë³€ìˆ˜ ì´ˆê¸°í™”
 	    double totalCareer = 0;
 	    double totalBalance = 0;
 	    double totalCulture = 0;
@@ -548,7 +548,7 @@ public class companyReviewController
 		{
 			conn = DBConn.conn();
 			
-			// ê¸? ëª©ë¡
+			// ê¸€ ëª©ë¡
 			String sqlPost = "SELECT post_hit, p.post_no, post_title, post_content, date_format(p.post_registration_date, '%Y-%m-%d') as post_registration_date, user_id, "
 					+ "(select count(*) from post_comment pc WHERE pc.post_no = p.post_no AND post_comment_state = 'E') as pccount " 
 					+ "FROM post p, user u, board b "
@@ -621,7 +621,7 @@ public class companyReviewController
 				pvo.setPost_review_salary(rsReview.getInt("post_review_salary"));
 				pvo.setPost_review_starrating(rsReview.getInt("post_review_starrating"));
 				
-	            // ë¦¬ìŠ¤?Š¸?— ì¶”ê??•˜ê¸? ? „?— ì´í•© ê³„ì‚°
+	            // ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•˜ê¸° ì „ì— ì´í•© ê³„ì‚°
 	            totalCareer += pvo.getPost_review_career();
 	            totalBalance += pvo.getPost_review_balance();
 	            totalCulture += pvo.getPost_review_culture();
@@ -633,7 +633,7 @@ public class companyReviewController
 	            request.setAttribute("pvo", pvo);
 			}
 			
-	        // ?•­ëª©ë³„ ?‰ê·? ê³„ì‚° (ë¦¬ë·°ê°? ?ˆ?Š” ê²½ìš°?—ë§?)
+	        // í•­ëª©ë³„ í‰ê·  ê³„ì‚° (ë¦¬ë·°ê°€ ìˆëŠ” ê²½ìš°ì—ë§Œ)
 	        double avgCareer = reviewCount > 0 ? totalCareer / reviewCount : 0;
 	        double avgBalance = reviewCount > 0 ? totalBalance / reviewCount : 0;
 	        double avgCulture = reviewCount > 0 ? totalCulture / reviewCount : 0;
@@ -641,7 +641,7 @@ public class companyReviewController
 	        double avgSalary = reviewCount > 0 ? totalSalary / reviewCount : 0;
 	        double avgtotal = reviewCount > 0 ?  Math.round(((total / 5 ) / reviewCount) * 10) / 10.0 : 0;
 	        
-	        // ?š”ì²??— ?°?´?„° ?„¤? •
+	        // ìš”ì²­ì— ë°ì´í„° ì„¤ì •
 	        request.setAttribute("avgCareer", avgCareer);
 	        request.setAttribute("avgBalance", avgBalance);
 	        request.setAttribute("avgCulture", avgCulture);
@@ -685,7 +685,7 @@ public class companyReviewController
 		
 		if (loginUser != null) 
 		{
-			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°? ê°?? ¸?˜¤ê¸?
+			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°’ ê°€ì ¸ì˜¤ê¸°
 		}
 
 		List<PostVO> pList = new ArrayList<>();
@@ -694,7 +694,7 @@ public class companyReviewController
 		PreparedStatement ptmt = null;
 		ResultSet rs = null;
 		
-	    // ?•­ëª©ë³„ ì´í•©?„ ???¥?•  ë³??ˆ˜ ì´ˆê¸°?™”
+	    // í•­ëª©ë³„ ì´í•©ì„ ì €ì¥í•  ë³€ìˆ˜ ì´ˆê¸°í™”
 	    double totalCareer = 0;
 	    double totalBalance = 0;
 	    double totalCulture = 0;
@@ -747,7 +747,7 @@ public class companyReviewController
 				pvo.setPost_review_salary(rs.getInt("post_review_salary"));
 				pvo.setPost_review_starrating(rs.getInt("post_review_starrating"));
 				
-	            // ë¦¬ìŠ¤?Š¸?— ì¶”ê??•˜ê¸? ? „?— ì´í•© ê³„ì‚°
+	            // ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•˜ê¸° ì „ì— ì´í•© ê³„ì‚°
 	            totalCareer += pvo.getPost_review_career();
 	            totalBalance += pvo.getPost_review_balance();
 	            totalCulture += pvo.getPost_review_culture();
@@ -759,7 +759,7 @@ public class companyReviewController
 				pList.add(pvo);
 			}
 			
-	        // ?•­ëª©ë³„ ?‰ê·? ê³„ì‚° (ë¦¬ë·°ê°? ?ˆ?Š” ê²½ìš°?—ë§?)
+	        // í•­ëª©ë³„ í‰ê·  ê³„ì‚° (ë¦¬ë·°ê°€ ìˆëŠ” ê²½ìš°ì—ë§Œ)
 	        double avgCareer = reviewCount > 0 ? totalCareer / reviewCount : 0;
 	        double avgBalance = reviewCount > 0 ? totalBalance / reviewCount : 0;
 	        double avgCulture = reviewCount > 0 ? totalCulture / reviewCount : 0;
@@ -767,7 +767,7 @@ public class companyReviewController
 	        double avgSalary = reviewCount > 0 ? totalSalary / reviewCount : 0;
 	        double avgtotal = reviewCount > 0 ?  Math.round(((total / 5 ) / reviewCount) * 10) / 10.0 : 0;
 	        
-	        // ?š”ì²??— ?°?´?„° ?„¤? •
+	        // ìš”ì²­ì— ë°ì´í„° ì„¤ì •
 	        request.setAttribute("avgCareer", avgCareer);
 	        request.setAttribute("avgBalance", avgBalance);
 	        request.setAttribute("avgCulture", avgCulture);
@@ -803,7 +803,7 @@ public class companyReviewController
 		request.getRequestDispatcher("/WEB-INF/companyReview/reviewView.jsp").forward(request, response);
 	}
 	
-	// ê¸°ì—… ë¦¬ë·° ?“±ë¡?
+	// ê¸°ì—… ë¦¬ë·° ë“±ë¡
 	public void reviewRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String cno = request.getParameter("cno");
@@ -828,7 +828,7 @@ public class companyReviewController
 		
 		if (loginUser != null) 
 		{
-			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°? ê°?? ¸?˜¤ê¸?
+			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°’ ê°€ì ¸ì˜¤ê¸°
 		}
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
@@ -845,7 +845,7 @@ public class companyReviewController
 		int sum =  career + balance + salary + culture + management;
 		String pno = "";
 
-		System.out.println("?šŒ?‚¬ ë¦¬ë·°");
+		System.out.println("íšŒì‚¬ ë¦¬ë·°");
 		System.out.println(cno);
 		System.out.println(title);
 		System.out.println(good);
@@ -914,7 +914,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ê¸°ì—… ë¦¬ë·° ?ˆ˜? •
+	// ê¸°ì—… ë¦¬ë·° ìˆ˜ì •
 	public void reviewModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.setCharacterEncoding("UTF-8");
@@ -1063,38 +1063,38 @@ public class companyReviewController
 		}
 	}
 	
-	// ê¸°ì—… ë¦¬ë·° ?‚­? œ
+	// ê¸°ì—… ë¦¬ë·° ì‚­ì œ
 	public void reviewDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.getRequestDispatcher("/WEB-INF/companyReview/.jsp").forward(request, response);
 	}
 	
-	// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸? ëª©ë¡
+	// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€ ëª©ë¡
 	public void communityList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// ?šŒ?‚¬ include
+		// íšŒì‚¬ include
 		String cno = request.getParameter("cno");
 		CompanyVO vo = GetCompanyInfo(request, cno);
 
-		// ê¸? ëª©ë¡
+		// ê¸€ ëª©ë¡
 		List<PostVO> List = new ArrayList<>();
 		
-		// ê²??ƒ‰?–´
+		// ê²€ìƒ‰ì–´
 		String searchValue = request.getParameter("searchValue");
 	    if (searchValue == null) searchValue = "";
 		
-	    // ?˜?´ì§?
+	    // í˜ì´ì§•
 	    int total = 0;
 	    int nowPage = 1;
 		if(request.getParameter("nowPage") != null) nowPage = Integer.parseInt(request.getParameter("nowPage"));
 
 		Connection conn = null;
 		
-		// ê¸? ê°??ˆ˜
+		// ê¸€ ê°¯ìˆ˜
 		PreparedStatement ptmtTotal = null;  
 		ResultSet rsTotal = null; 
 		
-		// ê¸? ëª©ë¡
+		// ê¸€ ëª©ë¡
 		PreparedStatement ptmt = null;
 		ResultSet rs = null;
 		
@@ -1102,7 +1102,7 @@ public class companyReviewController
 		{
 			conn = DBConn.conn();
 			
-			// ?˜?´ì§?
+			// í˜ì´ì§•
 			String sqlTotal = "SELECT count(*) AS total FROM post p, board b "
 					+ "WHERE p.board_no = b.board_no "
 					+ "AND post_state = 'E' "
@@ -1128,7 +1128,7 @@ public class companyReviewController
 			
 			PagingUtil paging = new PagingUtil(nowPage, total, 10);
 			
-			// ê¸? ëª©ë¡
+			// ê¸€ ëª©ë¡
 			String sql = "SELECT post_hit, p.post_no, post_title, post_content, date_format(p.post_registration_date, '%Y-%m-%d') as post_registration_date, user_id, "
 					+ "(select count(*) from post_comment pc WHERE pc.post_no = p.post_no AND post_comment_state = 'E') as pccount " 
 					+ "FROM post p, user u, board b "
@@ -1145,7 +1145,7 @@ public class companyReviewController
 			
 			rs = ptmt.executeQuery();
 			
-			// ê²??ƒ‰?–´ ?ˆ?„ ê²½ìš°
+			// ê²€ìƒ‰ì–´ ìˆì„ ê²½ìš°
 			if(!searchValue.equals(""))
 			{
 				sql = "SELECT post_hit, p.post_no, post_title, post_content, date_format(p.post_registration_date, '%Y-%m-%d') as post_registration_date, user_id, "
@@ -1204,7 +1204,7 @@ public class companyReviewController
 		
 	}
 	
-	// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸? ì¡°íšŒ
+	// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€ ì¡°íšŒ
 	public void communityView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String cno = request.getParameter("cno");
@@ -1222,13 +1222,13 @@ public class companyReviewController
 		{
 			conn = DBConn.conn();
 			
-			// ì¡°íšŒ?ˆ˜ ì¦ê?
+			// ì¡°íšŒìˆ˜ ì¦ê°€
 			String sqlHit  = "update post set post_hit = post_hit + 1 where post_no = ?";
 			ptmtHit = conn.prepareStatement(sqlHit);
 			ptmtHit.setString(1, pno);
 			ptmtHit.executeUpdate();
 			
-			// ?ƒ?„¸?˜?´ì§?
+			// ìƒì„¸í˜ì´ì§€
 			String sql = "SELECT p.*,u.* "
 					+ "FROM post p, user u "
 					+ "WHERE p.user_no = u.user_no "
@@ -1239,7 +1239,7 @@ public class companyReviewController
 			
 			rs = ptmt.executeQuery();
 			
-			// ì°¾ì? ?°?´?„° request?— ?‹´ê¸?
+			// ì°¾ì€ ë°ì´í„° requestì— ë‹´ê¸°
 			if(rs.next())
 			{
 				PostVO pvo = new PostVO();
@@ -1256,7 +1256,7 @@ public class companyReviewController
 			
 			request.setAttribute("vo", vo);
 
-			// ?¬?›Œ?“œ
+			// í¬ì›Œë“œ
 			request.getRequestDispatcher("/WEB-INF/companyReview/communityView.jsp").forward(request, response);
 			
 		}catch(Exception e)
@@ -1275,7 +1275,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸? ?“±ë¡?
+	// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€ ë“±ë¡
 	public void communityRegister(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String cno = request.getParameter("cno");
@@ -1351,7 +1351,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸? ?ˆ˜? •
+	// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€ ìˆ˜ì •
 	public void communityModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.setCharacterEncoding("UTF-8");
@@ -1412,7 +1412,7 @@ public class companyReviewController
 
 	public void communityModifyOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// notice_board ?…Œ?´ë¸”ì— ?ˆ˜? •?°?´?„° update ì²˜ë¦¬
+		// notice_board í…Œì´ë¸”ì— ìˆ˜ì •ë°ì´í„° update ì²˜ë¦¬
 		request.setCharacterEncoding("UTF-8");
 		
 		String cno = request.getParameter("cno");
@@ -1459,7 +1459,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ê¸°ì—… ì»¤ë?¤ë‹ˆ?‹° ê¸? ?‚­? œ
+	// ê¸°ì—… ì»¤ë®¤ë‹ˆí‹° ê¸€ ì‚­ì œ
 	public void communityDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String cno = request.getParameter("cno");
@@ -1501,7 +1501,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ?Œ“ê¸? ì¡°íšŒ
+	// ëŒ“ê¸€ ì¡°íšŒ
 	public void commentList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String cno = request.getParameter("cno");
@@ -1563,7 +1563,7 @@ public class companyReviewController
 				List.add(pvo);
 			}
 			
-//			System.out.println("?Œ“ê¸?" + List.size());
+//			System.out.println("ëŒ“ê¸€" + List.size());
 			
 			request.setAttribute("vo", vo);
 			request.setAttribute("pccount", pccount);
@@ -1584,7 +1584,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ?Œ“ê¸? ?“±ë¡?
+	// ëŒ“ê¸€ ë“±ë¡
 	public void commentRegisterOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.setCharacterEncoding("UTF-8");
@@ -1602,7 +1602,7 @@ public class companyReviewController
 //		System.out.println(pno);
 //		System.out.println(uno);
 		
-		// db?— free_board?— ?°?´?„° ì¶”ê??•˜ê¸?
+		// dbì— free_boardì— ë°ì´í„° ì¶”ê°€í•˜ê¸°
 		Connection conn = null; 
 		PreparedStatement ptmt = null; 
 		
@@ -1642,7 +1642,7 @@ public class companyReviewController
 		}	
 	}
 	
-	// ?Œ“ê¸? ?ˆ˜? •
+	// ëŒ“ê¸€ ìˆ˜ì •
 	public void commentModifyOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String cno = request.getParameter("cno");
@@ -1691,7 +1691,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ?Œ“ê¸? ?‚­? œ
+	// ëŒ“ê¸€ ì‚­ì œ
 	public void commentDeleteOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		
@@ -1709,10 +1709,10 @@ public class companyReviewController
 		{
 			conn = DBConn.conn();
 			
-			// DB?—?„œ ?‹¤? œ ?‚­? œ 
+			// DBì—ì„œ ì‹¤ì œ ì‚­ì œ 
 			// String sql = "delete from comment where cno = ?";
 			
-			// DB?—?„œ ë¹„í™œ?„±?™”
+			// DBì—ì„œ ë¹„í™œì„±í™”
 			String sql = "update post_comment set post_comment_state = 'D' where post_comment_no = ?";
 			ptmt = conn.prepareStatement(sql);
 			ptmt.setString(1, c_no);
@@ -1743,7 +1743,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ì¢‹ì•„?š” ?“±ë¡?
+	// ì¢‹ì•„ìš” ë“±ë¡
 	public void LikeOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String cno = request.getParameter("cno");
@@ -1757,17 +1757,17 @@ public class companyReviewController
 		
 		if (loginUser != null) 
 		{
-			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°? ê°?? ¸?˜¤ê¸?
+			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°’ ê°€ì ¸ì˜¤ê¸°
 		}
 		
 		String pno = request.getParameter("pno");
 		String plstate = request.getParameter("plstate");
 		
-//		System.out.println("ì¢‹ì•„?š” ?“±ë¡?");
-//		System.out.println("ì¢‹ì•„?š” cno" + cno);
+//		System.out.println("ì¢‹ì•„ìš” ë“±ë¡");
+//		System.out.println("ì¢‹ì•„ìš” cno" + cno);
 //		System.out.println(uno);
 //		System.out.println(pno);
-//		System.out.println("?ƒ?ƒœ" + plstate);
+//		System.out.println("ìƒíƒœ" + plstate);
 		
 		Connection conn = null; 
 		PreparedStatement ptmt = null;  
@@ -1794,7 +1794,7 @@ public class companyReviewController
 				ptmt.setString(2, uno);
 				ptmt.setString(3, pno);
 				
-//				System.out.println("ì¢‹ì•„?š” ?ƒ?ƒœ ë³?ê²?");
+//				System.out.println("ì¢‹ì•„ìš” ìƒíƒœ ë³€ê²½");
 				
 			}else{
 				sql = "insert into post_like (post_no, user_no, post_like_state) values (?, ?, ?)";
@@ -1805,7 +1805,7 @@ public class companyReviewController
 				ptmt.setString(2, uno);
 				ptmt.setString(3, plstate);
 
-//				System.out.println("ì¢‹ì•„?š” ?“±ë¡?");
+//				System.out.println("ì¢‹ì•„ìš” ë“±ë¡");
 				
 			}
 			
@@ -1813,7 +1813,7 @@ public class companyReviewController
 			
 			if(result > 0)
 			{
-				// System.out.println("ì¢‹ì•„?š” ?ƒ?ƒœê°? ë³?ê²½ë˜?—ˆ?Šµ?‹ˆ?‹¤.");
+				// System.out.println("ì¢‹ì•„ìš” ìƒíƒœê°€ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 			
 //			System.out.println("vo" + vo);
@@ -1837,7 +1837,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ì¢‹ì•„?š” ?ƒ?ƒœ ì¡°íšŒ
+	// ì¢‹ì•„ìš” ìƒíƒœ ì¡°íšŒ
 	public void LikeState(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String cno = request.getParameter("cno");
@@ -1851,7 +1851,7 @@ public class companyReviewController
 		
 		if (loginUser != null) 
 		{
-			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°? ê°?? ¸?˜¤ê¸?
+			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°’ ê°€ì ¸ì˜¤ê¸°
 		}
 		
 		String pno = request.getParameter("pno");
@@ -1901,7 +1901,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ì¢‹ì•„?š” ê°œìˆ˜
+	// ì¢‹ì•„ìš” ê°œìˆ˜
 	public void LikeCount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String pno = request.getParameter("pno");
@@ -1944,7 +1944,7 @@ public class companyReviewController
 		}
 	}
 	
-	// ?‹ ê³? ?“±ë¡?
+	// ì‹ ê³  ë“±ë¡
 	public void complaintOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		request.setCharacterEncoding("UTF-8");
@@ -1960,14 +1960,14 @@ public class companyReviewController
 		
 		if (loginUser != null) 
 		{
-			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°? ê°?? ¸?˜¤ê¸?
+			uno = Integer.toString(loginUser.getUser_no());  // user_no ê°’ ê°€ì ¸ì˜¤ê¸°
 		}
 		
 		String pno = request.getParameter("pno");
 		String reason = request.getParameter("reason");
 		String reason_detail = request.getParameter("reason_detail");
 		
-//		System.out.println("?‹ ê³? ? •ë³?");
+//		System.out.println("ì‹ ê³  ì •ë³´");
 //		System.out.println(uno);
 //		System.out.println(pno);
 //		System.out.println(reason);
@@ -1990,7 +1990,7 @@ public class companyReviewController
 			
 			if(rs.next())
 			{
-//				System.out.println("?‹ ê³? ?ˆ˜? •");
+//				System.out.println("ì‹ ê³  ìˆ˜ì •");
 				
 				sql = "update post_complaint set post_complaint_reason = ?, post_complaint_reason_other = ? where user_no = ? and post_no = ? ";
 				
@@ -2001,10 +2001,10 @@ public class companyReviewController
 				ptmt.setString(3, uno);
 				ptmt.setString(4, pno);
 
-//				System.out.println("?‹ ê³? ?ˆ˜? • ?™„ë£?");
+//				System.out.println("ì‹ ê³  ìˆ˜ì • ì™„ë£Œ");
 			}else
 			{
-//				System.out.println("?‹ ê³? ?“±ë¡?");
+//				System.out.println("ì‹ ê³  ë“±ë¡");
 
 				sql = "insert into post_complaint (post_no, user_no, post_complaint_state, post_complaint_reason, post_complaint_reason_other) values (?, ?, ?, ?, ?)";
 				
@@ -2023,7 +2023,7 @@ public class companyReviewController
 			
 			if(result > 0)
 			{
-				System.out.println("?‹ ê³? ?˜?—ˆ?Šµ?‹ˆ?‹¤.");
+				System.out.println("ì‹ ê³  ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 			
 			response.sendRedirect("communityView.do?pno=" + pno + "&cno=" + cno);

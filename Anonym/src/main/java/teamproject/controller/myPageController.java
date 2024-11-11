@@ -1076,7 +1076,7 @@ public class myPageController
 			}
 			
 			int cno = loginUserc.getCno();
-			
+			String cid = loginUserc.getCid();
 		    String cpw = request.getParameter("cpw");
 		    String clogo = request.getParameter("clogo");
 		    String cname = request.getParameter("cname");
@@ -1139,6 +1139,7 @@ public class myPageController
 					
 					 loginUserc.setCno(cno);
 				     loginUserc.setCpw(cpw);
+				     loginUserc.setCid(cid);
 				     loginUserc.setClogo(clogo);
 				     loginUserc.setCname(cname);
 				     loginUserc.setCemployee(cemployee);

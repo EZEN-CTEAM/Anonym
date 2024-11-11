@@ -7,7 +7,7 @@ ul {
   list-style: none;
 }
 
-/* �궡鍮꾧쾶�씠�뀡 硫붾돱 */
+/* 占쎄땀�뜮袁㏃쓺占쎌뵠占쎈�� 筌롫뗀�뤀 */
 .nav-menu {
   display: flex;
   font-size: 1.1rem;
@@ -34,7 +34,7 @@ ul {
   text-decoration: underline;
 }
 
-/* 硫붿씤 而⑦뀒�씠�꼫 媛꾧꺽 議곗젙 */
+/* 筌롫뗄�뵥 �뚢뫂�믭옙�뵠占쎄섐 揶쏄쑨爰� 鈺곌퀣�젟 */
 .main-container {
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@ ul {
   margin: 0 auto;
 }
 
-/* �씤�듃濡� 寃��깋 */
+/* 占쎌뵥占쎈뱜嚥∽옙 野껓옙占쎄퉳 */
 .main_apply {
   text-align: center;
 }
@@ -58,7 +58,7 @@ ul {
   justify-content: center;
 }
 
-/* �씤�듃濡� 寃��깋 */
+/* 占쎌뵥占쎈뱜嚥∽옙 野껓옙占쎄퉳 */
 .intro input {
   width: 100%;
   height: 40px;
@@ -74,15 +74,17 @@ ul {
 
 .div_container {
   display: flex;
+  width: 80%;
 }
 
-/* �씤湲곌� 由ъ뒪�듃(�옄�쑀 寃뚯떆�뙋) */
+/* 占쎌뵥疫꿸퀗占� �뵳�딅뮞占쎈뱜(占쎌쁽占쎌� 野껊슣�뻻占쎈솇) */
 .board-container {
   width: 80%;
   margin: 0px 0px 80px 0px;
+  display: flex;
 }
 
-/* �씤湲곌� 由ъ뒪�듃(梨꾩슜�젙蹂�) */
+/* 占쎌뵥疫꿸퀗占� �뵳�딅뮞占쎈뱜(筌�袁⑹뒠占쎌젟癰귨옙) */
 .apply_title {
   display: flex;
   justify-content: space-between;
@@ -139,14 +141,15 @@ ul {
   margin: 20px 40px;
 }
 
-/* 理쒖떊 由ъ뒪�듃 */
+/* 筌ㅼ뮇�뻿 �뵳�딅뮞占쎈뱜 */
 aside {
   margin: 40px;
 }
 
 .aside_container {
-  margin-left: 80px;
-  width: 25%;
+  margin-left: 35px;
+  width: 90%;
+  height: 100%;
   background-color: rgb(248, 248, 248);
 }
 
@@ -156,6 +159,7 @@ aside {
   font-weight: bold;
   margin: 10px;
   text-align: left;
+  padding-top: 15px;
 }
 
 .new_apply_list {

@@ -7,7 +7,7 @@ ul {
   list-style: none;
 }
 
-/* �궡鍮꾧쾶�씠�뀡 硫붾돱 */
+/* 占쎄땀�뜮袁㏃쓺占쎌뵠占쎈�� 筌롫뗀�뤀 */
 .nav-menu {
   display: flex;
   font-size: 1.1rem;
@@ -55,7 +55,7 @@ ul {
   text-decoration: underline;
 }
 
-/* 濡쒓렇�씤 �쉶�썝媛��엯 */
+/* 嚥≪뮄�젃占쎌뵥 占쎌돳占쎌뜚揶쏉옙占쎌뿯 */
 .login:hover {
   font-weight: bold;
   text-decoration: underline;
@@ -66,10 +66,9 @@ ul {
   text-decoration: underline;
 }
 
-/* 硫붿씤 而⑦뀒�씠�꼫 媛꾧꺽 議곗젙 */
+/* 筌롫뗄�뵥 �뚢뫂�믭옙�뵠占쎄섐 揶쏄쑨爰� 鈺곌퀣�젟 */
 .main-container {
-  padding: 50px 20px;
-  display: flex;
+  padding: 50px 20px;  
 }
 
 .board-container {
@@ -77,14 +76,14 @@ ul {
 }
 
 
-/* 湲곗뾽 �젙蹂� */
+/* 疫꿸퀣毓� 占쎌젟癰귨옙 */
 .apply {
   width: 80%;
   margin: 50px auto 10px auto;
   font-size: 0.9rem;
 }
 
-.apply_container {
+.apply_title_container {
   width: 80%;
   margin: 0px auto;
   border: 1px solid rgb(223, 223, 223);
@@ -105,7 +104,17 @@ ul {
   color: rgb(100, 100, 100);
 }
 
-/* 湲곗뾽�젙蹂� �슂�빟 */
+.apply_content_container {
+  width: 80%;
+  min-height: 500px;
+  margin: 0px auto;
+  border: 1px solid rgb(223, 223, 223);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  padding: 7px;
+}
+
+/* 疫꿸퀣毓쏙옙�젟癰귨옙 占쎌뒄占쎈튋 */
 .summation_title {
   display: flex;
   justify-content: space-between;
@@ -141,7 +150,7 @@ ul {
   color: rgb(100, 100, 100);
 }
 
-/* 吏��썝�븯湲� */
+/* 筌욑옙占쎌뜚占쎈릭疫뀐옙 */
 .apply_button {
   display: block;
   width: 30%;
@@ -152,17 +161,17 @@ ul {
   color: rgb(255, 255, 255);
 }
 
-/* �씤湲곌났怨� */
+/* 占쎌뵥疫꿸퀗�궗�⑨옙 */
 .favor_apply_area {
   width: 15%;
 }
 
 .main-container {
-  padding: 80px 20px;
   text-align: center;
   width : 90%;
   max-width: 1200px;
-  height: 925px;
+  padding: 50px 20px;
+  height: auto;
   margin: 0 auto;
 }
 
@@ -180,7 +189,7 @@ ul {
 }
 
 .viewBtn:last-child {
-  margin-right: 0; /* 留덉�留� 踰꾪듉�쓽 �삤瑜몄そ �뿬諛� �젣嫄� */
+  margin-right: 0; /* 筌띾뜆占쏙쭕占� 甕곌쑵�뱣占쎌벥 占쎌궎�몴紐꾠걹 占쎈연獄쏉옙 占쎌젫椰꾬옙 */
 }
 
 .viewBtn:hover {

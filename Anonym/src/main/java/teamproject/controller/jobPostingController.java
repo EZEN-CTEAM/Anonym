@@ -17,6 +17,7 @@ import java.io.PrintWriter;
 
 import teamproject.util.DBConn;
 import teamproject.vo.JobpostingVO;
+import teamproject.vo.PagingUtil;
 import teamproject.vo.ResumeVO;
 import teamproject.vo.UserVO;
 
@@ -63,16 +64,8 @@ public class jobPostingController
 		HttpSession session = request.getSession();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		
-		if(loginUser == null) {
-//			경로 확인 필요
-			response.sendRedirect(request.getContextPath()+"/user/login_p.do");
-		} else {
-			
 			String searchValue = request.getParameter("index_search");
-			if(searchValue == null || searchValue.equals("")) {
-				searchValue = "";
-			}
-			System.out.println("searchValue : " +  searchValue);
+			if (searchValue == null) searchValue = "";
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;
@@ -83,21 +76,18 @@ public class jobPostingController
 			
 			try {
 				conn = DBConn.conn();
-				
+
 				String sql = "SELECT c.company_no"
 						   + " , company_name"
 						   + " , company_logo"
 						   + " , j.job_posting_no"
 						   + " , job_posting_title"
-						   + " , COUNT(jl.job_posting_like_no) AS like_count"
-						   + " FROM company c, job_posting j, job_posting_like jl"
+						   + " FROM company c, job_posting j"
 						   + " WHERE c.company_no = j.company_no"
-						   + " AND jl.job_posting_no = j.job_posting_no"
 						   + " AND job_posting_state = 'E'"
-						   + " AND job_posting_like_state = 'E'"
 						   + " AND company_name like CONCAT('%', ?, '%')"
 						   + " GROUP BY c.company_no, company_name, company_logo, j.job_posting_no, job_posting_title"
-						   + " ORDER BY like_count desc"
+						   + " ORDER BY job_posting_registration_date desc"
 						   + " LIMIT 0, 9";
 				
 				psmt = conn.prepareStatement(sql);
@@ -113,7 +103,6 @@ public class jobPostingController
 					jpvo.setCompany_name(rs.getString("company_name"));
 					jpvo.setJob_posting_no(rs.getInt("job_posting_no"));
 					jpvo.setJob_posting_title(rs.getString("job_posting_title"));
-					jpvo.setLike_count(rs.getString("like_count"));
 					
 					jList.add(jpvo);
 				}
@@ -159,7 +148,6 @@ public class jobPostingController
 				}
 			}
 		}
-	}
 	
 	public void jobView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -167,12 +155,7 @@ public class jobPostingController
 		
 		HttpSession session = request.getSession();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		
-		if(loginUser == null) {
-//			경로 확인 필요
-			response.sendRedirect(request.getContextPath()+"/user/login_p.do");
-		} else {
-						
+								
 			int jobPostingNo = Integer.parseInt(request.getParameter("job_posting_no"));
 			
 			Connection conn = null;
@@ -183,8 +166,7 @@ public class jobPostingController
 			{
 				conn = DBConn.conn();
 				
-				String sql = " SELECT c.company_no"
-						   + " , company_name"
+				String sql = " SELECT company_name"
 						   + " , company_location"
 						   + " , company_employee"
 						   + " , company_industry"
@@ -205,7 +187,6 @@ public class jobPostingController
 				if(rs.next()) {
 					JobpostingVO jpvo = new JobpostingVO();
 					
-					jpvo.setCompany_no(rs.getInt("company_no"));
 					jpvo.setCompany_name(rs.getString("company_name"));
 					jpvo.setCompany_location(rs.getString("company_location"));
 					jpvo.setCompany_employee(rs.getString("company_employee"));
@@ -235,7 +216,74 @@ public class jobPostingController
 				}
 			}
 		}
-	}
+	
+	public void getResume(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		ResumeVO vo = null;
+		
+		HttpSession session = request.getSession();
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+			
+			int resumeNo = Integer.parseInt(request.getParameter("resume_no"));
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			
+			try
+			{
+				conn = DBConn.conn();
+				
+				String sqlR = " SELECT resume_no"
+						+ " , resume_name"
+						+ " , resume_tenure_start"
+						+ " , resume_tenure_end"
+						+ " , resume_area"
+						+ " , resume_job"
+						+ " , resume_salary"
+						+ " FROM resume"
+						+ " WHERE resume_no = ?";
+				
+				psmt = conn.prepareStatement(sqlR);
+				psmt.setInt(1, resumeNo);
+				rs = psmt.executeQuery();
+				
+				if(rs.next()) {
+//					ResumeVO rvo = new ResumeVO();
+					JSONObject json = new JSONObject();
+					
+					//  json 객체에 데이터 넣기
+					json.put("resume_no", rs.getInt("resume_no"));
+					json.put("resume_name", rs.getString("resume_name"));
+					json.put("resume_tenure_start", rs.getString("resume_tenure_start"));
+					json.put("resume_tenure_end", rs.getString("resume_tenure_end"));
+					json.put("resume_area", rs.getString("resume_area"));
+					json.put("resume_job", rs.getString("resume_job"));
+					json.put("resume_salary", rs.getString("resume_salary"));
+				
+					// 응답의 Content-Type을 JSON으로 설정
+					response.setContentType("application/json");
+					response.setCharacterEncoding("UTF-8");
+					
+					// 리스트를 문자열로 바꿔서 반환
+					PrintWriter out = response.getWriter();
+					out.print(json.toString());
+					out.flush();
+				}
+			} catch(Exception e)
+			{
+				e.printStackTrace();
+			} finally
+			{
+				try
+				{
+					DBConn.close(rs, psmt, conn);
+				} catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
 	
 	public void jobApply(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -246,12 +294,9 @@ public class jobPostingController
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		
 		if(loginUser == null) {
-//			경로 확인 필요
-			response.sendRedirect(request.getContextPath()+"/user/login_p.do");
+		    request.getRequestDispatcher("/WEB-INF/user/login_p.jsp").forward(request, response);
 		} else {
-			
-//			int resumeNo = Integer.parseInt(request.getParameter("resume_no"));
-			
+					
 			int userNo = loginUser.getUser_no();
 			int jobPostingNo = Integer.parseInt(request.getParameter("job_posting_no"));
 			
@@ -269,19 +314,18 @@ public class jobPostingController
 			{
 				conn = DBConn.conn();
 				
-				String sql = " SELECT c.company_no"
-						   + " , company_name"
+				String sql = " SELECT company_name"
 						   + " , company_location"
 						   + " , company_employee"
 						   + " , company_industry"
 						   + " , company_anniversary"
-						   + " , j.job_posting_no"
+						   + " , job_posting_no"
 						   + " , job_posting_period"
 						   + " , job_posting_title"
 						   + " , job_posting_content"
 						   + " FROM company c, job_posting j"
 						   + " WHERE c.company_no = j.company_no"
-						   + " AND job_posting_state = 'E'"
+						   + " AND job_posting_state = 'E'"						   
 						   + " AND j.job_posting_no = ?";
 				
 				psmt = conn.prepareStatement(sql);
@@ -291,7 +335,6 @@ public class jobPostingController
 				if(rs.next()) {
 					JobpostingVO jpvo = new JobpostingVO();
 					
-					jpvo.setCompany_no(rs.getInt("company_no"));
 					jpvo.setCompany_name(rs.getString("company_name"));
 					jpvo.setCompany_location(rs.getString("company_location"));
 					jpvo.setCompany_employee(rs.getString("company_employee"));
@@ -308,7 +351,7 @@ public class jobPostingController
 				
 				
 				String sqlR = " SELECT resume_no"
-							+ " , resume_title"
+							+ " , resume_name"
 							+ " , resume_tenure_start"
 							+ " , resume_tenure_end"
 							+ " , resume_area"
@@ -325,7 +368,7 @@ public class jobPostingController
 					ResumeVO rvo = new ResumeVO();
 					
 					rvo.setResume_no(rsR.getInt("resume_no"));
-					rvo.setResume_title(rsR.getString("resume_title"));
+					rvo.setResume_name(rsR.getString("resume_name"));
 					rvo.setResume_tenure_start(rsR.getString("resume_tenure_start"));
 					rvo.setResume_tenure_end(rsR.getString("resume_tenure_end"));
 					rvo.setResume_area(rsR.getString("resume_area"));
@@ -353,107 +396,35 @@ public class jobPostingController
 			}
 		}
 	}
-	
-	public void getResume(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-		ResumeVO vo = null;
-		
-		HttpSession session = request.getSession();
-		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		
-		if(loginUser == null) {
-//			경로 확인 필요
-			response.sendRedirect(request.getContextPath()+"/user/login_p.do");
-		} else {
-			
-			int resumeNo = Integer.parseInt(request.getParameter("resume_no"));
-			
-			Connection conn = null;
-			PreparedStatement psmt = null;
-			ResultSet rs = null;
-			
-			try
-			{
-				conn = DBConn.conn();
-				
-				String sqlR = " SELECT resume_no"
-						+ " , resume_title"
-						+ " , resume_tenure_start"
-						+ " , resume_tenure_end"
-						+ " , resume_area"
-						+ " , resume_job"
-						+ " , resume_salary"
-						+ " FROM resume"
-						+ " WHERE resume_no = ?";
-				
-				psmt = conn.prepareStatement(sqlR);
-				psmt.setInt(1, resumeNo);
-				rs = psmt.executeQuery();
-				
-				if(rs.next()) {
-//					ResumeVO rvo = new ResumeVO();
-					JSONObject json = new JSONObject();
-					
-					//  json 객체에 데이터 넣기
-					json.put("resume_no", rs.getInt("resume_no"));
-					json.put("resume_title", rs.getString("resume_title"));
-					json.put("resume_tenure_start", rs.getString("resume_tenure_start"));
-					json.put("resume_tenure_end", rs.getString("resume_tenure_end"));
-					json.put("resume_area", rs.getString("resume_area"));
-					json.put("resume_job", rs.getString("resume_job"));
-					json.put("resume_salary", rs.getString("resume_salary"));
-				
-					// 응답의 Content-Type을 JSON으로 설정
-					response.setContentType("application/json");
-					response.setCharacterEncoding("UTF-8");
-				}
-			} catch(Exception e)
-			{
-				e.printStackTrace();
-			} finally
-			{
-				try
-				{
-					DBConn.close(rs, psmt, conn);
-				} catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-	
 	public void jobApplyOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		
 		HttpSession session = request.getSession();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		
-		if(loginUser == null) {
-//			경로 확인 필요
-			response.sendRedirect(request.getContextPath()+"/user/login_p.do");
-		} else {
-			
+
 			int jobPostingNo = Integer.parseInt(request.getParameter("job_posting_no"));
 			int companyNo = Integer.parseInt(request.getParameter("company_no"));
 			int resumeNo = Integer.parseInt(request.getParameter("resume_no"));
 			int userNo = loginUser.getUser_no();
 			
+			System.out.println("jobPostingNo : " + jobPostingNo);
+			System.out.println("companyNo : " + companyNo);
+			System.out.println("resumeNo : " + resumeNo);
+			System.out.println("userNo : " + userNo);
+			
 			Connection conn = null;
-			PreparedStatement psmt = null;
+			PreparedStatement psmt = null;			
 			
 			try
 			{
 				conn = DBConn.conn();
 				
-//				지원자 관리에 해당 내용이 들어가게끔 처리 필요
 				String sql = " INSERT INTO applicant ("
-						   + "  job_posting_no"
+						   + " job_posting_no"
 						   + " , company_no"
 						   + " , resume_no"
 						   + " , user_no"
 						   + " ) VALUES ("
-						   + "  ?"
+						   + " ?"
 						   + " , ?"
 						   + " , ?"
 						   + " , ?"
@@ -467,7 +438,7 @@ public class jobPostingController
 				
 				psmt.executeUpdate();
 				
-				response.sendRedirect(request.getContextPath()+"/jobPosting/jobView.do?job_posting_no="+ jobPostingNo);
+				response.sendRedirect(request.getContextPath()+"/jobPosting/jobApply.do");
 			} catch(Exception e)
 			{
 				e.printStackTrace();
@@ -483,4 +454,3 @@ public class jobPostingController
 			}
 		}
 	}
-}

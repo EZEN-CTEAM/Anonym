@@ -34,14 +34,16 @@
 		conn = DBConn.conn();
 		
 		/* 자유게시판에서 조회수 순위 8개 */
-		String sqlFb = "SELECT post_no"
+		String sqlFb = "SELECT p.post_no"
 					 + " , post_title"
-					 + " , (SELECT count(*) FROM post_like pl INNER JOIN post p ON pl.post_no = p.post_no WHERE board_no = 1) as goodCnt"
-					 + " , (SELECT count(*) FROM post_comment pc INNER JOIN post p ON pc.post_no = p.post_no WHERE board_no = 1) commentCnt"
-					 + " FROM post p, board b"
-					 + " WHERE p.board_no = b.board_no"
+					 + " , COUNT(DISTINCT pl.user_no) AS goodCnt"
+					 + " , (SELECT COUNT(*) FROM post_comment pc WHERE pc.post_no = p.post_no AND pc.post_comment_state = 'E' ) AS commentCnt"
+					 + " FROM post p"
+					 + " LEFT JOIN post_like pl ON p.post_no = pl.post_no"
+					 + " LEFT JOIN post_comment pc ON p.post_no = pc.post_no"
+					 + " WHERE p.board_no = 1"
 					 + " AND post_state = 'E'"
-					 + " AND b.board_no = 1"
+					 + " GROUP BY p.post_no, p.post_title"
 					 + " ORDER BY post_hit desc"
 					 + " LIMIT 0, 8";
 		
@@ -108,7 +110,7 @@
 			          <div class="free_list">
 			            <div class="list_title">
 			              <span class="rank"><%= num %></span> 
-			              <a href="<%= request.getContextPath() %>/freeBoard/freeView.do?postNo=<%= freeBoardPostNo %>"><%= freeBoardPostTitle %></a>
+			              <a href="<%= request.getContextPath() %>/freeBoard/freeView.do?post_no=<%= freeBoardPostNo %>"><%= freeBoardPostTitle %></a>
 			            </div>
 			            <div class="goodcomment_count">
 			              <img src="https://img.icons8.com/?size=100&id=89385&format=png&color=000000" width="17px"><%= goodCnt %>

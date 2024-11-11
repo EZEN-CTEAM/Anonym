@@ -18,6 +18,8 @@ import org.json.simple.JSONObject;
 import teamproject.util.DBConn;
 import teamproject.vo.CompanyVO;
 import teamproject.vo.JobpostingVO;
+import teamproject.vo.ResumeVO;
+import teamproject.vo.UserVO;
 
 public class companyServicesController 
 {
@@ -346,14 +348,14 @@ public class companyServicesController
 		} else {
 			
 			int companyNo = loginUserc.getCno();
-			
-			Connection conn = null;
-			PreparedStatement psmt = null;
-			
+
 			String jobPostingTitle = request.getParameter("job_posting_title");
 			String jobPostingKind = request.getParameter("job_posting_kind");
 			String jobPostingContent = request.getParameter("job_posting_content");
 			String jobPostingPeriod = request.getParameter("job_posting_period");
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
 			
 			try
 			{

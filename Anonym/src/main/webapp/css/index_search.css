@@ -85,7 +85,12 @@ li:hover .dropdown_content {
 /* 메인 컨테이너 간격 조정 */
 .main-container {
   padding: 50px 20px;
+  text-align: center;
+  width : 90%;
+  max-width: 1200px;
+  min-height: 925px;
   height: auto;
+  margin: 0 auto;
 }
 
 .board-container {
@@ -105,6 +110,10 @@ li:hover .dropdown_content {
   text-align: left;
 }
 
+.search_result div {
+	margin-right: 5px;
+}
+
 
 /* 기업 정보 */
 .company {
@@ -122,7 +131,7 @@ li:hover .dropdown_content {
   font-size: 0.7rem;
   font-weight: bold;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -222,6 +231,10 @@ li:hover .dropdown_content {
   padding-bottom: 10px;
 }
 
+.apply_title a{
+  font-size: 0.75rem;	
+}
+
 .apply_list {
   width: 80%;
   margin: 0px auto;
@@ -264,6 +277,10 @@ li:hover .dropdown_content {
   margin: 40px auto 10px auto;
   border-bottom: 1px solid rgb(206, 206, 206);
   padding-bottom: 10px;
+}
+
+.free_title a{
+	font-size: 0.75rem;
 }
 
 .img_area {
@@ -340,11 +357,3 @@ li:hover .dropdown_content {
   color: rgb(124, 124, 124);
 }
 
-.main-container {
-  padding: 80px 20px;
-  text-align: center;
-  width : 90%;
-  max-width: 1200px;
-  height: 925px;
-  margin: 0 auto;
-}

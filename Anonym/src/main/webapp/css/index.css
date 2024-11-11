@@ -67,7 +67,7 @@ li:hover .dropdown_content {
   text-decoration: underline;
 }
 
-/* 메인 컨테이너 간격 조정 */
+/* 硫붿씤 而⑦뀒�씠�꼫 媛꾧꺽 議곗젙 */
 .main-container {
   padding: 50px 20px;
 }
@@ -83,12 +83,12 @@ li:hover .dropdown_content {
   margin-bottom: 20px;
 }
 
-/* 인트로 검색 */
+/* �씤�듃濡� 寃��깋 */
 .main_apply {
   text-align: center;
 }
 
-/* 인트로 검색 */
+/* �씤�듃濡� 寃��깋 */
 .intro input {
   height: 40px;
   border: 1px solid #c9c9c9;
@@ -101,7 +101,7 @@ li:hover .dropdown_content {
   font-size: 0.9rem;
 }
 
-/* 인기글 리스트(자유 게시판) */
+/* �씤湲곌� 由ъ뒪�듃(�옄�쑀 寃뚯떆�뙋) */
 .board-container {
   width: 80%;
   margin: 0px auto 100px auto;
@@ -150,7 +150,7 @@ li:hover .dropdown_content {
   padding: 0px 2px;
 }
 
-/* 인기글 리스트(채용정보) */
+/* �씤湲곌� 由ъ뒪�듃(梨꾩슜�젙蹂�) */
 .apply_title {
   display: flex;
   justify-content: space-between;
@@ -161,12 +161,21 @@ li:hover .dropdown_content {
   padding-bottom: 10px;
 }
 
+.apply_title a {
+  font-size: 0.75rem;	
+}
+
 .apply_list {
   width: 80%;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.rank {
+	color: orange;
+	font-weight: bold;	
 }
 
 .company_logo {
@@ -204,6 +213,6 @@ li:hover .dropdown_content {
   text-align: center;
   width : 90%;
   max-width: 1200px;
-  height: 925px;
+  min-height: 925px;
   margin: 0 auto;
 }

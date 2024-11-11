@@ -128,13 +128,13 @@ public class myPageController
 		}// 글 신고 list
 		else if(comments[comments.length-1].equals("adminReport.do"))
 		{
-			if(request.getMethod().equals("GET"))
-			{
-				adminReport(request, response);
-			}else if(request.getMethod().equals("POST"))
-			{
-				adminReportOk(request, response);
-			}
+			adminReport(request, response);
+
+		}// 글 신고 list
+		else if(comments[comments.length-1].equals("adminReportOk.do"))
+		{
+			adminReportOk(request, response);
+
 		}// 비활성 회원 리스트
 		else if(comments[comments.length-1].equals("adminUser.do"))
 		{
@@ -294,11 +294,13 @@ public class myPageController
 			}
 			
 			int user_no = loginUser.getUser_no();
+			String cno = loginUser.getUser_cno();
+			String user_type = loginUser.getUser_type();
+			String user_id = loginUser.getUser_id();
 			String user_pw = request.getParameter("user_pw");
 			String user_nickname = request.getParameter("user_nickname");
 			String user_employment = request.getParameter("user_employment");
 			String user_company = request.getParameter("user_company");
-			
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;
@@ -321,14 +323,28 @@ public class myPageController
 				int result = psmt.executeUpdate();
 				
 				if (result >0) {
+					
+					loginUser = new UserVO();
+					
+					loginUser.setUser_pw(user_pw);
+					loginUser.setUser_nickname(user_nickname);
+					loginUser.setUser_employment(user_employment);
+					loginUser.setUser_company(user_company);
+					loginUser.setUser_type(user_type);
+					loginUser.setUser_no(user_no);
+					loginUser.setUser_id(user_id);
+					loginUser.setUser_cno(cno);
+					
+					
+					session = request.getSession();
+					session.setAttribute("loginUser", loginUser);
+					
 		            response.sendRedirect(request.getContextPath() + "/myPage/personView.do?user_no=" + user_no);
 		        } else {
 		        	session = request.getSession();
 		        	session.setAttribute("errorMessage", "정보 수정에 실패했습니다. 다시 시도해 주세요.");
-		        	response.sendRedirect(request.getContextPath() + "/myPage/personModify.jsp?user_no=" + user_no);
+		        	response.sendRedirect(request.getContextPath() + "/myPage/personModify.do?user_no=" + user_no);
 		        }
-				
-				response.sendRedirect(request.getContextPath()+"/myPage/personView.do?user_no="+user_no);
 				
 			}catch(Exception e) {
 				session = request.getSession();
@@ -1310,7 +1326,6 @@ public class myPageController
 				String sql = "SELECT  pc.post_complaint_no, "
 						+ "			  pc.post_complaint_reason, "
 						+ "           date_format(pc.post_complaint_registration_date, '%Y-%m-%d') as pcrdate, "
-						+ "           pc.post_complaint_state2, "
 						+ "			  p.post_no, " 
 						+ "           p.post_content, "
 						+ "           u.user_id, "
@@ -1327,7 +1342,6 @@ public class myPageController
 					
 					cpvo.setPost_complaint_no(rs.getString("post_complaint_no"));
 					cpvo.setPost_complaint_reason(rs.getString("post_complaint_reason"));
-					cpvo.setPost_complaint_state2(rs.getString("post_complaint_state2"));
 					cpvo.setPost_content(rs.getString("post_content"));
 					cpvo.setPost_no(rs.getString("post_no"));
 					cpvo.setUser_id(rs.getString("user_id"));
@@ -1368,9 +1382,12 @@ public class myPageController
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, user_id);
 				
+				
 				int result = psmt.executeUpdate();
 				
 				if (result > 0) {
+					System.out.println("비활성화");
+					
 		            response.sendRedirect(request.getContextPath()+"/myPage/adminReport.do");
 		        }
 				
@@ -1408,6 +1425,7 @@ public class myPageController
 					UserVO uvo = new UserVO();
 					
 					uvo.setUser_no(rs.getInt("user_no"));
+					uvo.setUser_id(rs.getString("user_id"));
 					uvo.setUser_nickname(rs.getString("user_nickname"));
 					uvo.setUser_registration_date(rs.getString("user_registration_date"));
 					uvo.setUser_employment(rs.getString("user_employment"));

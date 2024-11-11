@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="teamproject.vo.*"%>
 <%@ include file="../include/header.jsp" %>
 <%
 	/* CompanyVO loginUserc = (CompanyVO)session.getAttribute("loginUserc"); */
@@ -77,7 +76,7 @@
 				</div>
 				<div>
 					<input class="save_button" type="submit" value="저장하기">
-					<input class="cancle_button" type="reset" value="취소하기" onclick="location.href='company_cjobList.do';">
+					<input class="cancle_button" type="reset" value="취소하기" onclick="location.href='<%= request.getContextPath() %>/companyServices/cjobList.do';">
 				</div>
 			</form>
 		</section>

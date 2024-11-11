@@ -71,7 +71,7 @@ List<ComplaintVO> cplist = (List<ComplaintVO>)request.getAttribute("cplist");
 		                    	%>
 		                    </td>
 		                    <td>
-		                        <button class="btn" onclick="location.href='<%= request.getContextPath() %>/myPage/adminReport.do?user_id=<%= cpvo.getUser_id() %>'">회원 비활성</button>
+		                        <button class="btn" onclick="location.href='<%= request.getContextPath() %>/myPage/adminReportOk.do?user_id=<%= cpvo.getUser_id() %>'">회원 비활성</button>
 		                    </td>
 		                </tr>
 						<%	

@@ -105,6 +105,7 @@ public class companyServicesController
 		List<JobpostingVO> jpCList = new ArrayList<JobpostingVO>();
 		
 		HttpSession session = request.getSession();
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		CompanyVO loginUserc = (CompanyVO) session.getAttribute("loginUserc");
 		
 		if(loginUserc == null) {
@@ -664,7 +665,6 @@ public class companyServicesController
 		CompanyVO loginUserc = (CompanyVO) session.getAttribute("loginUserc");
 		
 		if(loginUserc == null) {
-//			경로 확인 필요
 			response.sendRedirect(request.getContextPath()+"/user/login_c.do");
 		} else {
 			
@@ -854,13 +854,14 @@ public class companyServicesController
 	public void changeStateD(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HttpSession session = request.getSession();
+		UserVO loginUser = (UserVO)session.getAttribute("loginUser");
 		CompanyVO loginUserc = (CompanyVO) session.getAttribute("loginUserc");
 		
 		if(loginUserc == null) {
 //			경로 확인 필요
 			response.sendRedirect(request.getContextPath()+"/user/login_c.do");
 		} else {
-			
+
 			int companyNo = loginUserc.getCno();
 			int applicantNO = Integer.parseInt(request.getParameter("applicant_no"));
 			

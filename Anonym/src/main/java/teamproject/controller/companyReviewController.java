@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import teamproject.util.DBConn;
-import teamproject.vo.CompanyVO;
+import teamproject.vo.*;
 import teamproject.vo.PagingUtil;
 import teamproject.vo.PostCommentVO;
 import teamproject.vo.PostVO;

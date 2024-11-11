@@ -26,13 +26,13 @@ CompanyVO loginUserc = (CompanyVO)session.getAttribute("loginUserc");
 					<li><a href="<%= request.getContextPath() %>/freeBoard/freeList.do">자유게시판</a></li>
 					<li><a href="<%= request.getContextPath() %>/companyReview/companySearchIndex.do">기업 리뷰</a></li>
 					<li><a href="<%= request.getContextPath() %>/jobPosting/jobList.do" class="applyinfo">채용 공고</a></li>
-					<li><a href="<%= request.getContextPath() %>/companyServices/cjobList.do" class="companyservice" onblur="">기업 서비스</a>
+					<li><a href="<%= request.getContextPath() %>/companyServices/cjobList.do" class="companyservice">기업 서비스</a>
 						<ul class="dropdown_content">
 							<li>
 								<a href="<%= request.getContextPath() %>/companyServices/cjobList.do" class="implyeement_apply">취업 공고 관리</a>
 							</li>
 							<li class="dropdown_2nd">
-								<a href="<%= request.getContextPath() %>/companyServices/applicantManagement.do" class="volunteer_management"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" width="17px">지원자관리</a>
+								<a href="<%= request.getContextPath() %>/companyServices/applicantManagementList.do" class="volunteer_management"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" width="17px">지원자관리</a>
 							</li>
 						</ul>
 					</li>

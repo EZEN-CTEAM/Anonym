@@ -883,6 +883,8 @@ public class myPageController
 			
 			int user_no = loginUser.getUser_no();
 			
+			System.out.println("user_no" + user_no);
+			
 			List<ApplicantVO> alist = new ArrayList<ApplicantVO>();
 			
 			Connection conn = null;
@@ -892,11 +894,13 @@ public class myPageController
 			try {
 					conn = DBConn.conn();
 					
-					String sql = "  SELECT a.applicant_no, a.applicant_state, date_format(a.applicant_registration_date, '%Y-%m-%d') as applicant_registration_date, c.company_name, r.resume_title"
+					String sql = "  SELECT a.applicant_no, a.applicant_state, a.resume_no, a.company_no, date_format(a.applicant_registration_date, '%Y-%m-%d') as applicant_registration_date, c.company_name, r.resume_title, a.user_no"
 								+ "  FROM applicant a"
 								+ "  INNER JOIN company c ON a.company_no = c.company_no"
 								+ "  INNER JOIN resume r ON a.resume_no = r.resume_no"
 								+ "  WHERE a.user_no = ?";
+					
+					System.out.println(sql);
 					
 					psmt = conn.prepareStatement(sql);
 					psmt.setInt(1, user_no);
@@ -906,7 +910,7 @@ public class myPageController
 					while(rs.next()) {
 						ApplicantVO avo = new ApplicantVO();
 						
-						avo.setUser_no(rs.getInt(user_no));
+						avo.setUser_no(rs.getInt("user_no"));
 						avo.setApplicant_no(rs.getInt("applicant_no"));
 						avo.setResume_no(rs.getInt("resume_no"));
 						avo.setCompany_no(rs.getInt("company_no"));
@@ -919,6 +923,8 @@ public class myPageController
 					}
 					
 					request.setAttribute("alist", alist);
+
+					System.out.println("alist사이즈 : " + alist.size());
 					
 					request.getRequestDispatcher("/WEB-INF/myPage/applicationStatus.jsp").forward(request, response);
 				
@@ -1300,6 +1306,7 @@ public class myPageController
 					cvo.setCbrc(rs.getString("company_brc"));
 					cvo.setClogo(rs.getString("company_logo"));
 					cvo.setCstate(rs.getString("company_state"));
+					cvo.setCrdate(rs.getString("company_registration_date"));
 					
 					clist.add(cvo);
 				}
@@ -1325,6 +1332,9 @@ public class myPageController
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;
+			
+			System.out.println(cno);
+			System.out.println(cstate);
 			
 			
 			try {

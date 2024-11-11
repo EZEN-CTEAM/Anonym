@@ -5,10 +5,11 @@
 List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
 %>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/k_styles.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/adminReport.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/mypage_styles.css" />
 
         <!-- 메인 컨텐츠 -->
-        <main>
+<%--         <main>
             <div class="main-container9">
                 <!-- 기업 승인 관리 -->
                 <section class="approval-section">
@@ -81,6 +82,52 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
                 </form>
                 </section>
             </div>
+        </main> --%>
+        
+        <main>
+            <div class="container">
+		        <h1>기업 승인 관리</h1>
+		        
+		        <table class="table">
+			        <thead>
+			            <tr>
+			                <th>회사명</th>
+			                <th>사업자등록번호</th>
+			                <th>가입일</th>
+			                <th>승인</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+                <% 
+                for(CompanyVO cvo : clist)
+                {
+                %>
+			            <tr>
+			                <td onclick="toggleDetails(this)"><%= cvo.getCname() %></td>
+			                <td><%= cvo.getCbrcnum() %></td>
+			                <td><%= cvo.getCrdate() %></td>
+			                <td>
+			                    <form action="admin.do" method="post" onsubmit="submitForm(this)">
+			                        <input type="hidden" name="company_no" value=<%= cvo.getCno() %>>
+			                        <div class="radioButtonStyle">
+				                        <label class="radioStyle">
+				                            <input type="radio" name="company_state" value="E" onchange="this.form.submit()">
+				                            <span>승인</span>
+				                        </label>
+				                        <label class="radioStyle">
+				                            <input type="radio" name="company_state" value="D" onchange="this.form.submit()">
+				                            <span>부결</span>
+				                        </label>
+				                    </div>
+			                    </form>
+			                </td>
+			            </tr>
+			       <%	
+	                }
+	                %>
+			        </tbody>
+		        </table>
+		    </div>
         </main>
 
 <%@ include file="../include/footer.jsp" %>
@@ -93,5 +140,8 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
         } else {
             details.style.display = "none"; // 숨기기
         }
+    }
+    function submitForm(form) {
+        form.submit();  // 라디오 버튼을 선택하면 폼을 제출합니다.
     }
 </script>

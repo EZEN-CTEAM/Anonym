@@ -162,8 +162,8 @@ h2{
     cursor: pointer;
     color: #333;
     margin-right: 20px;
-    padding: 10px; /* 패딩 추가로 클릭 영역 확대 */
-    transition: background-color 0.3s; /* 부드러운 배경 색상 전환 */
+    padding: 10px; /* �뙣�뵫 異붽�濡� �겢由� �쁺�뿭 �솗�� */
+    transition: background-color 0.3s; /* 遺��뱶�윭�슫 諛곌꼍 �깋�긽 �쟾�솚 */
 }
 
 .company-name:hover {
@@ -171,7 +171,7 @@ h2{
 }
 
 .company-details {
-    display: none; /* 기본적으로 숨김 */
+    display: none; /* 湲곕낯�쟻�쑝濡� �닲源� */
     margin-top: 10px;
     padding: 10px;
     background-color: #f9f9f9;
@@ -190,16 +190,16 @@ h2{
 }
 
 .company-value img{
-    width: 100%; /* 반응형 이미지 */
-    max-width: 450px; /* 최대 너비 설정 */
-    height: auto; /* 비율 유지 */
+    width: 100%; /* 諛섏쓳�삎 �씠誘몄� */
+    max-width: 450px; /* 理쒕� �꼫鍮� �꽕�젙 */
+    height: auto; /* 鍮꾩쑉 �쑀吏� */
 }
 
-.radioButtonStyle {
+/* .radioButtonStyle {
     display: flex;
-    gap: 10px; /* 라디오 버튼 간격 */
-    align-items: center; /* 수직 정렬 */
-    font-size: 0.9em; /* 라디오 버튼 크기 감소 */
+    gap: 10px; �씪�뵒�삤 踰꾪듉 媛꾧꺽
+    align-items: center; �닔吏� �젙�젹
+    font-size: 0.9em; �씪�뵒�삤 踰꾪듉 �겕湲� 媛먯냼
 }
 
 .radioStyle {
@@ -209,9 +209,31 @@ h2{
 
 .radioStyle input {
     margin-right: 5px;
-}
+} */
 
-/*우편 번호*/
+        .radioButtonStyle {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .radioStyle input[type="radio"] {
+            display: none;
+        }
+        .radioStyle span {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+        }
+        .radioStyle input[type="radio"]:checked + span {
+            background-color: #28a745;
+        }
+        .radioStyle input[type="radio"]:not(:checked) + span {
+            background-color: #dc3545;
+        }
+
+/*�슦�렪 踰덊샇*/
 .postcode-container {
     display: flex;
     justify-content: space-between;

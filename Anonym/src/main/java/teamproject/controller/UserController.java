@@ -8,6 +8,7 @@ import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -357,7 +358,7 @@ public class UserController
 			
 			String sql = "insert into user (user_id, user_pw, user_nickname, user_employment, user_company) values (?, ?, ?, ?, ?)";
 			
-			psmt = conn.prepareStatement(sql);
+			psmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			psmt.setString(1, user_id);
 			psmt.setString(2, user_pw);
 			psmt.setString(3, user_nickname);

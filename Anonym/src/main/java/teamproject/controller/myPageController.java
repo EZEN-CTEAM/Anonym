@@ -953,7 +953,13 @@ public class myPageController
 			{
 				conn = DBConn.conn();
 				
-				String sql = "SELECT * from company where company_no = ?";
+				String sql = "SELECT (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo "
+						+ "		   , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 1 ) as company_brc "
+						+ "		   ,c.company_id, c.company_pw, c.company_name, c.company_location, c.company_employee, c.company_industry, c.company_anniversary, c.company_brc_num "
+						+ "		 from anonym.company c "
+						+ " 	where company_no = ?";
+				
+				System.out.println(sql);
 				
 				psmt = conn.prepareStatement(sql);
 				psmt.setInt(1, cno);
@@ -979,9 +985,12 @@ public class myPageController
 				}
 				
 				request.getRequestDispatcher("/WEB-INF/myPage/companyView.jsp").forward(request, response);
-
+			
 			}catch(Exception e)
 			{
+				session = request.getSession();
+		        session.setAttribute("errorMessage", "오류가 발생했습니다");
+		        response.sendRedirect(request.getContextPath());
 				e.printStackTrace();
 			}finally
 			{
@@ -1060,7 +1069,14 @@ public class myPageController
 			
 			request.setCharacterEncoding("UTF-8");
 			
-			int cno = Integer.parseInt(request.getParameter("cno"));
+			HttpSession session = request.getSession();
+			CompanyVO loginUserc = (CompanyVO)session.getAttribute("loginUserc");
+			if( loginUserc == null ) {
+				response.sendRedirect(request.getContextPath()+"/user/login_c.do");
+			}
+			
+			int cno = loginUserc.getCno();
+			
 		    String cpw = request.getParameter("cpw");
 		    String clogo = request.getParameter("clogo");
 		    String cname = request.getParameter("cname");
@@ -1075,12 +1091,10 @@ public class myPageController
 			
 			String firstItem = addr[0];
 
-		    // �굹癒몄� �슂�냼�뱾�쓣 result�뿉 異붽�
 		    for (int i = 1; i < addr.length; i++) {
-		    	clocation += addr[i] + " "; // 怨듬갚 異붽�
+		    	clocation += addr[i] + " "; 
 		    }
 
-		    // 愿꾪샇 �븞�뿉 泥� 踰덉㎏ �슂�냼 異붽�
 		    clocation += "(" + firstItem + ")";
 			
 			Connection conn = null;
@@ -1114,9 +1128,36 @@ public class myPageController
 				psmt.setString(9, cbrc);
 				psmt.setInt(10, cno);
 				
-				psmt.executeUpdate();
+				 
 				
-				response.sendRedirect(request.getContextPath()+"/myPage/companyView.do?cno="+cno);
+				
+				int result = psmt.executeUpdate();
+				
+				if (result >0) {
+					
+					 loginUserc = new CompanyVO();
+					
+					 loginUserc.setCno(cno);
+				     loginUserc.setCpw(cpw);
+				     loginUserc.setClogo(clogo);
+				     loginUserc.setCname(cname);
+				     loginUserc.setCemployee(cemployee);
+				     loginUserc.setCindustry(cindustry);
+				     loginUserc.setCanniversary(canniversary);
+				     loginUserc.setCbrcnum(cbrcnum);
+				     loginUserc.setCbrc(cbrc);
+					 loginUserc.setClocation(clocation);
+					
+					session = request.getSession();
+					session.setAttribute("loginUserc", loginUserc);
+					
+					response.sendRedirect(request.getContextPath()+"/myPage/companyView.do?cno="+cno);
+		        } else {
+		        	session = request.getSession();
+		        	session.setAttribute("errorMessage", "정보 수정에 실패했습니다. 다시 시도해 주세요.");
+		        	response.sendRedirect(request.getContextPath() + "/myPage/companyModify.do?cno=" + cno);
+		        }
+				
 				
 			}catch(Exception e) {
 				e.printStackTrace();

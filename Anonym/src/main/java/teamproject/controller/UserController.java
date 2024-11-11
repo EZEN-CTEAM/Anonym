@@ -861,7 +861,7 @@ public class UserController
 		 
 		 if (fileName != null && !fileName.isEmpty()) {
 	            // 파일 경로 설정
-	            String uploadPath = "D:\\KGW\\teamproject\\test\\src\\main\\webapp\\upload";
+	            String uploadPath = "D:\\KGW\\teamproject\\testtest\\src\\main\\webapp\\upload";
 	            uploadPath = request.getServletContext().getRealPath("/upload");
 	            File file = new File(uploadPath + "\\" + fileName);
 	            

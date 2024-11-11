@@ -53,6 +53,7 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
         }).open();
     } */
     
+    
     function searchAddress() {
     	new daum.Postcode({
     	oncomplete: function(data) { // 선택시 입력값 세팅

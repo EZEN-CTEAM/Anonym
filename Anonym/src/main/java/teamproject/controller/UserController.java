@@ -544,9 +544,11 @@ public class UserController
 		                    psmt.setInt(6, companyNo); // 회사 번호
 	
 		                    psmt.executeUpdate(); // 첨부파일 DB에 삽입
+		                    
 		                    }
 		                }
 		            }
+		            response.sendRedirect(request.getContextPath() + "/user/login_c.do");
 				} else {
 	                // 회원가입 실패 시 세션에 오류 메시지 저장
 	                HttpSession session = request.getSession();

@@ -76,17 +76,15 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
     	
     	function PWCheck(){
     		// 사용자가 입력한 아이디가 DB에 중복 여부 확인하기
-    		let value = $("input[name=upw]").val();
+    		let value = $("input[name=cpw]").val();
     		$.ajax({
     			url : "PWCheck.do?cno=<%= loginUserc.getCno() %>",
     			type : "get",
-    			data : "upw=" + value,
+    			data : "cpw=" + value,
     			success : function(data){
     				if(data.trim() == "pwIs"){
-    					$("#msgboxPW").html("비밀번호가 일치 합니다").css("color", "green");
-    			}else{
-    				$("#msgboxPW").html("비밀번호가 일치하지 않습니다").css("color", "red");
-    			}
+    					$("#msgboxPW").html("기존의 비밀번호와 다르게 입력하세요").css("color", "red");
+    				}
     				
     			}
     		});
@@ -100,9 +98,9 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
     			data : "cbrcnum=" + value,
     			success : function(data){
     				if(data.trim() == "isCBRCN"){
-    					$("#msgboxCBRCN").html("비밀번호가 일치 합니다").css("color", "green");
+    					$("#msgboxCBRCN").html("이미 존재 하는 사업자번호 입니다").css("color", "red");
     			}else{
-    				$("#msgboxCBRCN").html("비밀번호가 일치하지 않습니다").css("color", "red");
+    				$("#msgboxCBRCN").html("등록 가능 합니다").css("color", "green");
     			}
     				
     			}
@@ -112,33 +110,24 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
     	
     	
     	function DoModify(){
-        	let PW = document.querySelector("input[name=cpwc]");
             let PASSWORD = document.querySelector("input[name=cpw]");
             let CPW = document.querySelector("input[name=pwc]");
             let COMPANYNAME = document.querySelector("input[name=cname]");
             let EMPLOYEE = document.querySelector("input[name=cemployee]");
             let BRCNUM = document.querySelector("input[name=cbrcnum]");
             
-            //PW
-            if(PW.value.trim() == ""){
-                let msgBox = PW.parentNode.getElementsByClassName("msgbox");
-                msgBox[0].innerHTML = "<span style='color: red;'>비밀번호를 입력하세요</span>";
-                PW.value = "";
-                PW.focus();
-                return false;
-            }
             //PASSWORD
             let passwordPatten = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{6,}$/;
             if(PASSWORD.value.trim() == ""){
                 let msgBox = PASSWORD.parentNode.getElementsByClassName("msgbox");
-                msgBox[1].innerHTML = "<span style='color: red;'>비밀번호를 입력하세요</span>";
+                msgBox[0].innerHTML = "<span style='color: red;'>비밀번호를 입력하세요</span>";
                 PASSWORD.value = "";
                 PASSWORD.focus();
                 return false;
             }
             if(!passwordPatten.test(PASSWORD.value)){
                 let msgBox = PASSWORD.parentNode.getElementsByClassName("msgbox");
-                msgBox[1].innerHTML ="<span style='color: red;'>6자 이상 영문, 숫자, 특수문자(!@#$%^&*())를 포함하여 입력하세요</span>";
+                msgBox[0].innerHTML ="<span style='color: red;'>6자 이상 영문, 숫자, 특수문자(!@#$%^&*())를 포함하여 입력하세요</span>";
                 PASSWORD.value = "";
                 PASSWORD.focus();
                 return false;
@@ -146,7 +135,7 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
             //CPW
             if(PASSWORD.value != CPW.value){
                 let msgBox = CPW.parentNode.getElementsByClassName("msgbox");
-                msgBox[2].innerHTML = "<span style='color: red;'>비밀번호가 일치하지 않습니다</span>";
+                msgBox[1].innerHTML = "<span style='color: red;'>비밀번호가 일치하지 않습니다</span>";
                 CPW.value = "";
                 CPW.focus();
                 return false;
@@ -154,7 +143,7 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
           	//COMPANYNAME
             if(COMPANYNAME.value.trim() == ""){
                 let msgBox = COMPANYNAME.parentNode.getElementsByClassName("msgbox");
-                msgBox[3].innerHTML = "<span style='color: red;'>회사명을 입력하세요</span>";
+                msgBox[2].innerHTML = "<span style='color: red;'>회사명을 입력하세요</span>";
                 COMPANYNAME.value = "";
                 COMPANYNAME.focus();
                 return false;
@@ -162,7 +151,7 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
           //EMPLOYEE
             if(EMPLOYEE.value.trim() == ""){
                 let msgBox = EMPLOYEE.parentNode.getElementsByClassName("msgbox");
-                msgBox[4].innerHTML = "<span style='color: red;'>직원수를 입력하세요</span>";
+                msgBox[3].innerHTML = "<span style='color: red;'>직원수를 입력하세요</span>";
                 EMPLOYEE.value = "";
                 EMPLOYEE.focus();
                 return false;
@@ -170,29 +159,27 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
             let employeePatten = /^[0-9]+$/;
             if(!employeePatten.test(EMPLOYEE.value)){
                 let msgBox = EMPLOYEE.parentNode.getElementsByClassName("msgbox");
-                msgBox[4].innerHTML ="<span style='color: red;'>숫자만 입력 가능합니다</span>";
+                msgBox[3].innerHTML ="<span style='color: red;'>숫자만 입력 가능합니다</span>";
                 EMPLOYEE.value = "";
                 EMPLOYEE.focus();
                 return false;
             }
             //BRCNUM
             if(BRCNUM.value.trim() == ""){
-                let msgBox = BRCNUM.parentNode.getElementsByClassName("msgbox");
-                msgBox[5].innerHTML = "<span style='color: red;'>사업자등록번호를 입력하세요</span>";
-                BRCNUM.value = "";
-                BRCNUM.focus();
-                return false;
-            }
-            let brcPatten = /^(?=.*[0-9])(?=.*-)[0-9\-]{12}$/;
-            if(!brcPatten.test(BRCNUM.value)){
-                let msgBox = BRCNUM.parentNode.getElementsByClassName("msgbox");
-                msgBox[5].innerHTML ="<span style='color: red;'>숫자와 하이픈(-)을 포함한 12자를 입력하세요</span>";
-                BRCNUM.value = "";
-                BRCNUM.focus();
-                return false;
-            }
-         
-    	}
+		        let msgBox = BRCNUM.parentNode.getElementsByClassName("msgbox");
+		        msgBox[4].innerHTML = "<span style='color: red;'>사업자등록번호를 입력하세요</span>";
+		        BRCNUM.value = "";
+		        BRCNUM.focus();
+		        return false;
+		    }
+		    let brcPattern = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
+		    if(!brcPattern.test(BRCNUM.value)){
+		        let msgBox = BRCNUM.parentNode.getElementsByClassName("msgbox");
+		        msgBox[4].innerHTML = "<span style='color: red;'>하이픈(-)을 포함한 000-00-00000 형식으로 입력하세요 </span>";
+		        BRCNUM.value = "";
+		        BRCNUM.focus();
+		        return false;
+		    }
     	
     	window.onload = function (){
     		let inputs = document.getElementsByTagName("input");
@@ -208,8 +195,6 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
     					msgBox[2].innerHTML = "";
     					msgBox[3].innerHTML = "";
     					msgBox[4].innerHTML = "";
-    					msgBox[5].innerHTML = "";
-    				};
     			}
 
     		}
@@ -231,13 +216,9 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
                     <div class="joinIP">아이디</div>
                     <div class="divID"><%= loginUserc.getCid() %></div>
 
-                    <div class="joinIP">비밀번호 확인</div>
-	                <input type="password" name="cpwc" placeholder="비밀번호를 입력하세요" onkeyup="PWCheck()">
-	                <div id="msgboxPW" class="msgbox"></div>
-	                
 	                <div class="joinIP">새 비밀번호</div>
-	                <input type="password" name="cpw" placeholder="6자 이상 영문, 숫자, 특수문자(!@#$%^&*())를 포함하여 입력하세요">
-	                <div class="msgbox"></div>
+	                <input type="password" name="cpw" placeholder="6자 이상 영문, 숫자, 특수문자(!@#$%^&*())를 포함하여 입력하세요" onkeyup="PWCheck()">
+	                <div id="msgboxPW" class="msgbox"></div>
 	                
 	                <div class="joinIP">새 비밀번호 확인</div>
 	                <input type="password" name="pwc" placeholder="새 비밀번호를 다시 입력하세요">

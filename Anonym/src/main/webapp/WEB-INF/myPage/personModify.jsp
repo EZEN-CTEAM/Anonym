@@ -20,7 +20,7 @@ List<Company> companies = (List<Company>) request.getAttribute("companies");
         <br><br>
         <!-- 내 정보 -->
         <section class="modifyIP">
-       		<form action="<%= request.getContextPath() %>/myPage/modify.do?user_no=<%= loginUser.getUser_no()%>" method="post" onsubmit="return DoModify();">
+       		<form action="modify.do?user_no=<%= loginUser.getUser_no()%>" method="post" onsubmit="return DoModify();">
        			<input type="hidden" name="user_no" value="<%= loginUser.getUser_no()%>">
        			
                 <div class="joinIP">아이디</div>

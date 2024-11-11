@@ -314,10 +314,10 @@
 		        			success : function(data){
 		        				if(data.trim() == "isBrc")
 		        				{
-		        					$("#msgboxBRC").html("이미 존재 하는 사업자번호 입니다.").css("color", "red");
+		        					$("#msgboxBRC").html("이미 존재 하는 사업자번호 입니다").css("color", "red");
 			        			}else
 			        			{
-			        				$("#msgboxBRC").html("등록 가능 합니다.").css("color", "green");
+			        				$("#msgboxBRC").html("등록 가능 합니다").css("color", "green");
 			        			}
 		        				
 		        			}

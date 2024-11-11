@@ -59,11 +59,11 @@ List<ComplaintVO> cplist = (List<ComplaintVO>)request.getAttribute("cplist");
 		                    <td><%= cpvo.getPost_content() %></td>
 		                    <td class="status">
 		                    	<%
-		                    	if(cpvo.getPost_complaint_state2().equals("U")){
+		                    	if("U".equals(cpvo.getUser_state()) || "E".equals(cpvo.getUser_state()) ){
 		                    		%>
 		                    		<span>미처리</span>
 		                    		<%
-		                    	}else{
+		                    	}else {
 		                    		%>
 		                    		<span>처리 완료</span>
 		                    		<%
@@ -71,7 +71,7 @@ List<ComplaintVO> cplist = (List<ComplaintVO>)request.getAttribute("cplist");
 		                    	%>
 		                    </td>
 		                    <td>
-		                        <button class="btn" onclick="location.href='<%= request.getContextPath() %>/myPage/adminReport.do">'">회원 비활성</button>
+		                        <button class="btn" onclick="location.href='<%= request.getContextPath() %>/myPage/adminReport.do?user_id=<%= cpvo.getUser_id() %>'">회원 비활성</button>
 		                    </td>
 		                </tr>
 						<%	

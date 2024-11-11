@@ -108,12 +108,20 @@ ul {
   align-items: center;
 }
 
+.apply_title a{
+	font-size: 0.75rem;
+}
+
 .apply_list {
   width: 75%;
   margin: 20px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+}
+
+.apply_area {
+	margin: 0px 25px;	
 }
 
 .company_logo {

@@ -25,6 +25,7 @@
             <div class="apply_title">
               <h3><img src="https://img.icons8.com/?size=100&id=53426&format=png&color=000000" width="20px"> 채용 공고</h3>
             </div>
+            <div class="apply-container">
             <div>
               <div class="apply_list">
               	<%
@@ -93,7 +94,9 @@
 	          </aside>
 	          </div>
             </div>
+            </div>
           </section>
+        </div>
 				<div class="pagination">
 	                <a href="#">&laquo;</a> <!-- 이전 페이지 -->
 	                <a href="#" class="active">1</a> <!-- 현재 페이지 -->
@@ -103,8 +106,6 @@
 	                <a href="#">5</a>
 	                <a href="#">&raquo;</a> <!-- 다음 페이지 -->
             	</div>
-          
-        </div>
     </div>
   </main>
 

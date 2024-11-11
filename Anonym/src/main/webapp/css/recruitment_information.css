@@ -7,7 +7,7 @@ ul {
   list-style: none;
 }
 
-/* 占쎄땀�뜮袁㏃쓺占쎌뵠占쎈�� 筌롫뗀�뤀 */
+/* �뜝�럡��占쎈쑏熬곥룂�벟�뜝�럩逾졾뜝�럥占쏙옙 嶺뚮∥��占쎈� */
 .nav-menu {
   display: flex;
   font-size: 1.1rem;
@@ -34,7 +34,7 @@ ul {
   text-decoration: underline;
 }
 
-/* 筌롫뗄�뵥 �뚢뫂�믭옙�뵠占쎄섐 揶쏄쑨爰� 鈺곌퀣�젟 */
+/* 嶺뚮∥�뾼占쎈데 占쎈슓維귨옙誘��삕占쎈턄�뜝�럡�꼸 �뤆�룄�뫅�댆占� �댖怨뚰�ｏ옙�젧 */
 .main-container {
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@ ul {
   margin: 0 auto;
 }
 
-/* 占쎌뵥占쎈뱜嚥∽옙 野껓옙占쎄퉳 */
+/* �뜝�럩逾ε뜝�럥諭쒎슖�댙�삕 �뇦猿볦삕�뜝�럡�돰 */
 .main_apply {
   text-align: center;
 }
@@ -58,7 +58,7 @@ ul {
   justify-content: center;
 }
 
-/* 占쎌뵥占쎈뱜嚥∽옙 野껓옙占쎄퉳 */
+/* �뜝�럩逾ε뜝�럥諭쒎슖�댙�삕 �뇦猿볦삕�뜝�럡�돰 */
 .intro input {
   width: 100%;
   height: 40px;
@@ -77,22 +77,29 @@ ul {
   width: 80%;
 }
 
-/* 占쎌뵥疫꿸퀗占� �뵳�딅뮞占쎈뱜(占쎌쁽占쎌� 野껊슣�뻻占쎈솇) */
+/* �뜝�럩逾η뼨轅명�쀥뜝占� 占쎈뎨占쎈봾裕욃뜝�럥諭�(�뜝�럩�겱�뜝�럩占� �뇦猿딆뒩占쎈뻣�뜝�럥�냷) */
 .board-container {
   width: 80%;
   margin: 0px 0px 80px 0px;
   display: flex;
 }
 
-/* 占쎌뵥疫꿸퀗占� �뵳�딅뮞占쎈뱜(筌�袁⑹뒠占쎌젟癰귨옙) */
+
+
+/* �뜝�럩逾η뼨轅명�쀥뜝占� 占쎈뎨占쎈봾裕욃뜝�럥諭�(嶺뚳옙熬곣뫗�뮔�뜝�럩�젧�솻洹⑥삕) */
 .apply_title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 85%;
   border-bottom: 1px solid rgb(206, 206, 206);
   padding-bottom: 10px;
   margin-top: 20px;
+}
+
+.apply-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 .apply_list {
@@ -141,14 +148,14 @@ ul {
   margin: 20px 40px;
 }
 
-/* 筌ㅼ뮇�뻿 �뵳�딅뮞占쎈뱜 */
+/* 嶺뚣끉裕뉛옙六� 占쎈뎨占쎈봾裕욃뜝�럥諭� */
 aside {
-  margin: 40px;
+  margin: 0px 40px;
 }
 
 .aside_container {
   margin-left: 35px;
-  width: 90%;
+  width: 120%;
   height: 100%;
   background-color: rgb(248, 248, 248);
 }

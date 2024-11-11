@@ -54,11 +54,11 @@
         <div class="apply">
           <h3>채용 정보</h3>
         </div>
-        <div class="apply_container">
+        <div class="apply_title_container">
           <div class="apply_title"><%= jpvo.getJob_posting_title() %></div>
           <div class="apply_addr"><%= jpvo.getCompany_location() %></div>
         </div>
-        <div class="apply_container">
+        <div class="apply_content_container">
           <%= jpvo.getJob_posting_content() %>
         </div>
         

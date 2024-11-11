@@ -14,63 +14,35 @@
                         </div>
                     </section>
                     <section class="related-companies-section">
-                        <h2>국가/공공기관 회사</h2>
+                        <h2><%= vo.getCindustry() %> 회사</h2>
                         <ul class="related-companies">
-                            <li>
-                                <a  href="companyInfo.do">
-                                    <span class="img">
-                                    <img src="" alt="">
-                                </span>
-                                <div>
-                                	<strong>한국서부발전</strong>
-                                </div>
-                                    <span class="star">★ 3.8</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <span class="img">
-                                        <img src="" alt="">
-                                    </span>
-                                    <div>
-                                        <strong>한국도로공사</strong>
-                                    </div>
-                                    <span class="star">★ 3.6</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <span class="img">
-                                        <img src="" alt="">
-                                    </span>
-                                    <div>
-                                        <strong>서울교통공사</strong>
-                                    </div>
-                                    <span class="star">★ 3.2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <span class="img">
-                                        <img src="" alt="">
-                                    </span>
-                                    <div>
-                                        <strong>한국가스기술공사</strong>
-                                    </div>
-                                    <span class="star">★ 3.1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <span class="img">
-                                        <img src="" alt="">
-                                    </span>
-                                    <div>
-                                        <strong>보험공단</strong>
-                                    </div>
-                                    <span class="star">★ 2.8</span>
-                                </a>
-                            </li>
+			  		        <%
+			  		      	int count = 0;
+					        for(CompanyVO company : cList)
+							{
+					        	 if (company != null && company.getCindustry().equals(vo.getCindustry())) 
+					        	 {
+							        %>
+		                            <li>
+		                                <a  href="companyInfo.do?cno=<%= company.getCno() %>">
+		                                    <span class="img">
+		                                    <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= company.getClogo() %>" alt="">
+		                                </span>
+		                                <div>
+		                                	<strong><%= company.getCname() %></strong>
+		                                </div>
+		                                    <!-- <span class="star">★ 3.8</span> -->
+		                                </a>
+		                            </li>
+		                            <%
+		                            count++;
+		                            if (count >= 5) 
+		                            {
+		                                break; 
+		                            }
+								}
+	                        }
+				            %>
                         </ul>
                     </section>
                 </aside>

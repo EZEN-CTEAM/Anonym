@@ -18,6 +18,7 @@ public class UserVO
 	private String user_modify_user;       // 수정회원
 	private String user_type;              // 회원구분
 	private String user_state;             // 상태
+	private String user_cno;
 	
 	public int getUser_no()                   { return user_no;                }
 	public String getUser_id()                { return user_id;                }
@@ -33,6 +34,7 @@ public class UserVO
 	public String getUser_modify_user()       { return user_modify_user;       }
 	public String getUser_type()              { return user_type;              }
 	public String getUser_state()             { return user_state;             }
+	public String getUser_cno()               { return user_cno;               }
 	
 	public void setUser_no(int user_no)                                  { this.user_no = user_no;                               }
 	public void setUser_id(String user_id)                               { this.user_id = user_id;                               }
@@ -48,5 +50,6 @@ public class UserVO
 	public void setUser_modify_user(String user_modify_user)             { this.user_modify_user = user_modify_user;             }
 	public void setUser_type(String user_type)                           { this.user_type = user_type;                           }
 	public void setUser_state(String user_state)                         { this.user_state = user_state;                         }
+	public void setUser_cno(String user_cno)                             { this.user_cno = user_cno;                             }
 	
 }

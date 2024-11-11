@@ -4,7 +4,7 @@
 <% 
 request.setCharacterEncoding("UTF-8");
 PostVO pvo = (PostVO)request.getAttribute("pvo");
-%>  
+%>   
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/c_review_2.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />

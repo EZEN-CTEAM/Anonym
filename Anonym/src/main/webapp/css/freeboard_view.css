@@ -174,7 +174,7 @@
 .comment-footer {
     display: flex;
     /* justify-content: space-between; */
-    margin-top: 5px;
+    margin-top: 10px;
     align-items: center; /* ��ҵ��� ���η� ��� ���� */
 }
 

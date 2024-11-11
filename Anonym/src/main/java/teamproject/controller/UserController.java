@@ -171,6 +171,7 @@ public class UserController
 				loginUser.setUser_type(rs.getString("user_type"));
 				loginUser.setUser_employment(rs.getString("user_employment"));
 				loginUser.setUser_company(rs.getString("user_company"));
+				loginUser.setUser_cno(rs.getString("cno"));
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", loginUser);
@@ -367,6 +368,36 @@ public class UserController
 			
 			if(result > 0)
 			{
+		        // 생성된 user_no 가져오기
+		        rs = psmt.getGeneratedKeys();
+		        int user_no = 0;
+		        if (rs.next()) {
+		            user_no = rs.getInt(1);
+		        }
+
+		        // user_company가 company 테이블의 company_name과 일치하는지 확인
+		        String companyCheckSql = "SELECT company_no FROM company WHERE company_name = ?";
+		        psmt = conn.prepareStatement(companyCheckSql);
+		        psmt.setString(1, user_company);
+
+		        ResultSet companyRs = psmt.executeQuery();
+		        if (companyRs.next()) {
+		            int company_no = companyRs.getInt("company_no");
+
+		            // company_employee 테이블에 user_no와 company_no 삽입
+		            String insertEmployeeSql = "INSERT INTO company_employee (user_no, company_no) VALUES (?, ?)";
+		            psmt = conn.prepareStatement(insertEmployeeSql);
+		            psmt.setInt(1, user_no);
+		            psmt.setInt(2, company_no);
+		            psmt.executeUpdate();
+		            
+		            String updateUserSql = "UPDATE user SET cno = ? WHERE user_no = ?";
+		            psmt = conn.prepareStatement(updateUserSql);
+		            psmt.setInt(1, company_no);
+		            psmt.setInt(2, user_no);
+		            psmt.executeUpdate();
+		        }
+				
 				response.sendRedirect(request.getContextPath()+"/user/login_p.do");
 			} else {
 	            // 회원가입 실패 시 세션에 메시지 저장

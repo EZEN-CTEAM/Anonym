@@ -13,13 +13,25 @@ CompanyVO vo = (CompanyVO)request.getAttribute("vo");
 String cno = (String)request.getParameter("cno");
 
 //회사 추천 상태
-String crstate = "D";
 
-if(vo != null && vo.getCrstate() != null) 
+String crstate = "D";
+int like_count = 0;
+int dislike_count = 0;
+
+if(vo != null)
 {
-	crstate = vo.getCrstate();
-	System.out.println("getAttribute" + crstate);
+	if(vo.getCrstate() != null) crstate = vo.getCrstate() ;
+	if(vo.getClcount() != 0) like_count = (Integer) vo.getClcount();
+	if((vo.getCdlcount() != 0)) dislike_count = (Integer) vo.getCdlcount();
+	
+	System.out.println("Like Count: " + like_count);	
+	System.out.println("Dislike Count: " + dislike_count);
 }
+
+//인기글 목록
+List<CompanyVO> cList = null;
+if(request.getAttribute("cList") != null) cList = (List<CompanyVO>)request.getAttribute("cList");
+
 %>   
 
         <!-- 메인 -->
@@ -35,19 +47,29 @@ if(vo != null && vo.getCrstate() != null)
     				$.ajax({
     					url : "recommendOk.do",
     					type : "get",
-    					data : { "cno" : <%= cno %> ,
+    					data : { 
+    						"cno" : <%= cno %> ,
     						"crstate" : state
     						},
-    					success : function(data){
-    						console.log(data.trim());
     						
-    						// 좋아요 상태인 버튼
-    						
-    						const btn_Y = `<button class="recommend-btn y" onclick="DoAJAXCall(this,'D');">
+    						success : function(data){
+    			                
+    							const response = data.trim().split('|');  
+    							console.log(response);
+    			                const isSuccess = response[0]; 
+    			                const like_count = response[1];
+    							console.log(like_count);
+    			                const dislike_count = response[2];
+    							console.log(dislike_count);
+
+    			                // 좋아요 상태인 버튼
+    						const btn_Y = `<button class="recommend-btn y" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'D');">
 	<img src="https://img.icons8.com/?size=100&id=85638&format=png&color=ffffff">
+	<span class="count-text" style="color: white;">` + like_count + `%</span>
 </button>
-<button class="recommend-btn b" onclick="DoAJAXCall(this,'N');">
+<button class="recommend-btn b" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'N');">
 	<img src="https://img.icons8.com/?size=100&id=87695&format=png&color=fb5757">
+	<span class="count-text">` + dislike_count + `%</span>
 </button>`
 							// 중립 상태의 버튼들
 							const btn_D = `<button class="recommend-btn g" onclick="DoAJAXCall(this,'Y');">
@@ -57,11 +79,13 @@ if(vo != null && vo.getCrstate() != null)
 	<img src="https://img.icons8.com/?size=100&id=87695&format=png&color=fb5757">
 </button>`
 							// 싫어요 상태의 버튼들
-							const btn_N = ` <button class="recommend-btn g" onclick="DoAJAXCall(this,'Y');">
+							const btn_N = ` <button class="recommend-btn g" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'Y');">
 	<img src="https://img.icons8.com/?size=100&id=85608&format=png&color=46b7bd">
+	<span class="count-text">` + like_count + `%</span>
 </button>
-<button class="recommend-btn n" onclick="DoAJAXCall(this,'D');">
+<button class="recommend-btn n" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'D');">
 	<img src="https://img.icons8.com/?size=100&id=87737&format=png&color=ffffff">
+	<span class="count-text" style="color: white;">` + dislike_count + `%</span>
 </button>`
     						switch(state){
     							case "Y" :
@@ -77,14 +101,7 @@ if(vo != null && vo.getCrstate() != null)
     						case "D" :
 	    						// 좋아요 -> 취소
 	    						$(obj).parent().html(btn_D);
-/* 	    						var target = $('.recommend-btn.y');
-	    						target.addClass('g');
-	    						target.html('<img src="https://img.icons8.com/?size=100&id=85608&format=png&color=46b7bd">');
-	    						target.removeClass('y');
-	    						
-	    						// 싫어요 -> 취소
-	    						$('.recommend-btn.n').addClass('b');
-	    						$('.recommend-btn.n').removeClass('n'); */
+	    						break;
     						}
     					}
     				});
@@ -95,7 +112,8 @@ if(vo != null && vo.getCrstate() != null)
             <div style="background-color: #fff;">
                 <section class="company-header">
                     <div class="company-details">
-                        <img src="<%= request.getContextPath() %>/image/potato.jpeg" alt="회사 로고" class="company-logo">
+                        <%-- <img src="<%= request.getContextPath() %>/image/potato.jpeg" alt="회사 로고" class="company-logo"> --%>
+                        <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= vo.getClogo() %>" class="company-logo">
                         <div class="company-info">
                             <h1><%= vo.getCname() %></h1>
                             <div>
@@ -126,21 +144,25 @@ if(vo != null && vo.getCrstate() != null)
 	                            	}else if(crstate.equals("Y"))
 							      	{
 					                    %>
-					                    <button class="recommend-btn y" onclick="DoAJAXCall(this,'D');">
+					                    <button class="recommend-btn y" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'D');">
 					                    	<img src="https://img.icons8.com/?size=100&id=85638&format=png&color=ffffff">
+					                    	<span class="count-text" style="color: white;"><%= like_count  %>%</span>
 				                    	</button>
-	                                	<button class="recommend-btn b" onclick="DoAJAXCall(this,'N');">
+	                                	<button class="recommend-btn b" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'N');">
 	                                		<img src="https://img.icons8.com/?size=100&id=87695&format=png&color=fb5757">
+					                    	<span class="count-text"><%= dislike_count %>%</span>
 	                               		</button>
 										<% 
 									}else if(crstate.equals("N"))
 									{
 										%>
-					                    <button class="recommend-btn g" onclick="DoAJAXCall(this,'Y');">
+					                    <button class="recommend-btn g" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'Y');">
 					                    	<img src="https://img.icons8.com/?size=100&id=85608&format=png&color=46b7bd">
+					                    	<span class="count-text"><%= like_count %>%</span>
 				                    	</button>
-	                                	<button class="recommend-btn n" onclick="DoAJAXCall(this,'D');">
+	                                	<button class="recommend-btn n" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'D');">
 	                                		<img src="https://img.icons8.com/?size=100&id=87737&format=png&color=ffffff">
+					                    	<span class="count-text" style="color: white;"><%= dislike_count %>%</span>
 	                               		</button>
 					   					<%
 									}
@@ -155,11 +177,35 @@ if(vo != null && vo.getCrstate() != null)
                 </section>
             </div>
             <nav>
-			    <div class="tab-menu">
-			        <a href="companyInfo.do?cno=<%= cno %>" class="active">소개</a>
-			        <a href="reviewList.do?cno=<%= cno %>">리뷰</a>
-			        <a href="communityList.do?cno=<%= cno %>">커뮤니티</a>
-			    </div>
+            
+<div class="tab-menu">
+    <a href="companyInfo.do?cno=<%= cno %>" class="<%= (request.getRequestURI().contains("companyInfo.do")) ? "active" : "" %>">소개</a>
+    <a href="reviewList.do?cno=<%= cno %>" class="<%= (request.getRequestURI().contains("reviewList.do")) ? "active" : "" %>">리뷰</a>
+    <%
+    	if(loginUser != null && cno.equals(loginUser.getUser_cno()))
+    	{
+    %> 
+    <a href="communityList.do?cno=<%= cno %>" class="<%= (request.getRequestURI().contains("communityList.do")) ? "active" : "" %>">커뮤니티</a>
+	<%
+    	}
+	%>
+</div>
+
+<script>
+    window.onload = function() {
+        var currentUrl = window.location.href;
+        var tabs = document.querySelectorAll('.tab-menu a');
+        
+        tabs.forEach(function(tab) {
+            if (currentUrl.includes(tab.getAttribute('href'))) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+    };
+</script>
+
 			</nav>
 			<div class="main-container">
 				<!-- 내 용 -->				

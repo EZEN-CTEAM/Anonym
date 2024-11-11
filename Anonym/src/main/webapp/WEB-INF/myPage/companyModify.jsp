@@ -257,20 +257,32 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
 						</div>
 
                     <div class="joinIP">직원수</div>
-                    <input type="text" name="cemployee" id="cemployee" value="<%= loginUserc.getCemployee() %>">
+                        <%-- <input type="text" name="cemployee" id="cemployee" value="<%= loginUserc.getCemployee() %>"> --%>
+                    	<select name="cemployee">
+	                    	<option value="<%= loginUserc.getCemployee() %>" disabled selected><%= loginUserc.getCemployee() %></option>
+	                    	<option value="1~50">1~50</option>
+	                    	<option value="51~200">51~200</option>
+	                    	<option value="201~500">201~500</option>
+	                    	<option value="501~1,000">501~1,000</option>
+	                    	<option value="1,001~5,000">1,001~5,000</option>
+	                    	<option value="5,001~10,000">5,001~10,000</option>
+	                    	<option value="10,000+">10,000+</option>
+                    	</select>
                     <div class="msgbox"></div>
 
                     <div class="joinIP">업계</div>
 	                    <select name="cindustry">
 	                    	<option value="<%= loginUserc.getCindustry() %>" disabled selected><%= loginUserc.getCindustry() %></option>
-	                    	<option value="제조업">제조업</option>
-	                    	<option value="건설업">건설업</option>
-	                    	<option value="도매 및 소매업">도매 및 소매업</option>
-	                    	<option value="숙박 및 음식점업">숙박 및 음식점업</option>
-	                    	<option value="운수업">운수업</option>
-	                    	<option value="통신업">통신업</option>
-	                    	<option value="금융 및 보험업">금융 및 보험업</option>
-	                    	<option value="사업서비스업">사업서비스업</option>
+							<option value="국가/공공기관">국가/공공기관</option>
+							<option value="금융업">금융업</option>
+							<option value="게임">게임</option>
+							<option value="교육 서비스업">교육 서비스업</option>
+							<option value="법무 서비스업">법무 서비스업</option>
+							<option value="정보 서비스업">정보 서비스업</option>
+							<option value="통신업">통신업</option>
+							<option value="컨테츠/엔터테인먼트">컨텐츠/엔터테인먼트</option>
+							<option value="자동차 및 부품 판매업">자동차 및 부품 판매업</option>
+							<option value="기타 제조/수리업">기타 제조/수리업</option>
                     	</select>
 
                     <div class="joinIP">설립일</div>

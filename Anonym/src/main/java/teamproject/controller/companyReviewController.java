@@ -59,6 +59,8 @@ public class companyReviewController
 		// 기업 리뷰 조회
 		}else if(comments[comments.length-1].equals("reviewView.do")) 
 		{
+			LikeState(request, response);
+			LikeCount(request, response);
 			reviewView(request, response);
 
 		// 기업 리뷰 등록
@@ -167,10 +169,22 @@ public class companyReviewController
 	    try {
 	        conn = DBConn.conn();
 	        
-	        String sql = "SELECT company_name, company_logo, company_no "
-	        		+ "FROM company "
+	        String sql = "SELECT "
+	        		+ "company_name, company_logo, c.company_no, "
+	        		+ "SUM(CASE WHEN company_like_state = 'Y' THEN 1 ELSE 0 END) AS like_count, "
+	        		+ "SUM(CASE WHEN company_like_state = 'N' THEN 1 ELSE 0 END) AS dislike_count, "
+	        		+ "SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END) AS total_count, "
+	        		+ "ROUND(SUM(CASE WHEN company_like_state = 'Y' THEN 1 ELSE 0 END) / NULLIF(SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END), 0) * 100, 0) AS like_percentage, "
+	        		+ "ROUND(SUM(CASE WHEN company_like_state = 'N' THEN 1 ELSE 0 END) / NULLIF(SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END), 0) * 100, 0) AS dislike_percentage "
+	        		+ "FROM company c "
+	        		+ "INNER JOIN company_like cl "
+	        		+ "ON c.company_no = cl.company_no "
 	        		+ "WHERE company_state = 'E' "
+	        		+ "GROUP BY c.company_no "
+	        		+ "ORDER BY total_count desc, like_percentage desc "
 	        		+ "LIMIT 0, 9";
+	        
+	        System.out.println(sql);
 	        
 	        ptmt = conn.prepareStatement(sql);
 	        
@@ -306,11 +320,6 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		String crstate = request.getParameter("crstate");
 		
-//		System.out.println("좋아요 등록");
-//		System.out.println(uno);
-//		System.out.println(cno);
-//		System.out.println("상태  :" + crstate);
-		
 		Connection conn = null; 
 		PreparedStatement ptmt = null;  
 		ResultSet rs = null;
@@ -356,8 +365,30 @@ public class companyReviewController
 			PrintWriter writer = response.getWriter();
 			if(result > 0)
 			{
+				String countSql = "SELECT "
+						+ "	SUM(CASE WHEN company_like_state = 'Y' THEN 1 ELSE 0 END) AS like_count, "
+						+ " SUM(CASE WHEN company_like_state = 'N' THEN 1 ELSE 0 END) AS dislike_count, "
+						+ " SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END) AS total_count, "
+						+ " ROUND(SUM(CASE WHEN company_like_state = 'Y' THEN 1 ELSE 0 END) / NULLIF(SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END), 0) * 100, 0) AS like_percentage, "
+						+ " ROUND(SUM(CASE WHEN company_like_state = 'N' THEN 1 ELSE 0 END) / NULLIF(SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END), 0) * 100, 0) AS dislike_percentage "
+						+ "FROM company_like WHERE company_no = ?;";
+				
+				System.out.println("회사 추천 상태 비율" + countSql);
+				
+				ptmt = conn.prepareStatement(countSql);
+				ptmt.setString(1, cno);
+				rs = ptmt.executeQuery();
+				
+				int like_count = 0;
+				int dislike_count = 0;
+				
+				if (rs.next()) {
+					like_count = rs.getInt("like_percentage");
+					dislike_count = rs.getInt("dislike_percentage");
+				}
+				
 				// System.out.println("좋아요 상태가 변경되었습니다.");
-				writer.write("OK");
+				writer.write("OK|" + like_count + "|" + dislike_count);
 			}else {
 				writer.write("ERROR");
 			}
@@ -384,8 +415,9 @@ public class companyReviewController
 	public CompanyVO GetCompanyInfo(HttpServletRequest request, String cno) throws ServletException, IOException 
 	{
 		String crstate = "";
-		int crcnt = 0;
-		String name = "";
+		int like_count = 0;
+		int dislike_count = 0;
+		/* String name = ""; */
 		
 		if( cno == null || cno.equals("")) return null;
 	    
@@ -420,21 +452,15 @@ public class companyReviewController
 			
 			if (rs.next()) 
 			{  
-		        String companyIndustry = rs.getString("company_industry");
-			
-				switch(companyIndustry)
-				{
-					case "ci1":	name = "제조업"; break;
-					case "ci2":	name = "건설업"; break;
-					case "ci3":	name = "도매 및 소매업"; break;
-					case "ci4":	name = "숙박 및 음식점업"; break;
-					case "ci5":	name = "운수업"; break;
-					case "ci6":	name = "통신업"; break;
-					case "ci7":	name = "금융 및 보험업"; break;
-					case "ci8":	name = "사업서비스업"; break;
-					default: name = "기타";
-				}
-			}
+				/*
+				 * String companyIndustry = rs.getString("company_industry");
+				 * 
+				 * switch(companyIndustry) { case "ci1": name = "제조업"; break; case "ci2": name =
+				 * "건설업"; break; case "ci3": name = "도매 및 소매업"; break; case "ci4": name =
+				 * "숙박 및 음식점업"; break; case "ci5": name = "운수업"; break; case "ci6": name =
+				 * "통신업"; break; case "ci7": name = "금융 및 보험업"; break; case "ci8": name =
+				 * "사업서비스업"; break; default: name = "기타"; }
+				 */
 			
 			
 			vo = new CompanyVO();
@@ -443,8 +469,10 @@ public class companyReviewController
 			vo.setClogo(rs.getString("company_logo"));
 			vo.setClocation(rs.getString("company_location"));
 			vo.setCanniversary(rs.getString("company_anniversary"));
-			vo.setCindustry(name);
+			vo.setCindustry(rs.getString("company_industry")); 
 			vo.setCemployee(rs.getString("company_employee"));
+
+			}
 			
 			// 회사 추천 상태 조회
 			if (uno != null && !uno.equals("")) 
@@ -466,18 +494,29 @@ public class companyReviewController
 				}
 				
 				// 회사 추천 개수 조회 
-//				String countSql = "SELECT count(*) AS crcnt FROM company_like WHERE company_no = ? AND company_like_state = 'Y'";
-//				
-//				System.out.println("회사 추천 상태 조회" + countSql);
-//				
-//				ptmt = conn.prepareStatement(countSql);
-//				ptmt.setString(1, cno);
-//				rs = ptmt.executeQuery();
-//				
-//				if (rs.next()) {
-//					crcnt = rs.getInt("crcnt");
-//					vo.setCrcount(crcnt);  
-//				}
+				String countSql = "SELECT "
+						+ "	SUM(CASE WHEN company_like_state = 'Y' THEN 1 ELSE 0 END) AS like_count, "
+						+ " SUM(CASE WHEN company_like_state = 'N' THEN 1 ELSE 0 END) AS dislike_count, "
+						+ " SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END) AS total_count, "
+						+ " ROUND(SUM(CASE WHEN company_like_state = 'Y' THEN 1 ELSE 0 END) / NULLIF(SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END), 0) * 100, 0) AS like_percentage, "
+						+ " ROUND(SUM(CASE WHEN company_like_state = 'N' THEN 1 ELSE 0 END) / NULLIF(SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END), 0) * 100, 0) AS dislike_percentage "
+						+ "FROM company_like WHERE company_no = ?;";
+				
+				System.out.println("회사 추천 상태 비율" + countSql);
+				
+				ptmt = conn.prepareStatement(countSql);
+				ptmt.setString(1, cno);
+				rs = ptmt.executeQuery();
+				
+				if (rs.next()) {
+					like_count = rs.getInt("like_percentage");
+					dislike_count = rs.getInt("dislike_percentage");
+					vo.setClcount(like_count);  
+					vo.setCdlcount(dislike_count);  
+					
+					System.out.println("like_count" + like_count);
+					System.out.println("dislike_count" + dislike_count);
+				}
 			}
 			
 			
@@ -494,11 +533,65 @@ public class companyReviewController
 				e.printStackTrace();
 			}
 		}
-		if(vo != null )
-		{
-			System.out.println(vo.toString());
-		}
+//		if(vo != null )
+//		{
+//			System.out.println(vo.toString());
+//		}
 		return vo;
+	}
+	
+	// 기업 정보 
+	public List<CompanyVO> GetCompany(String cno) throws ServletException, IOException 
+	{
+		if( cno == null || cno.equals("")) return null;
+		
+		System.out.println(cno);
+
+		List<CompanyVO> cList = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+	    
+	    try 
+	    {
+	    	conn = DBConn.conn();
+		        
+	        String sql = "SELECT company_name, company_logo, company_no, company_industry "
+	        		+ "FROM company "
+	        		+ "WHERE company_state = 'E' ";
+//	        		+ "AND company_industry = ? "
+//	        		+ "LIMIT 0, 5 ";
+	        
+	        ptmt = conn.prepareStatement(sql);
+	        
+	        rs = ptmt.executeQuery();
+			
+			while(rs.next())
+			{
+				CompanyVO vo = new CompanyVO();
+				
+				vo.setCname(rs.getString("company_name"));
+				vo.setClogo(rs.getString("company_logo"));
+				vo.setCno(rs.getInt("company_no"));
+				vo.setCindustry(rs.getString("company_industry"));
+				
+				cList.add(vo);
+			}
+				
+	    } catch (Exception e) 
+	    {
+	        e.printStackTrace();
+	    } finally 
+	    {
+	        try {
+	            DBConn.close(rs, ptmt, conn);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    
+	    return cList;
 	}
 	
 	// 기업 정보
@@ -510,6 +603,10 @@ public class companyReviewController
 		CompanyVO vo = GetCompanyInfo(request, cno);
 
 		request.setAttribute("vo", vo);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		//
 		HttpSession session = request.getSession();
@@ -550,16 +647,19 @@ public class companyReviewController
 			
 			// 글 목록
 			String sqlPost = "SELECT post_hit, p.post_no, post_title, post_content, date_format(p.post_registration_date, '%Y-%m-%d') as post_registration_date, user_id, "
-					+ "(select count(*) from post_comment pc WHERE pc.post_no = p.post_no AND post_comment_state = 'E') as pccount " 
-					+ "FROM post p, user u, board b "
+					+ "(select count(*) from post_comment pc WHERE pc.post_no = p.post_no AND post_comment_state = 'E') as pccount, p.company_no " 
+					+ "FROM post p, user u, board b, company c  "
 					+ "WHERE p.user_no = u.user_no "
 					+ "AND p.board_no = b.board_no "
+					+ "AND p.company_no = c.company_no "
 					+ "AND post_state = 'E' "
 					+ "AND b.board_no = 2 "
+					+ "AND p.company_no = ? "
 			        + "ORDER BY post_no DESC "
 			        + "LIMIT 0, 5 ";
 			
 			ptmtPost = conn.prepareStatement(sqlPost);
+			ptmtPost.setString(1, cno);
 			
 			rsPost = ptmtPost.executeQuery();
 			
@@ -677,6 +777,10 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		HttpSession session = request.getSession();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
@@ -812,7 +916,75 @@ public class companyReviewController
 
 		request.setAttribute("vo", vo);
 		
-		request.getRequestDispatcher("/WEB-INF/companyReview/reviewRegister.jsp").forward(request, response);
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
+		
+		HttpSession session = request.getSession();
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+
+		String uno = null;
+		
+		if (loginUser != null) 
+		{
+			uno = Integer.toString(loginUser.getUser_no());  // user_no 값 가져오기
+		}
+		
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		
+		try 
+		{
+			conn = DBConn.conn();
+			
+			String sql = "SELECT user_no FROM anonym.company_employee where company_no = ? ";
+			
+			ptmt = conn.prepareStatement(sql);
+			
+			ptmt.setString(1, cno);
+			
+			rs = ptmt.executeQuery();
+			
+			boolean isMatch = false;
+			
+			while(rs.next())
+			{
+				String Uno = rs.getString("user_no"); // company_employee에서 조회된 user_no
+
+				System.out.println("uno : " + uno);
+				System.out.println("Uno : " + Uno);
+				
+				
+		        if (uno != null && uno.equals(Uno)) 
+		        {
+		        	isMatch = true; // 일치하면 true로 설정
+		            break;
+		        }
+				
+	        } 
+	        	
+        	if (isMatch) {
+        	    request.getRequestDispatcher("/WEB-INF/companyReview/reviewRegister.jsp").forward(request, response);
+        	} else {
+        	    response.sendRedirect("companyInfo.do?cno=" + cno);
+        	}
+			
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			try 
+			{
+				DBConn.close(rs, ptmt, conn);
+			} catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
 	}
 	
 	public void reviewRegisterOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -820,6 +992,10 @@ public class companyReviewController
 		request.setCharacterEncoding("UTF-8");
 	 
 		String cno = request.getParameter("cno");
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		HttpSession session = request.getSession();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
@@ -920,9 +1096,23 @@ public class companyReviewController
 		request.setCharacterEncoding("UTF-8");
 		 
 		String cno = request.getParameter("cno");
-		String uno = request.getParameter("uno");
-
+		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
+	
+		HttpSession session = request.getSession();
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+
+		String uno = null;
+		
+		if (loginUser != null) 
+		{
+			uno = Integer.toString(loginUser.getUser_no());  // user_no 값 가져오기
+		}
+
 		
 		String pno = request.getParameter("pno");
 
@@ -985,9 +1175,24 @@ public class companyReviewController
 		request.setCharacterEncoding("UTF-8");
 		
 		String cno = request.getParameter("cno");
-		String uno = request.getParameter("uno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
+		
+		System.out.println("cno" + cno);
+		
+		HttpSession session = request.getSession();
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+
+		String uno = null;
+		
+		if (loginUser != null) 
+		{
+			uno = Integer.toString(loginUser.getUser_no());  // user_no 값 가져오기
+		}
 
 		String pno = request.getParameter("pno");
 		String title = request.getParameter("post_title");
@@ -1046,7 +1251,7 @@ public class companyReviewController
 			
 			request.setAttribute("vo", vo);
 
-			response.sendRedirect("reviewList.do");
+			response.sendRedirect("reviewList.do?cno=" + cno);
 			
 		}catch(Exception e)
 		{
@@ -1066,7 +1271,48 @@ public class companyReviewController
 	// 기업 리뷰 삭제
 	public void reviewDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		request.getRequestDispatcher("/WEB-INF/companyReview/.jsp").forward(request, response);
+		String cno = request.getParameter("cno");
+		
+		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
+		
+		String pno = request.getParameter("pno");
+
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		
+		try 
+		{
+			conn = DBConn.conn();
+			
+			String sql = "update post set post_state = 'D' where post_no = ? ";
+			
+			ptmt = conn.prepareStatement(sql);
+			ptmt.setString(1, pno);
+			
+			ptmt.executeUpdate();
+			
+			request.setAttribute("vo", vo);
+			
+			response.sendRedirect("reviewList.do?cno=" + cno);
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			try 
+			{
+				DBConn.close(ptmt, conn);
+			} catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
 	}
 	
 	// 기업 커뮤니티 글 목록
@@ -1075,6 +1321,10 @@ public class companyReviewController
 		// 회사 include
 		String cno = request.getParameter("cno");
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 
 		// 글 목록
 		List<PostVO> List = new ArrayList<>();
@@ -1103,20 +1353,24 @@ public class companyReviewController
 			conn = DBConn.conn();
 			
 			// 페이징
-			String sqlTotal = "SELECT count(*) AS total FROM post p, board b "
+			String sqlTotal = "SELECT count(*) AS total FROM post p, board b, company c "
 					+ "WHERE p.board_no = b.board_no "
+					+ "AND p.company_no = c.company_no "
 					+ "AND post_state = 'E' "
-					+ "AND b.board_no = 2 ";
+					+ "AND b.board_no = 2 "
+					+ "AND c.company_no = ? ";
 			
 			if(searchValue.equals(""))
 			{
 				ptmtTotal = conn.prepareStatement(sqlTotal);
+				ptmtTotal.setString(1, cno);
 			}else
 			{
 				sqlTotal += "AND (post_title LIKE CONCAT('%', ?, '%') OR post_content LIKE CONCAT('%', ?, '%')) ";
 				ptmtTotal = conn.prepareStatement(sqlTotal);
 				ptmtTotal.setString(1, searchValue);
 				ptmtTotal.setString(2, searchValue);
+				ptmtTotal.setString(3, cno);
 			}
 				
 			rsTotal = ptmtTotal.executeQuery();
@@ -1130,18 +1384,21 @@ public class companyReviewController
 			
 			// 글 목록
 			String sql = "SELECT post_hit, p.post_no, post_title, post_content, date_format(p.post_registration_date, '%Y-%m-%d') as post_registration_date, user_id, "
-					+ "(select count(*) from post_comment pc WHERE pc.post_no = p.post_no AND post_comment_state = 'E') as pccount " 
-					+ "FROM post p, user u, board b "
+					+ "(select count(*) from post_comment pc WHERE pc.post_no = p.post_no AND post_comment_state = 'E') as pccount, c.company_no " 
+					+ "FROM post p, user u, board b, company c "
 					+ "WHERE p.user_no = u.user_no "
 					+ "AND p.board_no = b.board_no "
+					+ "AND p.company_no = c.company_no "
 					+ "AND post_state = 'E' "
 					+ "AND b.board_no = 2 "
+					+ "AND c.company_no = ? "
 			        + "ORDER BY post_no DESC "
 			        + "LIMIT ?, ? ";
 			
 			ptmt = conn.prepareStatement(sql);
-			ptmt.setInt(1, paging.getStart());
-			ptmt.setInt(2, paging.getPerPage());
+			ptmt.setString(1, cno);
+			ptmt.setInt(2, paging.getStart());
+			ptmt.setInt(3, paging.getPerPage());
 			
 			rs = ptmt.executeQuery();
 			
@@ -1149,20 +1406,23 @@ public class companyReviewController
 			if(!searchValue.equals(""))
 			{
 				sql = "SELECT post_hit, p.post_no, post_title, post_content, date_format(p.post_registration_date, '%Y-%m-%d') as post_registration_date, user_id, "
-						+ "(select count(*) from post_comment pc WHERE pc.post_no = p.post_no AND post_comment_state = 'E') as pccount " 
-						+ "FROM post p, user u, board b "
+						+ "(select count(*) from post_comment pc WHERE pc.post_no = p.post_no AND post_comment_state = 'E') as pccount, c.company_no " 
+						+ "FROM post p, user u, board b, company c "
 						+ "WHERE p.user_no = u.user_no "
 						+ "AND p.board_no = b.board_no "
+						+ "AND p.company_no = c.company_no "
 						+ "AND b.board_no = 2 "
+						+ "AND c.company_no = ? "
 						+ "AND post_state = 'E' "
 						+ "AND (post_title LIKE CONCAT('%', ?, '%') OR post_content LIKE CONCAT('%', ?, '%')) "
 				        + "ORDER BY post_no DESC "
 				        + "LIMIT ?, ? ";
 				ptmt = conn.prepareStatement(sql);
-				ptmt.setString(1, searchValue);
+				ptmt.setString(1, cno);
 				ptmt.setString(2, searchValue);
-				ptmt.setInt(3, paging.getStart());
-				ptmt.setInt(4, paging.getPerPage());
+				ptmt.setString(3, searchValue);
+				ptmt.setInt(4, paging.getStart());
+				ptmt.setInt(5, paging.getPerPage());
 				
 				rs = ptmt.executeQuery();
 			}
@@ -1178,6 +1438,7 @@ public class companyReviewController
 				pvo.setPost_registration_date(rs.getString("post_registration_date"));
 				pvo.setUser_id(rs.getString("user_id"));
 				pvo.setPccount(rs.getString("pccount"));
+				pvo.setPost_no(rs.getString("post_no"));
 				
 				List.add(pvo);
 			}
@@ -1210,6 +1471,10 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		String pno = request.getParameter("pno");
 
@@ -1250,6 +1515,7 @@ public class companyReviewController
 				pvo.setPost_content(rs.getString("post_content"));
 				pvo.setPost_registration_date(rs.getString("post_registration_date"));
 				pvo.setUser_no(rs.getString("user_no"));
+				pvo.setUser_id(rs.getString("user_id"));
 				
 				request.setAttribute("pvo", pvo);
 			}
@@ -1284,6 +1550,10 @@ public class companyReviewController
 		
 		request.setAttribute("vo", vo);
 		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
+		
 		request.getRequestDispatcher("/WEB-INF/companyReview/communityRegister.jsp").forward(request, response);
 	}
 
@@ -1294,6 +1564,10 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 	    String uno = request.getParameter("user_no");
 	    String bno = request.getParameter("board_no"); 
@@ -1312,13 +1586,14 @@ public class companyReviewController
 		{
 			conn = DBConn.conn();
 			
-			String sql = "insert into post (user_no, post_title, post_content, board_no) values (?, ?, ?, ?)";
+			String sql = "insert into post (user_no, post_title, post_content, board_no, company_no) values (?, ?, ?, ?, ?)";
 			
 			ptmt = conn.prepareStatement(sql);
 			ptmt.setString(1, uno);
 			ptmt.setString(2, title);
 			ptmt.setString(3, content);
 			ptmt.setString(4, bno);
+			ptmt.setString(5, cno);
 			
 			int result = ptmt.executeUpdate();
 			
@@ -1359,6 +1634,10 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		String pno = request.getParameter("pno");
 
@@ -1419,6 +1698,10 @@ public class companyReviewController
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
 		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
+		
 		String pno = request.getParameter("pno");
 		String title = request.getParameter("post_title");
 		String content = request.getParameter("post_content");
@@ -1466,6 +1749,10 @@ public class companyReviewController
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
 		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
+		
 		String pno = request.getParameter("pno");
 
 		Connection conn = null;
@@ -1507,6 +1794,10 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		String pno = request.getParameter("pno");
 		List<PostCommentVO> List = new ArrayList<>();
@@ -1595,6 +1886,10 @@ public class companyReviewController
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
 		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
+		
 		String pno = request.getParameter("pno");
 		String uno = request.getParameter("uno");
 		String content = request.getParameter("content");
@@ -1649,6 +1944,10 @@ public class companyReviewController
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
 		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
+		
 		request.setCharacterEncoding("UTF-8");
 		String content = request.getParameter("content");
 		String pno = request.getParameter("pno");
@@ -1698,6 +1997,10 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		String pno = request.getParameter("pno");
 		String c_no = request.getParameter("c_no");
@@ -1749,6 +2052,10 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		HttpSession session = request.getSession();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
@@ -1843,6 +2150,10 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		HttpSession session = request.getSession();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
@@ -1952,6 +2263,10 @@ public class companyReviewController
 		String cno = request.getParameter("cno");
 		
 		CompanyVO vo = GetCompanyInfo(request, cno);
+		
+		List<CompanyVO> cList = GetCompany(cno);
+		
+		request.setAttribute("cList", cList);
 		
 		HttpSession session = request.getSession();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");

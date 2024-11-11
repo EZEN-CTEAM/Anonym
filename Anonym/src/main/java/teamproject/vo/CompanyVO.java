@@ -19,7 +19,8 @@ public class CompanyVO
 	private String cstate;       // 상태
 	/* 추천 */
     private String crstate;      // 회사 추천 상태
-    private int crcount;         // 회사 추천 개수
+    private int clcount;         // 회사 추천 개수
+    private int cdlcount;        // 회사 비추천 개수
     /* 별점 */
 	private int post_review_starrating;           // 별점
 	private int post_review_career;               // 커리어향상
@@ -45,8 +46,9 @@ public class CompanyVO
 	public String getCbrc()      { return cbrc;            }
 	public String getCstate()    { return cstate;          }
 	/* 추천 */
-    public String getCrstate()   { return crstate;         }
-    public int getCrcount()      { return crcount;         }
+    public String getCrstate()   { return crstate;         }    
+    public int getClcount()      { return clcount;         }
+    public int getCdlcount()     { return cdlcount;        }
     /* 별점 */
 	public int getPost_review_starrating()     { return post_review_starrating;              }
 	public int getPost_review_career()         { return post_review_career;                  }
@@ -74,7 +76,8 @@ public class CompanyVO
 	public void setCstate(String cstate)       { this.cstate = cstate;                   }
 	/* 추천 */
 	public void setCrstate(String crstate)     { this.crstate = crstate;                 }
-	public void setCrcount(int crcount)        { this.crcount = crcount;                 }
+	public void setClcount(int clcount)        { this.clcount = clcount;                 }
+	public void setCdlcount(int cdlcount)      { this.cdlcount = cdlcount;               }
 	/* 별점 */
 	public void setPost_review_starrating(int post_review_starrating)              { this.post_review_starrating = post_review_starrating;                   }
 	public void setPost_review_career(int post_review_career)                      { this.post_review_career = post_review_career;                           }
@@ -86,14 +89,14 @@ public class CompanyVO
 	public void setJob_posting_no(int job_posting_no) { this.job_posting_no = job_posting_no; }
 	public void setJob_posting_title(String job_posting_title) { this.job_posting_title = job_posting_title; }
 
-	@Override
-	public String toString() {
-		return "CompanyVO [cno=" + cno + ", cid=" + cid + ", cpw=" + cpw + ", clogo=" + clogo + ", cname=" + cname
-				+ ", clocation=" + clocation + ", cemployee=" + cemployee + ", cindustry=" + cindustry
-				+ ", canniversary=" + canniversary + ", crdate=" + crdate + ", cbrcnum=" + cbrcnum + ", cbrc=" + cbrc
-				+ ", cstate=" + cstate + ", crstate=" + crstate + ", crcount=" + crcount + ", post_review_starrating="
-				+ post_review_starrating + ", post_review_career=" + post_review_career + ", post_review_balance="
-				+ post_review_balance + ", post_review_salary=" + post_review_salary + ", post_review_culture="
-				+ post_review_culture + ", post_review_management=" + post_review_management + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "CompanyVO [cno=" + cno + ", cid=" + cid + ", cpw=" + cpw + ", clogo=" + clogo + ", cname=" + cname
+//				+ ", clocation=" + clocation + ", cemployee=" + cemployee + ", cindustry=" + cindustry
+//				+ ", canniversary=" + canniversary + ", crdate=" + crdate + ", cbrcnum=" + cbrcnum + ", cbrc=" + cbrc
+//				+ ", cstate=" + cstate + ", crstate=" + crstate + ", crcount=" + crcount + ", post_review_starrating="
+//				+ post_review_starrating + ", post_review_career=" + post_review_career + ", post_review_balance="
+//				+ post_review_balance + ", post_review_salary=" + post_review_salary + ", post_review_culture="
+//				+ post_review_culture + ", post_review_management=" + post_review_management + "]";
+//	}
 }

@@ -15,9 +15,8 @@ PostVO pvo = (PostVO)request.getAttribute("pvo");
                         <h2>리뷰 수정</h2>
                     
                         <form action="reviewModify.do" method="POST">
-                            <input type="hidden" name="user_no" value="1">
 							<input type="hidden" name="board_no" value="2">
-							<input type="hidden" name="company_no" value="1">
+							<input type="hidden" name="cno" value="<%= cno %>">
 							<input type="hidden" name="pno" value="<%= pvo.getPost_no() %>">
                     
                             <!-- 제목 입력 -->

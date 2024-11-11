@@ -18,7 +18,7 @@ int nowPage = paging.getNowPage();
 <%@ include file="../include/companyInfo.jsp" %>
 
                 <section class="company-community-section">
-                    <div class="ompany-community">
+                    <div class="company-community">
                     	<form action="communityList.do" method="get">
                     		<input type="hidden" name="cno" value="<%= cno %>">
 	                        <div class="search-container">
@@ -104,7 +104,7 @@ int nowPage = paging.getNowPage();
 									if(i == nowPage)
 									{
 										%>
-										<a class="active"><%= i %></a>
+										<a class="active2"><%= i %></a>
 										<%
 									}else
 									{

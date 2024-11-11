@@ -73,20 +73,47 @@ main{
     cursor: pointer;
 }
 
-.recommend-btn {
+/* .recommend-btn {
     background-color: white; 
     padding: 5px 0 1px 0;
-    text-align: center; /* �뜝�럥占쎈낑�삕占쎈츩�뜝�럥諭� 繞벿살탳�뇡占� �뜝�럩�젧�뜝�럩議� */
-    text-decoration: none; /* �뛾�룆理먨ㅇ占� �뜝�럩�젷濾곌쒀�삕 */
-    display: inline-block; /* �뜝�럩逾ε뜝�럩逾у뜝�럩逾� 占쎈눀�겫�뼚夷��뜝�럩紐드슖�댙�삕 �뜝�럡�맟�뜝�럩�젧 */
-    font-size: 16px; /* �뼨�먯삕�뜝�럩�겱 �뜝�럡苡욜뼨�먯삕 */
-    /* margin: 4px 2px;  */
-    cursor: pointer; /* 占쎈슔�걠�땻占� 嶺뚮ㅄ維곩젆占� �솻洹⑥삕�뇦猿볦삕 */
-    border-radius: 100px; /* 嶺뚮ㅄ維곮땻�슚逾녑뜝占� �뜝�럥爾쏁뼨�먯삕�뇦猿볦삕 */
-    transition: background-color 0.3s; /* �뛾�룄�쀧몭�엪�삕繹먲옙 �솻洹⑥삕�뜝�럩�꼨 �뜝�럥留됧뜝�럥鍮띸춯濡ル뾼占쎈턄�뜝�럥占쏙옙 */
-    width: 50px;
+    text-align: center; 占쎈�볩옙�뮞占쎈뱜 餓λ쵐釉� 占쎌젟占쎌졊
+    text-decoration: none; 獄쏅쵐夷� 占쎌젫椰꾬옙
+    display: inline-block; 占쎌뵥占쎌뵬占쎌뵥 �뇡遺얠쨯占쎌몵嚥∽옙 占쎄퐬占쎌젟
+    font-size: 16px; 疫뀐옙占쎌쁽 占쎄쾿疫뀐옙
+    margin: 4px 2px; 
+    cursor: pointer; �뚣끉苑� 筌뤴뫁堉� 癰귨옙野껓옙
+    border-radius: 100px; 筌뤴뫁苑뚨뵳占� 占쎈쳛疫뀐옙野껓옙
+    transition: background-color 0.3s; 獄쏄퀗瑗랃옙源� 癰귨옙占쎌넅 占쎈막占쎈빍筌롫뗄�뵠占쎈��
+    width: 80px;
     height: 36px;
     border: solid 1px;
+} */
+
+
+.recommend-btn {
+    background-color: white; 
+    padding: 13px;
+    text-align: center; 
+    text-decoration: none; 
+    font-size: 16px; 
+    cursor: pointer;
+    border-radius: 100px; 
+    background-color: transparent;
+    border: solid 1px; 
+    margin: 4px 2px; 
+    height: 36px;
+    align-items: center; 
+    width: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px; 
+} 
+
+.recommend-btn .count-text {
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: center;
+    width:35px;
 }
 
 .g{
@@ -141,7 +168,7 @@ main nav{
 
 .tab-menu .active {
     font-weight: bold;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 5px solid #007bff;
 }
 
 /* section(�뜝�럩�눁) + aside(�뜝�럩沅�) */
@@ -568,7 +595,9 @@ textarea {
   height: 188.75px;
 }
 
-h1 {
+.company-card h1,
+.review-info h1,
+.search-container h1 {
     padding: 10px 0;
     font-size: 24px;
     font-weight: 700;
@@ -583,7 +612,7 @@ h1 {
 }
 .company-card ul li {
     position: relative;
-    padding: 4px 10px 4px 98px;
+    padding: 4px 10px 4px 80px;
     line-height: 1.7em;
     font-weight: 400;
     color: #000;
@@ -1031,4 +1060,10 @@ h1 {
     justify-content: space-between;
     font-size: 12px;
     color: #888;
+}
+
+.company-info h1 {
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-size: 28px;
 }

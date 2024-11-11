@@ -90,6 +90,66 @@ public class freeBoardController
 		}
 	}
 
+	public List<PostVO> GetfreeList() throws ServletException, IOException 
+	{
+		List<PostVO> List = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		
+		try 
+		{
+			conn = DBConn.conn();
+			
+			// 글 목록
+			String sql = "SELECT post_hit, p.post_no, post_title, post_content, date_format(p.post_registration_date, '%Y-%m-%d') as post_registration_date, user_id, user_company, "
+					+ "(select count(*) from post_comment pc WHERE pc.post_no = p.post_no AND post_comment_state = 'E') as pccount " 
+					+ "FROM post p, user u, board b "
+					+ "WHERE p.user_no = u.user_no "
+					+ "AND p.board_no = b.board_no "
+					+ "AND post_state = 'E' "
+					+ "AND b.board_no = 1 "
+			        + "ORDER BY post_hit DESC "
+			        + "LIMIT 0, 8 ";
+			
+			ptmt = conn.prepareStatement(sql);
+			
+			rs = ptmt.executeQuery();
+			
+			while(rs.next())
+			{
+				PostVO vo = new PostVO();
+				
+				vo.setPost_hit(rs.getString("post_hit"));
+				vo.setPost_no(rs.getString("post_no"));
+				vo.setPost_title(rs.getString("post_title"));
+				vo.setPost_content(rs.getString("post_content"));
+				vo.setPost_registration_date(rs.getString("post_registration_date"));
+				vo.setUser_id(rs.getString("user_id"));
+				vo.setUser_company(rs.getString("user_company"));
+				vo.setPccount(rs.getString("pccount"));
+				
+				List.add(vo);
+			}
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			try 
+			{
+				DBConn.close(rs, ptmt, conn);
+			} catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+		}
+
+		return List;
+	}
+	
 	// 자유게시판 목록
 	public void freeList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -106,6 +166,7 @@ public class freeBoardController
 		if(request.getParameter("nowPage") != null) nowPage = Integer.parseInt(request.getParameter("nowPage"));
 
 		Connection conn = null;
+		
 		// 글 갯수
 		PreparedStatement ptmtTotal = null;  
 		ResultSet rsTotal = null; 
@@ -223,6 +284,10 @@ public class freeBoardController
 	// 자유게시판 조회
 	public void freeView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		List<PostVO> List = GetfreeList();
+		
+		request.setAttribute("fList", List);
+		
 		String pno = request.getParameter("pno");
 
 		Connection conn = null;
@@ -307,6 +372,7 @@ public class freeBoardController
 		{
 			uno = Integer.toString(loginUser.getUser_no());  // user_no 값 가져오기
 		}
+		
 	    String bno = request.getParameter("board_no"); 
 		String title = request.getParameter("post_title");
 		String content = request.getParameter("post_content");
@@ -414,8 +480,8 @@ public class freeBoardController
 	
 	public void freeModifyOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		// notice_board 테이블에 수정데이터 update 처리
 		request.setCharacterEncoding("UTF-8");
+		
 		String pno = request.getParameter("pno");
 		String title = request.getParameter("post_title");
 		String content = request.getParameter("post_content");
@@ -567,7 +633,9 @@ public class freeBoardController
 	public void commentRegisterOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.setCharacterEncoding("UTF-8");
+		
 		String pno = request.getParameter("pno");
+		
 		HttpSession session = request.getSession();
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 

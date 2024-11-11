@@ -27,6 +27,10 @@ if(request.getAttribute("pccount") != null) pccount = (Integer)request.getAttrib
 List<PostCommentVO> List = null;
 if(request.getAttribute("List") != null) List = (List<PostCommentVO>)request.getAttribute("List");
 System.out.println("List.size()" + List.size());
+
+//인기글 목록
+List<PostVO> fList = null;
+if(request.getAttribute("fList") != null) fList = (List<PostVO>)request.getAttribute("fList");
 %>  
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/freeboard_view.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/freeRefort.css" />
@@ -246,37 +250,17 @@ System.out.println("List.size()" + List.size());
 	<!-- aside -->
 		<aside class="sidebar">
 	    	<section class="rcmd_list">
-		        <h2>추천 글</h2>
-	            <a href="freeView.do">
-	                런닝 좋아하시는 분들
+		        <h2>인기 글</h2>
+		        <%
+		        for(PostVO post : fList)
+				{
+		        %>
+	            <a href="freeView.do?pno=<%= post.getPost_no() %>">
+	                <%= post.getPost_title() %>
 	            </a>
-	            <a href="#">
-	                런닝 좋아하시는 분들
-	            </a>
-	            <a href="#">
-	                런닝 좋아하시는 분들
-	            </a>
-	            <a href="#">
-	                런닝 좋아하시는 분들
-	            </a>
-	            <a href="#">
-	                런닝 좋아하시는 분들
-	            </a>
-	            <a href="#">
-	                런닝 좋아하시는 분들
-	            </a>
-	            <a href="#">
-	                런닝 좋아하시는 분들
-	            </a>
-	            <a href="#">
-	                런닝 좋아하시는 분들
-	            </a>
-	            <a href="#">
-	                런닝 좋아하시는 분들
-	            </a>
-	            <a href="#">
-	                런닝 좋아하시는 분들
-	            </a>
+	            <%
+				}
+	            %>
 			</section>
 		</aside>
 	</div>

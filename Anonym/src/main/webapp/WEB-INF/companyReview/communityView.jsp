@@ -36,7 +36,7 @@ if(request.getAttribute("List") != null) List = (List<PostCommentVO>)request.get
                           <h2><%= pvo.getPost_title() %></h2>
                           <div class="post-info">
                           <div class="post-info1">
-                            <span>새회사 <%= pvo.getUser_no() %></span>
+                            <span><%= pvo.getUser_id() %></span>
                             <span><img src="https://img.icons8.com/?size=100&id=IETmQUFWcgXs&format=png&color=cccccc "> <%= pvo.getPost_registration_date() %></span>
                             <span><img src="https://img.icons8.com/?size=100&id=RzBtKwnyPvYk&format=png&color=cccccc "> <%= pvo.getPost_hit()  %></span>
                             <span><img src="https://img.icons8.com/?size=100&id=gFDEU6xka9fu&format=png&color=cccccc "> <%= pccount  %></span>

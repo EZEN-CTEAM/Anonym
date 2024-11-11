@@ -127,7 +127,8 @@ System.out.println(List.size());
 					{
                     %>
                         <div  class="board">
-                            <img src="<%= request.getContextPath() %>/image/potato.jpeg" alt="회사 이미지" />
+ <%--                       <img src="<%= request.getContextPath() %>/image/potato.jpeg" alt="회사 이미지" /> --%>
+                            <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= vo.getClogo() %>">
                             <div class="">
                                 <h3><a href="companyInfo.do?cno=<%= vo.getCno() %>"><%= vo.getCname() %></a></h3>
                                 <%-- <p>평점: ⭐⭐⭐⭐☆ <%= avgtotal %></p> --%>

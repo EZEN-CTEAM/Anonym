@@ -80,19 +80,22 @@ main{
 
 .recommend-btn {
     background-color: white; 
-    padding: 5px 0 1px 0;
-    text-align: center; /* 占쎈�볩옙�뮞占쎈뱜 餓λ쵐釉� 占쎌젟占쎌졊 */
-    text-decoration: none; /* 獄쏅쵐夷� 占쎌젫椰꾬옙 */
-    display: inline-block; /* 占쎌뵥占쎌뵬占쎌뵥 �뇡遺얠쨯占쎌몵嚥∽옙 占쎄퐬占쎌젟 */
-    font-size: 16px; /* 疫뀐옙占쎌쁽 占쎄쾿疫뀐옙 */
-    /* margin: 4px 2px;  */
-    cursor: pointer; /* �뚣끉苑� 筌뤴뫁堉� 癰귨옙野껓옙 */
-    border-radius: 100px; /* 筌뤴뫁苑뚨뵳占� 占쎈쳛疫뀐옙野껓옙 */
-    transition: background-color 0.3s; /* 獄쏄퀗瑗랃옙源� 癰귨옙占쎌넅 占쎈막占쎈빍筌롫뗄�뵠占쎈�� */
-    width: 50px;
+    padding: 13px;
+    text-align: center; 
+    text-decoration: none; 
+    font-size: 16px; 
+    cursor: pointer;
+    border-radius: 100px; 
+    background-color: transparent;
+    border: solid 1px; 
+    margin: 4px 2px; 
     height: 36px;
-    border: solid 1px;
-}
+    align-items: center; 
+    width: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px; 
+} 
 
 .g{
    border-color: #46b7bd;
@@ -122,6 +125,13 @@ main{
     /* background-color: #45a049;  */
 }
 
+.recommend-btn .count-text {
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: center;
+    width:35px;
+}
+
 /* 占쎌돳占쎄텢 筌롫뗀�뤀 */
 main nav{
     border-bottom: 1px solid #ddd;
@@ -146,7 +156,7 @@ main nav{
 
 .tab-menu .active {
     font-weight: bold;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 5px solid #007bff;
 }
 
 /* section(占쎌뇢) + aside(占쎌궎) */
@@ -1192,7 +1202,7 @@ h1 {
     font-weight: bold;
 }
 
-.pagination a.active {
+.pagination a.active2 {
     font-weight: bold;
 }
 

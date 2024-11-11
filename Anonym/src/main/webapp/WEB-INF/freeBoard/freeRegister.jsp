@@ -58,43 +58,6 @@
 						</form>
                     </div>
                 </section>
-                <!-- aside -->
-                <aside class="sidebar">
-                    <section class="rcmd_list">
-                        <h2>추천 글</h2>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            <a href="#">
-                                런닝 좋아하시는 분들
-                            </a>
-                            
-                    </section>
-                </aside>
             </div>
         </main>
 

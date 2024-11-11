@@ -277,7 +277,7 @@ if(request.getAttribute("fList") != null) fList = (List<PostVO>)request.getAttri
 				<input type="hidden" name="pno" value="<%= vo.getPost_no() %>">
                 <select name="reason" id="reasonSelect" required>
                     <option value="" disabled selected>사유를 선택하세요</option>
-                    <option value="욕설 / 혐오발언">욕설 / 혐오발언</option>
+                    <option value="욕설 / 혐오 발언">욕설 / 혐오 발언</option>
                     <option value="스팸">스팸</option>
                     <option value="허위 정보">허위 정보</option>
                     <option value="기타">기타</option>

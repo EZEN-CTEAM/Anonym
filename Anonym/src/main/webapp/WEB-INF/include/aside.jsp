@@ -26,7 +26,7 @@
 		                            <li>
 		                                <a  href="companyInfo.do?cno=<%= company.getCno() %>">
 		                                    <span class="img">
-		                                    <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= company.getClogo() %>" alt="">
+		                                    <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= company.getClogo() %>" alt="" style="height:34px; width:34px;">
 		                                </span>
 		                                <div>
 		                                	<strong><%= company.getCname() %></strong>

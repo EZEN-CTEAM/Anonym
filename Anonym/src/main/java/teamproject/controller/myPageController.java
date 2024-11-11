@@ -1288,7 +1288,11 @@ public class myPageController
 				
 				conn = DBConn.conn();
 				
-				String sql = "SELECT * FROM company WHERE company_state = 'W' ";
+				String sql = "SELECT "
+						+ "(select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 1 ) as company_brc, "
+						+ "c.company_no, company_name, company_location, company_employee, company_industry, company_anniversary, company_brc_num, company_logo, company_state, company_registration_date "
+						+ "FROM company c "
+						+ "WHERE company_state = 'W' ";
 				
 				psmt = conn.prepareStatement(sql);
 				rs = psmt.executeQuery();

@@ -195,11 +195,11 @@ h2{
     height: auto; /* 鍮꾩쑉 �쑀吏� */
 }
 
-/* .radioButtonStyle {
+.radioButtonStyle {
     display: flex;
-    gap: 10px; �씪�뵒�삤 踰꾪듉 媛꾧꺽
-    align-items: center; �닔吏� �젙�젹
-    font-size: 0.9em; �씪�뵒�삤 踰꾪듉 �겕湲� 媛먯냼
+    gap: 10px; 
+    align-items: center; 
+    font-size: 0.9em; 
 }
 
 .radioStyle {
@@ -209,29 +209,7 @@ h2{
 
 .radioStyle input {
     margin-right: 5px;
-} */
-
-        .radioButtonStyle {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        .radioStyle input[type="radio"] {
-            display: none;
-        }
-        .radioStyle span {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            color: #fff;
-        }
-        .radioStyle input[type="radio"]:checked + span {
-            background-color: #28a745;
-        }
-        .radioStyle input[type="radio"]:not(:checked) + span {
-            background-color: #dc3545;
-        }
+} 
 
 /*�슦�렪 踰덊샇*/
 .postcode-container {

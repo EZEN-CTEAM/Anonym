@@ -9,7 +9,7 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/mypage_styles.css" />
 
         <!-- 메인 컨텐츠 -->
-<%--         <main>
+         <main>
             <div class="main-container9">
                 <!-- 기업 승인 관리 -->
                 <section class="approval-section">
@@ -82,7 +82,7 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
                 </form>
                 </section>
             </div>
-        </main> --%>
+        </main> 
         
         <main>
             <div class="container">
@@ -103,18 +103,18 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
                 {
                 %>
 			            <tr>
-			                <td onclick="toggleDetails(this)"><%= cvo.getCname() %></td>
+			                <td onclick="showModal('<%= cvo.getCname() %>', '<%= cvo.getCbrc() %>')"><%= cvo.getCname() %></td>
 			                <td><%= cvo.getCbrcnum() %></td>
 			                <td><%= cvo.getCrdate() %></td>
 			                <td>
 			                    <form action="admin.do" method="post" onsubmit="submitForm(this)">
 			                        <input type="hidden" name="company_no" value=<%= cvo.getCno() %>>
-			                        <div class="radioButtonStyle">
-				                        <label class="radioStyle">
+			                        <div class="radioButtonStyle2">
+				                        <label class="radioStyle2">
 				                            <input type="radio" name="company_state" value="E" onchange="this.form.submit()">
 				                            <span>승인</span>
 				                        </label>
-				                        <label class="radioStyle">
+				                        <label class="radioStyle2">
 				                            <input type="radio" name="company_state" value="D" onchange="this.form.submit()">
 				                            <span>부결</span>
 				                        </label>
@@ -128,20 +128,54 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
 			        </tbody>
 		        </table>
 		    </div>
+		    
+		        <!-- Modal Structure -->
+		    <div id="companyModal" class="modal">
+		        <div class="modal-content">
+		            <span class="close" onclick="closeModal()">&times;</span>
+		            <h2 id="companyName"></h2>
+		            <img id="companyImage" src="" alt="Company Image" style="max-width: 100%; height: auto;">
+		        </div>
+		    </div>
         </main>
 
 <%@ include file="../include/footer.jsp" %>
 
 <script>
-    function toggleDetails(element) {
+     function toggleDetails(element) {
         const details = element.nextElementSibling; // 다음 요소인 company-details를 선택
         if (details.style.display === "none" || details.style.display === "") {
             details.style.display = "block"; // 보이게
         } else {
             details.style.display = "none"; // 숨기기
         }
-    }
+    } 
     function submitForm(form) {
         form.submit();  // 라디오 버튼을 선택하면 폼을 제출합니다.
     }
+    
+    function showModal(companyName, imageUrl) {
+        // 모달을 표시하고 회사명과 이미지를 설정
+        document.getElementById("companyName").innerText = companyName;
+        document.getElementById("companyImage").src = imageUrl;
+
+        console.log(imageUrl);
+        var modal = document.getElementById("companyModal");
+        modal.style.display = "block";
+    }
+
+    // 모달 닫기
+    function closeModal() {
+        var modal = document.getElementById("companyModal");
+        modal.style.display = "none";
+    }
+
+    // 모달 바깥 영역 클릭 시 모달 닫기
+    window.onclick = function(event) {
+        var modal = document.getElementById("companyModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
 </script>

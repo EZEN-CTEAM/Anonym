@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.container { 
+	width: 1100px;
+	 margin: auto;
+	 padding: 80px 0 100px 0;
+}
+.table { 
+	width: 1100px;
+	 border-collapse: collapse;
+	 margin-top: 20px;
+}
+
+.table th, .table td { 
+	padding: 8px;
+	border: 1px solid #ddd; 
+	text-align: center;
+}
+
+.btn { 
+	padding: 5px 10px; 
+	margin: 5px;
+}
+
+.status { 
+	font-weight: bold;
+}
+ 
+.search-container {
+	margin-bottom: 30px;
+}
+
+.input, .select { 
+	padding: 5px; margin-right: 10px;
+}
+
+h1{
+	padding-bottom: 50px;
+}

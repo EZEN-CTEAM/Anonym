@@ -24,7 +24,7 @@ CompanyVO loginUserc = (CompanyVO)session.getAttribute("loginUserc");
 			<nav>
 				<ul class="nav-menu">
 					<li><a href="<%= request.getContextPath() %>/freeBoard/freeList.do">자유게시판</a></li>
-					<li><a href="<%= request.getContextPath() %>/companyReview/companySearch.do">기업 리뷰</a></li>
+					<li><a href="<%= request.getContextPath() %>/companyReview/companyIndex.do">기업 리뷰</a></li>
 					<li><a href="<%= request.getContextPath() %>/jobPosting/jobList.do" class="applyinfo">채용 공고</a></li>
 					<li><a href="<%= request.getContextPath() %>/companyServices/cjobList.do" class="companyservice" onblur="">기업 서비스</a>
 						<ul class="dropdown_content">

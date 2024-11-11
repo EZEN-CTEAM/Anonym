@@ -128,7 +128,7 @@ public class companyServicesController
 				
 				String sqlIp = "SELECT c.company_no"
 							 + " , company_name"
-					         + " , company_logo"
+					         + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 					         + " , job_posting_no"
 					         + " , job_posting_title"
 					         + " FROM company c, job_posting j"
@@ -159,7 +159,7 @@ public class companyServicesController
 				
 				String sqlC = "SELECT c.company_no"
 							+ " , company_name"
-							+ " , company_logo"
+							+ " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 							+ " , job_posting_no"
 							+ " , job_posting_title"
 							+ " FROM company c, job_posting j"
@@ -229,7 +229,7 @@ public class companyServicesController
 				
 				String sql = "SELECT c.company_no"
 						   + " , company_name"
-				           + " , company_logo"
+				           + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 				           + " , job_posting_no"
 				           + " , job_posting_title"
 				           + " FROM company c, job_posting j"
@@ -292,7 +292,7 @@ public class companyServicesController
 				
 				String sql = "SELECT c.company_no"
 						+ " , company_name"
-						+ " , company_logo"
+						+ " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 						+ " , job_posting_no"
 						+ " , job_posting_title"
 						+ " FROM company c, job_posting j"
@@ -340,6 +340,8 @@ public class companyServicesController
 	
 	public void cjobRegisterOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{	
+		request.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession();
 		CompanyVO loginUserc = (CompanyVO) session.getAttribute("loginUserc");
 		
@@ -481,8 +483,6 @@ public class companyServicesController
 	public void cjobModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
-		List<JobpostingVO> jpList = new ArrayList<JobpostingVO>();
-		
 		HttpSession session = request.getSession();
 		CompanyVO loginUserc = (CompanyVO) session.getAttribute("loginUserc");
 		
@@ -506,7 +506,8 @@ public class companyServicesController
 			{
 				conn = DBConn.conn();
 				
-				String sql = " SELECT job_posting_title"
+				String sql = " SELECT job_posting_no"
+						   + " , job_posting_title"
 						   + " , job_posting_kind"
 						   + " , job_posting_content"
 						   + " , job_posting_period"
@@ -523,14 +524,14 @@ public class companyServicesController
 				if(rs.next()) {
 					JobpostingVO jpvo = new JobpostingVO();
 					
+					jpvo.setJob_posting_no(rs.getInt("job_posting_no"));
 					jpvo.setJob_posting_title(rs.getString("job_posting_title"));
 					jpvo.setJob_posting_kind(rs.getString("job_posting_kind"));
 					jpvo.setJob_posting_content(rs.getString("job_posting_content"));
 					jpvo.setJob_posting_period(rs.getString("job_posting_period"));
 					
-					jpList.add(jpvo);
+					request.setAttribute("jpvo", jpvo);
 				}
-				request.setAttribute("jpList", jpList);
 				
 				request.getRequestDispatcher("/WEB-INF/companyServices/cjobModify.jsp").forward(request, response);
 			} catch(Exception e)
@@ -551,6 +552,8 @@ public class companyServicesController
 	
 	public void cjobModifyOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		request.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession();
 		CompanyVO loginUserc = (CompanyVO) session.getAttribute("loginUserc");
 		
@@ -569,6 +572,8 @@ public class companyServicesController
 			String jobPostingKind = request.getParameter("job_posting_kind");
 			String jobPostingContent = request.getParameter("job_posting_content");
 			String jobPostingPeriod = request.getParameter("job_posting_period");
+			
+			System.out.println("jobPostingContent : " + jobPostingContent);
 			
 			try
 			{
@@ -684,7 +689,7 @@ public class companyServicesController
 				
 				String sql = " SELECT c.company_no"
 						   + " , c.company_name"
-						   + " , c.company_logo"
+						   + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 						   + " , j.job_posting_no"
 						   + " , j.job_posting_title"
 						   + " , COUNT(a.applicant_no) AS applicant_count"

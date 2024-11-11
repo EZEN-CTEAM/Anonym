@@ -79,7 +79,7 @@ public class jobPostingController
 
 				String sql = "SELECT c.company_no"
 						   + " , company_name"
-						   + " , company_logo"
+						   + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 						   + " , j.job_posting_no"
 						   + " , job_posting_title"
 						   + " FROM company c, job_posting j"
@@ -110,7 +110,7 @@ public class jobPostingController
 				
 				String sqlL = "SELECT c.company_no"
 						   	+ " , company_name"
-						   	+ " , company_logo"
+						   	+ " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 						   	+ " , j.job_posting_no"
 						   	+ " , job_posting_title"
 						   	+ " FROM company c, job_posting j"

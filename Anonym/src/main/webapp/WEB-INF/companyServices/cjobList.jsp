@@ -39,7 +39,7 @@
           	<a href="cjobView.do?job_posting_no=<%= jpIpvo.getJob_posting_no() %>">
           		<input type="hidden" name="job_posting_no" value="<%= jpIpvo.getJob_posting_no() %>"> 
             <div class="company_logo">
-              <img src="<%= request.getContextPath() %>/upload/<%= jpIpvo.getCompany_logo() %>" width="164px" height="82px">
+              <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jpIpvo.getCompany_logo() %>" width="164px" height="82px">
             </div>
             <div class="company_name">
               <%= jpIpvo.getCompany_name() %>

@@ -28,7 +28,7 @@
 	            <div class="company_apply">
 	              <a href="cjobView.do?job_posting_no=<%= jpvo.getJob_posting_no() %>">
 	                <div class="company_logo">
-	                  <img src="<%= request.getContextPath() %>/upload/<%= jpvo.getCompany_logo() %>" width="164px" height="110px">
+	                  <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jpvo.getCompany_logo() %>" width="164px" height="110px">
 	                </div>
 	                <div class="company_name">
 	                  <%= jpvo.getCompany_name() %>

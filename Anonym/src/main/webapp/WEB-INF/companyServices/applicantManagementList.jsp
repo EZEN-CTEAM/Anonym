@@ -43,7 +43,7 @@
 						value="<%=jpvo.getJob_posting_no()%>">
 						<div class="company_logo">
 							<img
-								src="<%=request.getContextPath()%>/upload/<%=jpvo.getCompany_logo()%>"
+								src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jpvo.getCompany_logo() %>"
 								width="164px" height="82px">
 						</div>
 						<div class="company_name">

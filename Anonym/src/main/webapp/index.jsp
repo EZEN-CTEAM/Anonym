@@ -53,7 +53,7 @@
 		 String sqlJp = " SELECT j.job_posting_no"
 				 	  + " , j.job_posting_title"
 				 	  + " , c.company_name"
-				 	  + " , c.company_logo"
+				 	  + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 				 	  + " , AVG(p.post_review_starrating) AS post_review_starrating"
 				 	  + " , j.job_posting_hit"
 				 	  + " FROM company c"
@@ -141,7 +141,7 @@
 				postReviewStarrating  = rsJp.getInt("post_review_starrating");
            %>
             <div>
-              <a href="<%= request.getContextPath() %>/jobPosting/jobView.do?job_posting_no=<%= jobPostingNo %>">
+              <a href="<%= request.getContextPath() %>/user/down.do?fileName=<%= companyLogo %>">
                 <div class="company_logo">
                   <img src="<%= request.getContextPath() %>/upload/<%= companyLogo %>" width="164px" height="82px">
                 </div>

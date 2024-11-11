@@ -37,7 +37,7 @@
                 <div class="company_apply">
                   <a href="jobView.do?job_posting_no=<%= jpvo.getJob_posting_no() %>">
                     <div class="company_logo">
-                      <img src="<%= request.getContextPath() %>/upload/<%= jpvo.getCompany_logo() %>" width="164px" height="110px">
+                      <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jpvo.getCompany_logo() %>" width="164px" height="110px">
                     </div>
                     <div class="company_name">
                       <%= jpvo.getCompany_name() %>
@@ -77,7 +77,7 @@
 	        	  <a href="<%= request.getContextPath() %>/jobPosting/jobView.do?job_posting_no=<%= jplvo.getJob_posting_no() %>">
 		              <div class="new_apply_list">
 		                <div>
-		                  <img src="<%= request.getContextPath() %>/jobPosting/jobView.do?job_posting_no=<%= jplvo.getJob_posting_no() %>" width="75px">
+		                  <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jplvo.getCompany_logo() %>" width="75px">
 		                </div>
 		                <div class="new_apply_company_name">
 		                  <%= jplvo.getCompany_name() %>

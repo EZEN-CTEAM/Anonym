@@ -69,12 +69,12 @@
         <div class="modal_content_title">
           지원하기
         </div>
-        <form action="jobView.do" method="post">
+        <form action="jobApply.do" method="post">
    	    	<input type="hidden" name="company_no" value="<%= jpvo.getCompany_no() %>">
         	<input type="hidden" name="job_posting_no" value="<%= jpvo.getJob_posting_no() %>">
         <div class="modal_ment">이력서를 선택해주세요.</div>
         <div class="modal_curriculum">
-          <select id="resume_select" onchange="resumeDetail(this.value)">
+          <select id="resume_select" name="resume_no" onchange="resumeDetail(this.value)">
           <!-- 이력서 조회 -->
           <%
           	if(rList == null) {

@@ -300,6 +300,9 @@ public class jobPostingController
 			int userNo = loginUser.getUser_no();
 			int jobPostingNo = Integer.parseInt(request.getParameter("job_posting_no"));
 			
+			System.out.println(userNo);
+			System.out.println(jobPostingNo);
+			
 			Connection conn = null;
 			PreparedStatement psmt = null;
 			ResultSet rs = null;
@@ -314,7 +317,8 @@ public class jobPostingController
 			{
 				conn = DBConn.conn();
 				
-				String sql = " SELECT company_name"
+				String sql = " SELECT c.company_no"
+						   + " , company_name"
 						   + " , company_location"
 						   + " , company_employee"
 						   + " , company_industry"
@@ -335,6 +339,7 @@ public class jobPostingController
 				if(rs.next()) {
 					JobpostingVO jpvo = new JobpostingVO();
 					
+					jpvo.setCompany_no(rs.getInt("company_no"));
 					jpvo.setCompany_name(rs.getString("company_name"));
 					jpvo.setCompany_location(rs.getString("company_location"));
 					jpvo.setCompany_employee(rs.getString("company_employee"));
@@ -430,6 +435,8 @@ public class jobPostingController
 						   + " , ?"
 						   + " )";
 				
+				System.out.println(sql);
+				
 				psmt = conn.prepareStatement(sql);
 				psmt.setInt(1, jobPostingNo);
 				psmt.setInt(2, companyNo);
@@ -438,7 +445,7 @@ public class jobPostingController
 				
 				psmt.executeUpdate();
 				
-				response.sendRedirect(request.getContextPath()+"/jobPosting/jobApply.do");
+				response.sendRedirect(request.getContextPath()+"/jobPosting/jobView.do?job_posting_no=" + jobPostingNo);
 			} catch(Exception e)
 			{
 				e.printStackTrace();

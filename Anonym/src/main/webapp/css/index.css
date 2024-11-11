@@ -67,7 +67,7 @@ li:hover .dropdown_content {
   text-decoration: underline;
 }
 
-/* 筌롫뗄�뵥 �뚢뫂�믭옙�뵠占쎄섐 揶쏄쑨爰� 鈺곌퀣�젟 */
+/* 嶺뚮∥�뾼占쎈데 占쎈슓維귨옙誘��삕占쎈턄�뜝�럡�꼸 �뤆�룄�뫅�댆占� �댖怨뚰�ｏ옙�젧 */
 .main-container {
   padding: 50px 20px;
 }
@@ -83,12 +83,12 @@ li:hover .dropdown_content {
   margin-bottom: 20px;
 }
 
-/* 占쎌뵥占쎈뱜嚥∽옙 野껓옙占쎄퉳 */
+/* �뜝�럩逾ε뜝�럥諭쒎슖�댙�삕 �뇦猿볦삕�뜝�럡�돰 */
 .main_apply {
   text-align: center;
 }
 
-/* 占쎌뵥占쎈뱜嚥∽옙 野껓옙占쎄퉳 */
+/* �뜝�럩逾ε뜝�럥諭쒎슖�댙�삕 �뇦猿볦삕�뜝�럡�돰 */
 .intro input {
   height: 40px;
   border: 1px solid #c9c9c9;
@@ -101,7 +101,7 @@ li:hover .dropdown_content {
   font-size: 0.9rem;
 }
 
-/* 占쎌뵥疫꿸퀗占� �뵳�딅뮞占쎈뱜(占쎌쁽占쎌� 野껊슣�뻻占쎈솇) */
+/* �뜝�럩逾η뼨轅명�쀥뜝占� 占쎈뎨占쎈봾裕욃뜝�럥諭�(�뜝�럩�겱�뜝�럩占� �뇦猿딆뒩占쎈뻣�뜝�럥�냷) */
 .board-container {
   width: 80%;
   margin: 0px auto 100px auto;
@@ -150,10 +150,10 @@ li:hover .dropdown_content {
   padding: 0px 2px;
 }
 
-/* 占쎌뵥疫꿸퀗占� �뵳�딅뮞占쎈뱜(筌�袁⑹뒠占쎌젟癰귨옙) */
+/* �뜝�럩逾η뼨轅명�쀥뜝占� 占쎈뎨占쎈봾裕욃뜝�럥諭�(嶺뚳옙熬곣뫗�뮔�뜝�럩�젧�솻洹⑥삕) */
 .apply_title {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 80%;
   margin: 40px auto 10px auto;

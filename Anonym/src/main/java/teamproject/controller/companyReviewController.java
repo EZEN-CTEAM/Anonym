@@ -17,7 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import teamproject.util.DBConn;
-import teamproject.vo.*;
+import teamproject.vo.CompanyVO;
 import teamproject.vo.PagingUtil;
 import teamproject.vo.PostCommentVO;
 import teamproject.vo.PostVO;
@@ -170,7 +170,8 @@ public class companyReviewController
 	        conn = DBConn.conn();
 	        
 	        String sql = "SELECT "
-	        		+ "company_name, company_logo, c.company_no, "
+	        		+ "company_name, c.company_no, "
+	        		+ "(select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo, "
 	        		+ "SUM(CASE WHEN company_like_state = 'Y' THEN 1 ELSE 0 END) AS like_count, "
 	        		+ "SUM(CASE WHEN company_like_state = 'N' THEN 1 ELSE 0 END) AS dislike_count, "
 	        		+ "SUM(CASE WHEN company_like_state IN ('Y', 'N') THEN 1 ELSE 0 END) AS total_count, "
@@ -441,7 +442,9 @@ public class companyReviewController
 			conn = DBConn.conn();
 			
 			// 회사 정보 조회
-			String sql = "SELECT * FROM company WHERE company_no = ? ";
+			String sql = "SELECT company_name, company_location, company_anniversary, company_industry, company_employee, "
+					+ "(select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo "
+					+ "FROM company c WHERE company_no = ? ";
 			
 			// System.out.println("회사 정보 조회" + sql);
 			
@@ -472,6 +475,8 @@ public class companyReviewController
 			vo.setCindustry(rs.getString("company_industry")); 
 			vo.setCemployee(rs.getString("company_employee"));
 
+			System.out.println("첨부파일" + rs.getString("company_logo"));
+			
 			}
 			
 			// 회사 추천 상태 조회
@@ -557,8 +562,10 @@ public class companyReviewController
 	    {
 	    	conn = DBConn.conn();
 		        
-	        String sql = "SELECT company_name, company_logo, company_no, company_industry "
-	        		+ "FROM company "
+	        String sql = "SELECT "
+	        		+ "(select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo, "
+	        		+ "company_name, company_no, company_industry "
+	        		+ "FROM company c "
 	        		+ "WHERE company_state = 'E' ";
 //	        		+ "AND company_industry = ? "
 //	        		+ "LIMIT 0, 5 ";

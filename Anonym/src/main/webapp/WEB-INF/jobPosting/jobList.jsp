@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="teamproject.*" %>
 <%@ include file="../include/header.jsp" %>
 <%
 	List<JobpostingVO> jList = (List<JobpostingVO>)request.getAttribute("jList");
 	List<JobpostingVO> jlList = (List<JobpostingVO>)request.getAttribute("jlList");
+	
+	String searchValue = (String)request.getParameter("index_search");
+	if(searchValue == null || searchValue.equals("null")) searchValue = "";
+	
+	PagingUtil paging = (PagingUtil)request.getAttribute("paging");
+	int nowPage = paging.getNowPage();
 %>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/recruitment_information.css" />
 
@@ -29,10 +37,10 @@
             <div>
               <div class="apply_list">
               	<%
-              		int i = 0;
+              		int cnt = 0;
 		          	for(JobpostingVO jpvo : jList)
 		          	{
-		          		i++;	
+		          		cnt++;	
           		%>
                 <div class="company_apply">
                   <a href="jobView.do?job_posting_no=<%= jpvo.getJob_posting_no() %>">
@@ -48,11 +56,11 @@
                   </a>
                 </div>
                 <%
-           			if(i%3 == 0) {
+           			if(cnt%3 == 0) {
            		%>
         	  </div>
         	  <%
-        	  if(i != 9) {
+        	  if(cnt != 9) {
         		  
         	  
         		%>
@@ -97,15 +105,39 @@
             </div>
           </section>
         </div>
-				<div class="pagination">
-	                <a href="#">&laquo;</a> <!-- 이전 페이지 -->
-	                <a href="#" class="active">1</a> <!-- 현재 페이지 -->
-	                <a href="#">2</a>
-	                <a href="#">3</a>
-	                <a href="#">4</a>
-	                <a href="#">5</a>
-	                <a href="#">&raquo;</a> <!-- 다음 페이지 -->
-            	</div>
+		<div class="pagination">
+		<%
+		if(paging.getStartPage() > 1)
+		{
+			// 시작페이지가 1보다 큰 경우 이전 페이지 존재
+			%>
+			<!-- 클릭시 현재 페이지의 시작 페이지 번호 이전 페이지로 이동(13->10)-->
+			<a href="jobList.do?nowPage=<%= paging.getStartPage() - 1 %>&searchValue=<%= searchValue %>">&lt;</a>
+			<%
+		}
+		for(int i = paging.getStartPage(); i <= paging.getEndPage(); i++)
+		{
+			if(i == nowPage)
+			{
+				%>
+				<a class="active"><%= i %></a>
+				<%
+			}else
+			{
+				%>
+				<a href="jobList.do?nowPage=<%= i %>&searchValue=<%= searchValue %>"><%= i %></a>
+				<%
+			}
+		}
+		if(paging.getLastPage() > paging.getEndPage())
+		{
+			%>
+			<!-- 클릭시 현재 페이지의 마지막 페이지 번호 다음 페이지로 이동(13->20)-->
+			<a href="jobList.do?nowPage=<%= paging.getEndPage() + 1 %>&searchValue=<%= searchValue %>">&gt;</a>
+			<%
+		}
+		%>
+       </div>
     </div>
   </main>
 

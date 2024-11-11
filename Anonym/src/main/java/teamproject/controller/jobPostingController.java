@@ -67,6 +67,15 @@ public class jobPostingController
 			String searchValue = request.getParameter("index_search");
 			if (searchValue == null) searchValue = "";
 			
+			// 페이징
+		    int total = 0;
+			int nowPage = 1;
+			if(request.getParameter("nowPage") != null) nowPage = Integer.parseInt(request.getParameter("nowPage"));
+			
+			// 글 갯수
+			PreparedStatement psmtTotal = null;  
+			ResultSet rsTotal = null; 
+			
 			Connection conn = null;
 			PreparedStatement psmt = null;
 			ResultSet rs = null;
@@ -77,6 +86,31 @@ public class jobPostingController
 			try {
 				conn = DBConn.conn();
 
+				// 페이징
+				String sqlTotal = "SELECT count(*) AS total"
+								+ " FROM job_posting p"
+							    + " WHERE job_posting_state = 'E'";
+				
+				if(searchValue.equals(""))
+				{
+					psmtTotal = conn.prepareStatement(sqlTotal);
+				}else
+				{
+					sqlTotal += "AND (job_posting_title LIKE CONCAT('%', ?, '%') OR job_posting_content LIKE CONCAT('%', ?, '%')) ";
+					psmtTotal = conn.prepareStatement(sqlTotal);
+					psmtTotal.setString(1, searchValue);
+					psmtTotal.setString(2, searchValue);
+				}
+					
+				rsTotal = psmtTotal.executeQuery();
+				
+				if(rsTotal.next())
+				{
+					total = rsTotal.getInt("total");
+				}
+				
+				PagingUtil paging = new PagingUtil(nowPage, total, 9);
+				
 				String sql = "SELECT c.company_no"
 						   + " , company_name"
 						   + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
@@ -88,10 +122,12 @@ public class jobPostingController
 						   + " AND company_name like CONCAT('%', ?, '%')"
 						   + " GROUP BY c.company_no, company_name, company_logo, j.job_posting_no, job_posting_title"
 						   + " ORDER BY job_posting_registration_date desc"
-						   + " LIMIT 0, 9";
+						   + " LIMIT ?, ?";
 				
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1, searchValue);
+				psmt.setInt(2, paging.getStart());
+				psmt.setInt(3, paging.getPerPage());
 				rs = psmt.executeQuery();
 				
 				while(rs.next())

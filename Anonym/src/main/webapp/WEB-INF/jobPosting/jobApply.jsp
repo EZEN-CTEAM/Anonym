@@ -90,7 +90,7 @@
           	for(ResumeVO rvo : rList) {
 
           %>
-          	<option id="resume_no" value="<%= rvo.getResume_no() %>"><%= rvo.getResume_name() %></option>
+          	<option id="resume_no" value="<%= rvo.getResume_no() %>"><%= rvo.getResume_title() %></option>
           <%	
           	}
           %>

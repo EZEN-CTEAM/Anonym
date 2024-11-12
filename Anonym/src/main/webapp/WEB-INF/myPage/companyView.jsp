@@ -14,7 +14,7 @@
             <form action="companyModify.do?cno=<%= loginUserc.getCno() %>" method="get">
             
             	<div class="mypageIP">로고</div>
-                <div class="myIP"><img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= loginUserc.getClogo() %>"></div>
+                <div class="myIP"><img style="width: 100px; height: 100px" src="<%= request.getContextPath() %>/user/down.do?fileName=<%= loginUserc.getClogo() %>"></div>
                 
                 <div class="mypageIP">아이디</div>
                 <div class="myIP"><%= loginUserc.getCid() %></div>
@@ -38,7 +38,7 @@
                 <div class="myIP"><%= loginUserc.getCbrcnum() %></div>
                 
                 <div class="mypageIP">사업자등록증</div>
-                <div class="myIP"><img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= loginUserc.getCbrc() %>"></div>
+                <div class="myIP"><img style="width: 100%; max-width: 450px; height: auto;" src="<%= request.getContextPath() %>/user/down.do?fileName=<%= loginUserc.getCbrc() %>"></div>
                 <br>
                 <button class="cta-button">수정</button>
             </form>

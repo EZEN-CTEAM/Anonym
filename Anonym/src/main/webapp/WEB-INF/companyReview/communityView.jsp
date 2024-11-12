@@ -243,10 +243,10 @@ if(request.getAttribute("List") != null) List = (List<PostCommentVO>)request.get
 				<input type="hidden" name="pno" value="<%= pvo.getPost_no() %>">
                 <select name="reason" id="reasonSelect" required>
                     <option value="" disabled selected>사유를 선택하세요</option>
-                    <option value="abusive_language">욕설 / 혐오발언</option>
-                    <option value="spam">스팸</option>
-                    <option value="false_information">허위 정보</option>
-                    <option value="other">기타</option>
+                    <option value="욕설 / 혐오발언">욕설 / 혐오발언</option>
+                    <option value="스팸">스팸</option>
+                    <option value="허위 정보">허위 정보</option>
+                    <option value="기타">기타</option>
                 </select>
                 <textarea name="reason_detail" id="detailsTextarea" placeholder="기타 사유를 입력해주세요" rows="3"></textarea><br><br>
                 <button type="submit">신고하기</button>

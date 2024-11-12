@@ -426,6 +426,7 @@ public class jobPostingController
 				
 				String sqlR = " SELECT resume_no"
 							+ " , resume_name"
+							+ " , resume_title"
 							+ " , resume_tenure_start"
 							+ " , resume_tenure_end"
 							+ " , resume_area"
@@ -443,6 +444,7 @@ public class jobPostingController
 					
 					rvo.setResume_no(rsR.getInt("resume_no"));
 					rvo.setResume_name(rsR.getString("resume_name"));
+					rvo.setResume_title(rsR.getString("resume_title"));
 					rvo.setResume_tenure_start(rsR.getString("resume_tenure_start"));
 					rvo.setResume_tenure_end(rsR.getString("resume_tenure_end"));
 					rvo.setResume_area(rsR.getString("resume_area"));

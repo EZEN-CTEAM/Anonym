@@ -1,9 +1,9 @@
-/* 疫꿸퀡�궚 占쎈뮞占쏙옙占쎌뵬 �룯�뜃由곤옙�넅 */
+/* �뼨轅명�∽옙沅� �뜝�럥裕욃뜝�룞�삕�뜝�럩逾� 占쎈／占쎈쐝�뵳怨ㅼ삕占쎈꼨 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', 'Noto Sans KR', AppleSDGothicNeo-Regular, 'Malgun Gothic', '筌띾쵐占� �⑥쥓逾�', dotum, '占쎈즻占쏙옙', sans-serif;
+    font-family: 'Roboto', 'Noto Sans KR', AppleSDGothicNeo-Regular, 'Malgun Gothic', '嶺뚮씭理먨뜝占� 占썩뫁伊볣�억옙', dotum, '�뜝�럥利삣뜝�룞�삕', sans-serif;
   }
   
   body {
@@ -27,7 +27,7 @@
       align-items: center;
       padding: 15px 20px;
       width : 90%;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
   }
   
@@ -158,10 +158,11 @@
   padding: 0;
   margin: 0;
   font-size: 0.9rem;
+  list-style: none;
   }
 	
 	.dropdown_content li {
-		margin: 0px 30px;
+		margin: 10px 30px;
 	}
 	
 	.dropdown_content a {
@@ -196,10 +197,10 @@
 }
 
 .menu-icon {
-    width: 16px; /* 占쎌뵠沃섎챷占� 占쎄섐�뜮占� 占쎄퐬占쎌젟 */
-    height: 16px; /* 占쎌뵠沃섎챷占� 占쎈꼥占쎌뵠 占쎄퐬占쎌젟 */
-    margin-right: 8px; /* 占쎈�볩옙�뮞占쎈뱜占쏙옙 占쎌뵠沃섎챷占� 占쎄텢占쎌뵠占쎌벥 揶쏄쑨爰� */
-    vertical-align: middle; /* 占쎈�볩옙�뮞占쎈뱜占쏙옙 占쎌뵠沃섎챷占쏙옙�벥 占쎈땾筌욑옙 占쎌젟占쎌졊 */
+    width: 16px; /* �뜝�럩逾졿쾬�꼶梨룟뜝占� �뜝�럡�꼸占쎈쑏�뜝占� �뜝�럡�맟�뜝�럩�젧 */
+    height: 16px; /* �뜝�럩逾졿쾬�꼶梨룟뜝占� �뜝�럥瑗ε뜝�럩逾� �뜝�럡�맟�뜝�럩�젧 */
+    margin-right: 8px; /* �뜝�럥占쎈낑�삕占쎈츩�뜝�럥諭쒎뜝�룞�삕 �뜝�럩逾졿쾬�꼶梨룟뜝占� �뜝�럡�뀬�뜝�럩逾졾뜝�럩踰� �뤆�룄�뫅�댆占� */
+    vertical-align: middle; /* �뜝�럥占쎈낑�삕占쎈츩�뜝�럥諭쒎뜝�룞�삕 �뜝�럩逾졿쾬�꼶梨룟뜝�룞�삕占쎈꺄 �뜝�럥�빢嶺뚯쉻�삕 �뜝�럩�젧�뜝�럩議� */
 }
 
 .dropdown-content li a:hover {

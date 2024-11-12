@@ -3,11 +3,20 @@ a {
   color: rgb(61, 61, 61);
 }
 
-/* ul {
+ul {
   list-style: none;
-} */
+} 
 
-/* 占쎄땀�뜮袁㏃쓺占쎌뵠占쎈�� 筌롫뗀�뤀 */
+/* �뜝�럡��占쎈쑏熬곥룂�벟�뜝�럩逾졾뜝�럥占쏙옙 嶺뚮∥��占쎈� */
+
+.dropdown_content .dropdown_1st {
+	margin: 10px 30px;
+}
+
+.dropdown_content .dropdown_2nd {
+	margin: 10px 30px;
+}
+
 .nav-menu {
   display: flex;
   font-size: 1.1rem;
@@ -55,7 +64,7 @@ a {
   text-decoration: underline;
 }
 
-/* 嚥≪뮄�젃占쎌뵥 占쎌돳占쎌뜚揶쏉옙占쎌뿯 */
+/* �슖�돦裕꾬옙�쟽�뜝�럩逾� �뜝�럩�뤂�뜝�럩�쐸�뤆�룊�삕�뜝�럩肉� */
 .login:hover {
   font-weight: bold;
   text-decoration: underline;
@@ -66,7 +75,7 @@ a {
   text-decoration: underline;
 }
 
-/* 筌롫뗄�뵥 �뚢뫂�믭옙�뵠占쎄섐 揶쏄쑨爰� 鈺곌퀣�젟 */
+/* 嶺뚮∥�뾼占쎈데 占쎈슓維귨옙誘��삕占쎈턄�뜝�럡�꼸 �뤆�룄�뫅�댆占� �댖怨뚰�ｏ옙�젧 */
 .main-container {
   padding: 50px 20px;
 }
@@ -91,7 +100,7 @@ a {
   border-radius: 5px;
 }
 
-/* 占쎌겱占쎌삺 筌욊쑵六� 餓λ쵐�뵥 �⑤벀�� */
+/* �뜝�럩寃긷뜝�럩�궨 嶺뚯쉳�뫓筌묕옙 繞벿살탳占쎈데 占썩뫀踰�占쏙옙 */
 .apply_title {
   display: flex;
   justify-content: space-between;
@@ -139,7 +148,7 @@ a {
   font-weight: bold;
   color: rgb(73, 73, 73);
   padding: 5px 0px;
-  white-space: nowrap;          /* 한 줄로 표시 */
+  white-space: nowrap;          /* �븳 以꾨줈 �몴�떆 */
   overflow: hidden;
   text-overflow: ellipsis;
   width: 164px;
@@ -167,7 +176,7 @@ a {
   border-radius: 5px;
 }
 
-/* �꽴臾롰�� 獄쏄퀡瑗� */
+/* 占쎄슈�눧濡곤옙占� �뛾�룄�←몭占� */
 .ad_banner {
   position: absolute;
   right: 15%;

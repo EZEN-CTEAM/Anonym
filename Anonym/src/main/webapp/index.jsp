@@ -54,7 +54,7 @@
 				 	  + " , j.job_posting_title"
 				 	  + " , c.company_name"
 				 	  + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
-				 	  + " , AVG(p.post_review_starrating) AS post_review_starrating"
+				 	  + " , AVG(p.post_review_starrating / 5 ) AS post_review_starrating"
 				 	  + " , j.job_posting_hit"
 				 	  + " FROM job_posting j"
 				 	  + " JOIN company c ON j.company_no = c.company_no"
@@ -72,7 +72,7 @@
 		  <!-- 메인 컨텐츠 -->
 		  <main>
 		    <div class="main_apply">
-		      <img src="image/인덱스 가로 배너.PNG">
+		      <img src="image/인덱스 가로 배너.PNG" style="width: 1583px;" >
 		    </div>
 		    <div class="main-container">
 		        <section class="intro">
@@ -110,7 +110,7 @@
 			          <div class="free_list">
 			            <div class="list_title">
 			              <span class="rank"><%= num %></span> 
-			              <a href="<%= request.getContextPath() %>/freeBoard/freeView.do?post_no=<%= freeBoardPostNo %>"><%= freeBoardPostTitle %></a>
+			              <a href="<%= request.getContextPath() %>/freeBoard/freeView.do?pno=<%= freeBoardPostNo %>"><%= freeBoardPostTitle %></a>
 			            </div>
 			            <div class="goodcomment_count">
 			              <img src="https://img.icons8.com/?size=100&id=89385&format=png&color=000000" width="17px"><%= goodCnt %>
@@ -152,7 +152,7 @@
                   <%= jobPostingTitle %>
                 </div>
                 <div class="company_score">
-                  <%= postReviewStarrating %>
+                  <%= String.format("%.1f", rsJp.getDouble("post_review_starrating")) %>
                 </div>
               </a>
             </div>

@@ -3,11 +3,20 @@ a {
   color: rgb(61, 61, 61);
 }
 
-/* ul {
+ul {
   list-style: none;
-} */
+}
 
-/* �궡鍮꾧쾶�씠�뀡 硫붾돱 */
+/* 占쎄땀�뜮袁㏃쓺占쎌뵠占쎈�� 筌롫뗀�뤀 */
+
+.dropdown_content .dropdown_1st {
+	margin: 10px 30px;
+}
+
+.dropdown_content .dropdown_2nd {
+	margin: 10px 30px;
+}
+
 .nav-menu {
   display: flex;
   font-size: 1.1rem;
@@ -71,7 +80,7 @@ li:hover .dropdown_content {
   text-decoration: underline;
 }
 
-/* 濡쒓렇�씤 �쉶�썝媛��엯 */
+/* 嚥≪뮄�젃占쎌뵥 占쎌돳占쎌뜚揶쏉옙占쎌뿯 */
 .login:hover {
   font-weight: bold;
   text-decoration: underline;
@@ -82,7 +91,7 @@ li:hover .dropdown_content {
   text-decoration: underline;
 }
 
-/* 硫붿씤 而⑦뀒�씠�꼫 媛꾧꺽 議곗젙 */
+/* 筌롫뗄�뵥 �뚢뫂�믭옙�뵠占쎄섐 揶쏄쑨爰� 鈺곌퀣�젟 */
 .main-container {
   padding: 50px 20px;
   text-align: center;
@@ -97,7 +106,7 @@ li:hover .dropdown_content {
   margin-top: 20px;
 }
 
-/* 寃��깋 寃곌낵 硫섑듃 */
+/* 野껓옙占쎄퉳 野껉퀗�궢 筌롮꼹�뱜 */
 
 .search_contianer {
   width: 80%;
@@ -115,7 +124,7 @@ li:hover .dropdown_content {
 }
 
 
-/* 湲곗뾽 �젙蹂� */
+/* 疫꿸퀣毓� 占쎌젟癰귨옙 */
 .company {
   width: 80%;
   margin: 0px auto 10px auto;
@@ -220,7 +229,7 @@ li:hover .dropdown_content {
   margin: 5px 0px;
 }
 
-/* 梨꾩슜�젙蹂� */
+/* 筌�袁⑹뒠占쎌젟癰귨옙 */
 .apply_title {
   display: flex;
   justify-content: space-between;
@@ -261,7 +270,7 @@ li:hover .dropdown_content {
   font-weight: bold;
   color: rgb(73, 73, 73);
   padding: 5px 0px;
-  white-space: nowrap;          /* 한 줄로 표시 */
+  white-space: nowrap;          /* �븳 以꾨줈 �몴�떆 */
   overflow: hidden;
   text-overflow: ellipsis;
   width: 164px;
@@ -272,7 +281,7 @@ li:hover .dropdown_content {
   color: rgb(124, 124, 124);
 }
 
-/* 寃뚯떆湲� (�옄�쑀) */
+/* 野껊슣�뻻疫뀐옙 (占쎌쁽占쎌�) */
 .free_title {
   display: flex;
   justify-content: space-between;

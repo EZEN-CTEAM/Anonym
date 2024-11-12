@@ -83,7 +83,7 @@ List<ResumeVO> rlist = (List<ResumeVO>)request.getAttribute("rlist");
     
                     <div>
                         <div class="resumeMenu">자기 소개서</div>
-                        <div class="resume-value"><%= rvo.getResume_info() %></div>
+                        <div class="resume-value"><%= rvo.getResume_info().replace("\n", "<br>") %></div>
                     </div>
                     
                     <div class="w-button">

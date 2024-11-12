@@ -88,7 +88,7 @@
 	        	  <a href="<%= request.getContextPath() %>/jobPosting/jobView.do?job_posting_no=<%= jplvo.getJob_posting_no() %>">
 		              <div class="new_apply_list">
 		                <div>
-		                  <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jplvo.getCompany_logo() %>" width="75px">
+		                  <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jplvo.getCompany_logo() %>" width="50px">
 		                </div>
 		                <div class="new_apply_company_name">
 		                  <%= jplvo.getCompany_name() %>

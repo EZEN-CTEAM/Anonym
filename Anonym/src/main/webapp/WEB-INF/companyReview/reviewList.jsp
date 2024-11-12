@@ -230,11 +230,11 @@ if (avgtotal >= 5) {
 		                                <div>
 			                                <p class="gb"><strong>장점</strong></p>
 			                                <span>
-			                                   <%= pvo.getPost_content() %>
+			                                   <%= pvo.getPost_content().replace("\n", "<br>") %>
 			                                </span>
 			                                <p class="gb"><strong>단점</strong></p>
 			                                <span>
-												<%= pvo.getPost_content2() %>
+												<%= pvo.getPost_content2().replace("\n", "<br>") %>
 			                                </span><br>
  											<%
 							             /*    if(loginUser != null &&  plstate.equals("D"))
@@ -320,11 +320,11 @@ if (avgtotal >= 5) {
 		                                <div>
 		                                	<p class="gb"><strong>장점</strong></p>
 			                                <span>
-			                                   <%= pvo.getPost_content() %>
+			                                   <%= pvo.getPost_content().replace("\n", "<br>") %>
 			                                </span>
 			                                <p class="gb"><strong>단점</strong></p>
 			                                <span>
-												<%= pvo.getPost_content2() %>
+												<%= pvo.getPost_content2().replace("\n", "<br>") %>
 			                                </span><br>
                          				    <button class="like-button" onclick="location.href='<%= request.getContextPath() %>/user/login_p.do'">
 			                                	<img src="https://img.icons8.com/?size=100&id=3RR8QoUJMAri&format=png&color=000000">

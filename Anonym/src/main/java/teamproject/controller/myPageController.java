@@ -1383,15 +1383,16 @@ public class myPageController
 						+ "			  pc.post_complaint_reason, "
 						+ "           date_format(pc.post_complaint_registration_date, '%Y-%m-%d') as pcrdate, "
 						+ "			  p.board_no, " 
-						+ "			  p.post_no, " 
+						+ "			  (select b.board_name from board b where b.board_no= p.board_no) as board_name, " 
+						+ "           (select u.user_id from user u where u.user_no =p.user_no) as target_id, "
+						+ "           (select u.user_state from user u where u.user_no =p.user_no) as user_state, "
+						+ "           p.post_no, "
 						+ "           p.post_content, "
-						+ "           p.company_no, "
-						+ "           u.user_id, "
-						+ "           u.user_state "
-						+ " FROM post_complaint pc "
-						+ " INNER JOIN post p ON pc.post_no = p.post_no "
-						+ " INNER JOIN board b ON b.board_no = p.board_no "
-						+ " INNER JOIN user u ON pc.user_no = u.user_no ";
+						+ "           p.company_no "
+						+ " FROM post_complaint pc, post p "
+						+ " where pc.post_no = p.post_no ";
+				
+				System.out.println(sql);
 				
 				psmt = conn.prepareStatement(sql);
 				rs = psmt.executeQuery();
@@ -1405,7 +1406,7 @@ public class myPageController
 					cpvo.setPost_complaint_reason(rs.getString("post_complaint_reason"));
 					cpvo.setPost_content(rs.getString("post_content"));
 					cpvo.setPost_no(rs.getString("post_no"));
-					cpvo.setUser_id(rs.getString("user_id"));
+					cpvo.setUser_id(rs.getString("target_id"));
 					cpvo.setUser_state(rs.getString("user_state"));
 					cpvo.setPost_complaint_registration_date(rs.getString("pcrdate"));
 					

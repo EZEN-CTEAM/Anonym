@@ -937,6 +937,8 @@ public class companyReviewController
 			uno = Integer.toString(loginUser.getUser_no());  // user_no 값 가져오기
 		}
 		
+		System.out.println();
+		
 		Connection conn = null;
 		PreparedStatement ptmt = null;
 		ResultSet rs = null;

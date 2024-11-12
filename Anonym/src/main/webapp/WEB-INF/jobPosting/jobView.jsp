@@ -28,7 +28,7 @@
                 <div class="summation_list_item">직원수</div>
               </div>
               <div class="summation_list_resultbox">
-                <div class="summation_list_item"><%= jpvo.getCompany_no() %></div>
+                <div class="summation_list_item"><%= jpvo.getCompany_name() %></div>
                 <div class="summation_list_item"><%= jpvo.getCompany_location() %></div>
                 <div class="summation_list_item"><%= jpvo.getCompany_employee() %></div>
               </div>
@@ -41,7 +41,7 @@
               </div>
               <div class="summation_list_resultbox">
                 <div class="summation_list_item"><%= jpvo.getCompany_industry() %></div>
-                <div class="summation_list_item"><%= jpvo.getCompany_location() %></div>
+                <div class="summation_list_item"><%= jpvo.getCompany_anniversary() %></div>
                 <div class="summation_list_item"><%= jpvo.getJob_posting_period() %></div>
               </div>
             </div>

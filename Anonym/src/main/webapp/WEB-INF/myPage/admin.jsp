@@ -8,7 +8,7 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/adminReport.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/mypage_styles.css" />
 
-        <!-- 메인 컨텐츠 -->
+<%--         <!-- 메인 컨텐츠 -->
          <main>
             <div class="main-container9">
                 <!-- 기업 승인 관리 -->
@@ -82,7 +82,7 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
                 </form>
                 </section>
             </div>
-        </main> 
+        </main>  --%>
         
         <main>
             <div class="container">
@@ -103,8 +103,8 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
                 {
                 %>
 			            <tr>
-			                <td onclick="showModal('<%= cvo.getCname() %>', '<%= cvo.getCbrc() %>')"><%= cvo.getCname() %></td>
-			                <td><%= cvo.getCbrcnum() %></td>
+			                <td><%= cvo.getCname() %></td>
+			                <td onclick="showModal('<%= cvo.getCname() %>', '<%= cvo.getCbrc() %>')"><%= cvo.getCbrcnum() %></td>
 			                <td><%= cvo.getCrdate() %></td>
 			                <td>
 			                    <form action="admin.do" method="post" onsubmit="submitForm(this)">
@@ -132,9 +132,9 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
 		        <!-- Modal Structure -->
 		    <div id="companyModal" class="modal">
 		        <div class="modal-content">
-		            <span class="close" onclick="closeModal()">&times;</span>
+		            <span class="close" onclick="closeModal()">&#215;</span>
 		            <h2 id="companyName"></h2>
-		            <img id="companyImage" src="" alt="Company Image" style="max-width: 100%; height: auto;">
+		            <img id="companyImage" src="" alt="Company Image" style="width: 550px; height: auto;">
 		        </div>
 		    </div>
         </main>
@@ -142,24 +142,29 @@ List<CompanyVO> clist = (List<CompanyVO>)request.getAttribute("clist");
 <%@ include file="../include/footer.jsp" %>
 
 <script>
-     function toggleDetails(element) {
+/*      function toggleDetails(element) {
         const details = element.nextElementSibling; // 다음 요소인 company-details를 선택
         if (details.style.display === "none" || details.style.display === "") {
             details.style.display = "block"; // 보이게
         } else {
             details.style.display = "none"; // 숨기기
         }
-    } 
+    }  */
     function submitForm(form) {
         form.submit();  // 라디오 버튼을 선택하면 폼을 제출합니다.
     }
     
     function showModal(companyName, imageUrl) {
-        // 모달을 표시하고 회사명과 이미지를 설정
+        // 컨텍스트 경로를 포함한 이미지 URL 생성
+        const contextPath = "<%= request.getContextPath() %>";
+        const fullImageUrl = contextPath + "/user/down.do?fileName=" + imageUrl;
+        console.log(contextPath);
+        console.log(fullImageUrl);
+        
+        // 모달에 회사명과 이미지 설정
         document.getElementById("companyName").innerText = companyName;
-        document.getElementById("companyImage").src = imageUrl;
+        document.getElementById("companyImage").src = fullImageUrl;
 
-        console.log(imageUrl);
         var modal = document.getElementById("companyModal");
         modal.style.display = "block";
     }

@@ -87,17 +87,19 @@ List<ResumeVO> rlist = (List<ResumeVO>) request.getAttribute("rlist");
 
                         <div>
                             <label for="resume_job">희망 직무</label>
-                             <select name="resume_job" id="resume_job" >
+                            <select name="resume_job" id="resume_job" >
 		                    	<option value="" disabled selected>업계를 선택하세요</option>
-		                    	<option value="제조업">제조업</option>
-		                    	<option value="건설업">건설업</option>
-		                    	<option value="도매 및 소매업">도매 및 소매업</option>
-		                    	<option value="숙박 및 음식점업">숙박 및 음식점업</option>
-		                    	<option value="운수업">운수업</option>
-		                    	<option value="통신업">통신업</option>
-		                    	<option value="금융 및 보험업">금융 및 보험업</option>
-		                    	<option value="사업서비스업">사업서비스업</option>
-                    		</select>
+								<option value="국가/공공기관">국가/공공기관</option>
+								<option value="금융업">금융업</option>
+								<option value="게임">게임</option>
+								<option value="교육 서비스업">교육 서비스업</option>
+								<option value="법무 서비스업">법무 서비스업</option>
+								<option value="정보 서비스업">정보 서비스업</option>
+								<option value="통신업">통신업</option>
+								<option value="컨테츠/엔터테인먼트">컨텐츠/엔터테인먼트</option>
+								<option value="자동차 및 부품 판매업">자동차 및 부품 판매업</option>
+								<option value="기타 제조/수리업">기타 제조/수리업</option>
+	                    	</select>
                         </div>
 
                         <div>

@@ -21,25 +21,29 @@ public class ComplaintVO
     private String post_content;
     private String user_id;
     private String user_state;
+    private String board_no;                          
+    private String company_no;                           
 	
    
-	public String getPost_complaint_no()                { return post_complaint_no;                                                                  }
-	public String getPost_complaint_reason()            { return post_complaint_reason;                                                              }
-	public String getPost_complaint_reason_other()      { return post_complaint_reason_other;                                                        }
-	public String getPost_complaint_registration_date() { return post_complaint_registration_date;                                                   }
-	public String getPost_complaint_registration_ip()   { return post_complaint_registration_ip;                                                     }
-	public String getPost_complaint_registration_user() { return post_complaint_registration_user;                                                   }
-	public String getPost_complaint_modify_date()       { return post_complaint_modify_date;                                                         }
-	public String getPost_complaint_modify_ip()         { return post_complaint_modify_ip;                                                           }
-	public String getPost_complaint_modify_user()       { return post_complaint_modify_user;                                                         }
-	public String getPost_no()                          { return post_no;                                                                            }
-	public String getUser_no()                          { return user_no;                                                                            }
+	public String getPost_complaint_no()                { return post_complaint_no;                }
+	public String getPost_complaint_reason()            { return post_complaint_reason;            }
+	public String getPost_complaint_reason_other()      { return post_complaint_reason_other;      }
+	public String getPost_complaint_registration_date() { return post_complaint_registration_date; }
+	public String getPost_complaint_registration_ip()   { return post_complaint_registration_ip;   }
+	public String getPost_complaint_registration_user() { return post_complaint_registration_user; }
+	public String getPost_complaint_modify_date()       { return post_complaint_modify_date;       }
+	public String getPost_complaint_modify_ip()         { return post_complaint_modify_ip;         }
+	public String getPost_complaint_modify_user()       { return post_complaint_modify_user;       }
+	public String getPost_no()                          { return post_no;                          }
+	public String getUser_no()                          { return user_no;                          }
 	/*包府磊*/
-	public String getPost_complaint_state() { return post_complaint_state;}
-	public String getPost_complaint_state2() { return post_complaint_state2;}
-	public String getPost_content() { return post_content;}
-	public String getUser_id() { return user_id;}
-	public String getUser_state() { return user_state;}
+	public String getPost_complaint_state()             { return post_complaint_state;             }
+	public String getPost_complaint_state2()            { return post_complaint_state2;            }
+	public String getPost_content()                     { return post_content;                     }
+	public String getUser_id()                          { return user_id;                          }
+	public String getUser_state()                       { return user_state;                       }
+	public String getBoard_no()                         { return board_no;                         }
+	public String getCompany_no()                       { return company_no;                          }
 	
 	public void setPost_complaint_no(String post_complaint_no)                               { this.post_complaint_no = post_complaint_no;                               }
 	public void setPost_complaint_reason(String post_complaint_reason)                       { this.post_complaint_reason = post_complaint_reason;                       }
@@ -53,10 +57,11 @@ public class ComplaintVO
 	public void setPost_no(String post_no)                                                   { this.post_no = post_no;                                                   }
 	public void setUser_no(String user_no)                                                   { this.user_no = user_no;                                                   }
 	/*包府磊*/
-	public void setPost_complaint_state(String post_complaint_state)  {this.post_complaint_state = post_complaint_state;}
-	public void setPost_complaint_state2(String post_complaint_state2)  {this.post_complaint_state2 = post_complaint_state2;}
-	public void setPost_content(String post_content) { this.post_content = post_content;}
-	public void setUser_id(String user_id) { this.user_id = user_id;}
-	public void setUser_state(String user_state) { this.user_state = user_state;}
-	
+	public void setPost_complaint_state(String post_complaint_state)                         { this.post_complaint_state = post_complaint_state;                         }
+	public void setPost_complaint_state2(String post_complaint_state2)                       { this.post_complaint_state2 = post_complaint_state2;                       }
+	public void setPost_content(String post_content)                                         { this.post_content = post_content;                                         }
+	public void setUser_id(String user_id)                                                   { this.user_id = user_id;                                                   }
+	public void setUser_state(String user_state)                                             { this.user_state = user_state;                                             }
+	public void setBoard_no(String board_no)                                                 { this.board_no = board_no;                                                 }
+	public void setCompany_no(String company_no)                                             { this.company_no = company_no;                                           }
 }

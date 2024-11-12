@@ -15,12 +15,12 @@
 	</div>
 	<div class="main-container">
 		<!-- 사이드 배너 -->
-		<aside>
+<%-- 		<aside>
 			<div class="ad_banner" width="150px" height="300px">
 				<img src="<%=request.getContextPath()%>/image/인덱스 새로 배너.PNG"
 					width="200px" height="400px">
 			</div>
-		</aside>
+		</aside> --%>
 
 		<!-- 현재 진행 중인 공고 -->
 		<section class="board-container">

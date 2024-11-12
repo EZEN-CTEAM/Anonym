@@ -85,11 +85,11 @@
 		        </section>
 		
 		        <!-- 사이드 배너 -->
-		        <aside>
+<%-- 		        <aside>
 		          <div class="ad_banner" width="150px" height="300px">
 		            <img src="<%= request.getContextPath() %>/image/인덱스 새로 배너.PNG" width="200px" height="400px">
 		          </div>
-		        </aside>
+		        </aside> --%>
 		
 		        <!-- 인기 게시판 목록 -->
 		        <section class="board-container">

@@ -141,9 +141,9 @@
 				postReviewStarrating  = rsJp.getInt("post_review_starrating");
            %>
             <div>
-              <a href="<%= request.getContextPath() %>/user/down.do?fileName=<%= companyLogo %>">
+              <a href="<%= request.getContextPath() %>/jobPosting/jobList.do?job_posting_no=<%= jobPostingNo %>">
                 <div class="company_logo">
-                  <img src="<%= request.getContextPath() %>/upload/<%= companyLogo %>" width="164px" height="82px">
+                  <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= companyLogo %>" width="164px" height="82px">
                 </div>
                 <div class="company_name">
                   <%= companyName %>

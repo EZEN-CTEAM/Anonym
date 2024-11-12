@@ -120,7 +120,7 @@ public class jobPostingController
 						   + " WHERE c.company_no = j.company_no"
 						   + " AND job_posting_state = 'E'"
 						   + " GROUP BY c.company_no, company_name, company_logo, j.job_posting_no, job_posting_title"
-						   + " ORDER BY job_posting_registration_date desc"
+						   + " ORDER BY job_posting_hit desc"
 						   + " LIMIT ?, ?";
 				
 				psmt = conn.prepareStatement(sql);
@@ -141,7 +141,7 @@ public class jobPostingController
 						+ " AND job_posting_state = 'E'"
 						+ " AND company_name like CONCAT('%', ?, '%')"
 						+ " GROUP BY c.company_no, company_name, company_logo, j.job_posting_no, job_posting_title"
-						+ " ORDER BY job_posting_registration_date desc"
+						+ " ORDER BY job_posting_hit desc"
 						+ " LIMIT ?, ?";
 					
 					psmt = conn.prepareStatement(sql);

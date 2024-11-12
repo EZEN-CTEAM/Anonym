@@ -752,7 +752,8 @@ public class companyServicesController
 						   + " LEFT JOIN applicant a ON j.job_posting_no = a.job_posting_no"
 						   + " WHERE j.job_posting_state = 'E'"
 						   + " AND c.company_no = ?"
-						   + " GROUP BY c.company_no, c.company_name, c.company_logo, j.job_posting_no, j.job_posting_title"
+						   + " GROUP BY c.company_no, c.company_name, j.job_posting_no, j.job_posting_title"
+						   + " HAVING applicant_count > 0"
 						   + " ORDER BY applicant_count DESC"
 						   + " LIMIT 0, 4";
 				

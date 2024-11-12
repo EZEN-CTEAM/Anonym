@@ -1382,12 +1382,15 @@ public class myPageController
 				String sql = "SELECT  pc.post_complaint_no, "
 						+ "			  pc.post_complaint_reason, "
 						+ "           date_format(pc.post_complaint_registration_date, '%Y-%m-%d') as pcrdate, "
+						+ "			  p.board_no, " 
 						+ "			  p.post_no, " 
 						+ "           p.post_content, "
+						+ "           p.company_no, "
 						+ "           u.user_id, "
 						+ "           u.user_state "
 						+ " FROM post_complaint pc "
 						+ " INNER JOIN post p ON pc.post_no = p.post_no "
+						+ " INNER JOIN board b ON b.board_no = p.board_no "
 						+ " INNER JOIN user u ON pc.user_no = u.user_no ";
 				
 				psmt = conn.prepareStatement(sql);
@@ -1396,6 +1399,8 @@ public class myPageController
 				while (rs.next()) {
 					ComplaintVO cpvo = new ComplaintVO();
 					
+					cpvo.setBoard_no(rs.getString("board_no"));
+					cpvo.setCompany_no(rs.getString("company_no"));
 					cpvo.setPost_complaint_no(rs.getString("post_complaint_no"));
 					cpvo.setPost_complaint_reason(rs.getString("post_complaint_reason"));
 					cpvo.setPost_content(rs.getString("post_content"));

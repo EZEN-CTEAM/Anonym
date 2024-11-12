@@ -63,27 +63,27 @@ if(request.getAttribute("cList") != null) cList = (List<CompanyVO>)request.getAt
     							console.log(dislike_count);
 
     			                // 좋아요 상태인 버튼
-    						const btn_Y = `<button class="recommend-btn y" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'D');">
+    						const btn_Y = `<button class="recommend-btn y" style="width: 80px; padding: 10px;">
 	<img src="https://img.icons8.com/?size=100&id=85638&format=png&color=ffffff">
 	<span class="count-text" style="color: white;">` + like_count + `%</span>
 </button>
-<button class="recommend-btn b" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'N');">
+<button class="recommend-btn b" style="width: 80px; padding: 10px;">
 	<img src="https://img.icons8.com/?size=100&id=87695&format=png&color=fb5757">
 	<span class="count-text">` + dislike_count + `%</span>
 </button>`
 							// 중립 상태의 버튼들
-							const btn_D = `<button class="recommend-btn g" onclick="DoAJAXCall(this,'Y');">
+/* 							const btn_D = `<button class="recommend-btn g" onclick="DoAJAXCall(this,'Y');">
 	<img src="https://img.icons8.com/?size=100&id=85608&format=png&color=46b7bd">
 </button>
 <button class="recommend-btn b" onclick="DoAJAXCall(this,'N');">
 	<img src="https://img.icons8.com/?size=100&id=87695&format=png&color=fb5757">
-</button>`
+</button>` */
 							// 싫어요 상태의 버튼들
-							const btn_N = ` <button class="recommend-btn g" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'Y');">
+							const btn_N = ` <button class="recommend-btn g" style="width: 80px; padding: 10px;">
 	<img src="https://img.icons8.com/?size=100&id=85608&format=png&color=46b7bd">
 	<span class="count-text">` + like_count + `%</span>
 </button>
-<button class="recommend-btn n" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'D');">
+<button class="recommend-btn n" style="width: 80px; padding: 10px;">
 	<img src="https://img.icons8.com/?size=100&id=87737&format=png&color=ffffff">
 	<span class="count-text" style="color: white;">` + dislike_count + `%</span>
 </button>`
@@ -98,11 +98,11 @@ if(request.getAttribute("cList") != null) cList = (List<CompanyVO>)request.getAt
         						$(obj).parent().html(btn_N);
 	    						break;
 	    						
-    						case "D" :
+    						 /* case "D" :
 	    						// 좋아요 -> 취소
 	    						$(obj).parent().html(btn_D);
-	    						break;
-    						}
+	    						break; */
+    						} 
     					}
     				});
             		
@@ -144,11 +144,11 @@ if(request.getAttribute("cList") != null) cList = (List<CompanyVO>)request.getAt
 	                            	}else if(crstate.equals("Y"))
 							      	{
 					                    %>
-					                    <button class="recommend-btn y" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'D');">
+					                    <button class="recommend-btn y" style="width: 80px; padding: 10px;"> <!-- onclick="DoAJAXCall(this,'D');"> -->
 					                    	<img src="https://img.icons8.com/?size=100&id=85638&format=png&color=ffffff">
 					                    	<span class="count-text" style="color: white;"><%= like_count  %>%</span>
 				                    	</button>
-	                                	<button class="recommend-btn b" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'N');">
+	                                	<button class="recommend-btn b" style="width: 80px; padding: 10px;"> <!-- onclick="DoAJAXCall(this,'N');"> -->
 	                                		<img src="https://img.icons8.com/?size=100&id=87695&format=png&color=fb5757">
 					                    	<span class="count-text"><%= dislike_count %>%</span>
 	                               		</button>
@@ -156,11 +156,11 @@ if(request.getAttribute("cList") != null) cList = (List<CompanyVO>)request.getAt
 									}else if(crstate.equals("N"))
 									{
 										%>
-					                    <button class="recommend-btn g" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'Y');">
+					                    <button class="recommend-btn g" style="width: 80px; padding: 10px;"> <!-- onclick="DoAJAXCall(this,'Y');"> -->
 					                    	<img src="https://img.icons8.com/?size=100&id=85608&format=png&color=46b7bd">
 					                    	<span class="count-text"><%= like_count %>%</span>
 				                    	</button>
-	                                	<button class="recommend-btn n" style="width: 80px; padding: 10px;" onclick="DoAJAXCall(this,'D');">
+	                                	<button class="recommend-btn n" style="width: 80px; padding: 10px;"> <!-- onclick="DoAJAXCall(this,'D');"> -->
 	                                		<img src="https://img.icons8.com/?size=100&id=87737&format=png&color=ffffff">
 					                    	<span class="count-text" style="color: white;"><%= dislike_count %>%</span>
 	                               		</button>

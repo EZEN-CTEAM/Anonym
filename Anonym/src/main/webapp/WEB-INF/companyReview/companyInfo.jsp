@@ -245,7 +245,10 @@ List<PostVO> List = (List<PostVO>)request.getAttribute("List");
 	                    }
                         %>
 	                </section>
-	                
+    <%
+    	if(loginUser != null && cno.equals(loginUser.getUser_cno()))
+    	{
+    %> 	                
 	                <section class="company-community-section">
 	                    <div class="company-community">
                     	<form action="communityList.do" method="get">
@@ -307,6 +310,9 @@ List<PostVO> List = (List<PostVO>)request.getAttribute("List");
                             </div>
 	                    </div>
 	                </section>
+	                	<%
+    	}
+	%>
                 </div>
                 
                 

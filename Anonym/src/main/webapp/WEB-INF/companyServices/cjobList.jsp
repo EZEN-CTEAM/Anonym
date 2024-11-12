@@ -36,7 +36,7 @@
           	{
           %>
 			<div class="apply_area">
-          	<a href="cjobView.do?job_posting_no=<%= jpIpvo.getJob_posting_no() %>">
+          	<a href="cjobView.do?job_posting_no=<%= jpIpvo.getJob_posting_no() %>" style='width:171px; height:170px;'>
           		<input type="hidden" name="job_posting_no" value="<%= jpIpvo.getJob_posting_no() %>"> 
             <div class="company_logo">
               <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jpIpvo.getCompany_logo() %>" width="164px" height="82px">
@@ -76,7 +76,7 @@
         	{
         %>
         	<div class="apply_area">
-            <a href="cjobView.do?job_posting_no=<%= jpCvo.getJob_posting_no() %>">
+            <a href="cjobView.do?job_posting_no=<%= jpCvo.getJob_posting_no() %>" style='width:173px; height:132px;'>
             	<input type="hidden" name="job_posting_no" value="<%= jpCvo.getJob_posting_no() %>">
               <div class="company_logo">
                 <img src="<%= request.getContextPath() %>/upload/<%= jpCvo.getCompany_logo() %>" width="164px" height="82px">

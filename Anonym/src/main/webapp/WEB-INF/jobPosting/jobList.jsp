@@ -35,40 +35,43 @@
             </div>
             <div class="apply-container">
             <div>
-              <div class="apply_list">
               	<%
               		int cnt = 0;
 		          	for(JobpostingVO jpvo : jList)
 		          	{
 		          		cnt++;	
+		          		if(cnt%3 == 1){
+		          		%>
+        		<div class="apply_list">
+		          		<%
+		          		}
           		%>
-                <div class="company_apply">
-                  <a href="jobView.do?job_posting_no=<%= jpvo.getJob_posting_no() %>">
-                    <div class="company_logo">
-                      <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jpvo.getCompany_logo() %>" width="164px" height="110px">
-                    </div>
-                    <div class="company_name">
-                      <%= jpvo.getCompany_name() %>
-                    </div>
-                    <div class="company_title">
-                      <%= jpvo.getJob_posting_title() %>
-                    </div>
-                  </a>
-                </div>
+	                <div class="company_apply">
+	                  <a href="jobView.do?job_posting_no=<%= jpvo.getJob_posting_no() %>">
+	                    <div class="company_logo">
+	                      <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= jpvo.getCompany_logo() %>" width="164px" height="110px">
+	                    </div>
+	                    <div class="company_name">
+	                      <%= jpvo.getCompany_name() %>
+	                    </div>
+	                    <div class="company_title">
+	                      <%= jpvo.getJob_posting_title() %>
+	                    </div>
+	                  </a>
+	                </div>
                 <%
            			if(cnt%3 == 0) {
            		%>
         	  </div>
         	  <%
-        	  if(cnt != 9) {
-        		%>
-        	  <div class="apply_list">
-            	<%
-        	  			}
            			}
-      			}
+	          	}
+      			if(cnt != 9) {
+             		%>
+             	<div class="apply_list"></div>
+                 	<%
+             	 }
       			%>
-            </div>
             </div>
             </div>
             </div>
@@ -101,8 +104,8 @@
 	            </div>
 	          </aside>
 	          </div>
+	          </div>
           </section>
-          
         </div>
 		<div class="pagination">
 		<%

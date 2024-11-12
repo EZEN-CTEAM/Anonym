@@ -22,11 +22,15 @@
         </div>
         <div class="apply-container">
           <!-- 공고 리스트 -->
-          <div class="apply_list">
             <%
             int cnt = 0;
             for (JobpostingVO jpvo : jpList) {
               cnt++;
+              if(cnt%3 == 1){
+            %>
+            <div class="apply_list">
+            <%
+              }
             %>
               <div class="company_apply">
                 <a href="cjobView.do?job_posting_no=<%= jpvo.getJob_posting_no() %>">
@@ -46,14 +50,16 @@
               if (cnt % 3 == 0) {
            	  %>
                 </div>
-              <% if (cnt != 9) { %>
+              <%
+             		 }
+            	}
+              if (cnt != 9) {
+              %>
                 <div class="apply_list">
-              <% } %>
              <% 
-             }
-           } 
-           %>
-          </div>
+          	} 
+           	%>
+          	</div>
           </div>
         </div>
       </section>

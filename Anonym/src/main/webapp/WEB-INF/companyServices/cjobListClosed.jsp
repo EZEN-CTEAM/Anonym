@@ -21,11 +21,15 @@
             <h3><img src="https://img.icons8.com/?size=100&id=53426&format=png&color=000000" width="20px"> 마감된 공고</h3>
           </div>
           <div class="apply-container">
-            <div class="apply_list">
               <%
                 int cnt = 0;
                 for(JobpostingVO jpvo : jpList) {
                   cnt++;
+                  if(cnt%3 == 1){
+              %>
+              	<div class="apply_list">
+              <%
+                  }
               %>
                 <div class="company_apply">
                   <a href="cjobView.do?job_posting_no=<%= jpvo.getJob_posting_no() %>">
@@ -44,12 +48,14 @@
                   if (cnt % 3 == 0) { // 3개마다 apply_list 닫기
                 %>
                   </div>
-                  <% if (cnt != 9) { %> <!-- 아직 9개가 아니라면 새로운 apply_list 열기 -->
-                  <div class="apply_list">
-                  <% } %>
+                <%
+                  		}
+                	}
+                  if (cnt != 9) {
+                %>
+                  <div class="apply_list"></div>
                 <%
                   }
-                } // for문 닫기
                 %>
             </div>
           </div>

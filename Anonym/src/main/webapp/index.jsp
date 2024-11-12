@@ -50,20 +50,20 @@
 		psmtFb = conn.prepareStatement(sqlFb);
 		rsFb = psmtFb.executeQuery();
 		
-		 String sqlJp = " SELECT j.job_posting_no"
+		 String sqlJp = "SELECT j.job_posting_no"
 				 	  + " , j.job_posting_title"
 				 	  + " , c.company_name"
 				 	  + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 				 	  + " , AVG(p.post_review_starrating) AS post_review_starrating"
 				 	  + " , j.job_posting_hit"
-				 	  + " FROM company c"
-				 	  + " JOIN job_posting j ON c.company_no = j.company_no"
-				 	  + " JOIN post_review p ON c.company_no = p.company_no"
+				 	  + " FROM job_posting j"
+				 	  + " JOIN company c ON j.company_no = c.company_no"
+				 	  + " LEFT JOIN post_review p ON j.company_no = p.company_no"
 				 	  + " WHERE j.job_posting_state = 'E'"
 				 	  + " GROUP BY j.job_posting_no"
 				 	  + " , j.job_posting_title"
 				 	  + " , c.company_name"
-				 	  + " ORDER BY j.job_posting_hit DESC"
+					  + " ORDER BY j.job_posting_hit DESC"
 				 	  + " LIMIT 0, 8";
 					 
 	 	psmtJp = conn.prepareStatement(sqlJp);

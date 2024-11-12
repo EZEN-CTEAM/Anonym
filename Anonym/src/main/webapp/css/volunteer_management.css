@@ -7,7 +7,7 @@ ul {
   list-style: none;
 }
 
-/* 내비게이션 메뉴 */
+/* �궡鍮꾧쾶�씠�뀡 硫붾돱 */
 .nav-menu {
   display: flex;
   font-size: 1.1rem;
@@ -71,7 +71,7 @@ li:hover .dropdown_content {
   text-decoration: underline;
 }
 
-/* 로그인 회원가입 */
+/* 濡쒓렇�씤 �쉶�썝媛��엯 */
 .login:hover {
   font-weight: bold;
   text-decoration: underline;
@@ -82,7 +82,7 @@ li:hover .dropdown_content {
   text-decoration: underline;
 }
 
-/* 메인 컨테이너 간격 조정 */
+/* 硫붿씤 而⑦뀒�씠�꼫 媛꾧꺽 議곗젙 */
 .main-container {
   padding: 50px 20px;
 }
@@ -107,7 +107,7 @@ li:hover .dropdown_content {
   border-radius: 5px;
 }
 
-/* 현재 진행 중인 공고 */
+/* �쁽�옱 吏꾪뻾 以묒씤 怨듦퀬 */
 .apply_title {
   display: flex;
   justify-content: space-between;
@@ -116,6 +116,7 @@ li:hover .dropdown_content {
   margin: 40px auto 0px auto;
   border-bottom: 1px solid rgb(206, 206, 206);
   padding-bottom: 10px;
+  
 }
 
 .apply_list {
@@ -146,6 +147,10 @@ li:hover .dropdown_content {
   font-weight: bold;
   color: rgb(73, 73, 73);
   padding: 5px 0px;
+  white-space: nowrap;          /* 한 줄로 표시 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 164px;
 }
 
 .company_score {
@@ -239,7 +244,7 @@ li:hover .dropdown_content {
   font-weight: bold;
 }
 
-/* 광고 배너 */
+/* 愿묎퀬 諛곕꼫 */
 .ad_banner {
   position: absolute;
   right: 15%;

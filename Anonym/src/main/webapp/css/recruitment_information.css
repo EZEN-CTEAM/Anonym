@@ -143,6 +143,9 @@ a {
   font-weight: bold;
   color: rgb(73, 73, 73);
   padding: 5px 0px;
+  white-space: nowrap;          /* 한 줄로 표시 */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .company_score {
@@ -155,6 +158,8 @@ a {
 
 .company_apply {
   margin: 20px 40px;
+  width: 164px;
+  height: 179px;
 }
 
 /* 癲ル슔�걠獒뺣돍�삕筌묕옙 �뜝�럥�렓�뜝�럥遊얕짆�쉩�쐻占쎈윥獄�占� */
@@ -164,8 +169,8 @@ aside {
 
 .aside_container {
   margin-left: 35px;
-  width: 90%;
-  height: 100%;
+  width: 199px;
+  height: 725px;
   background-color: rgb(248, 248, 248);
 }
 
@@ -176,6 +181,7 @@ aside {
   margin: 10px;
   text-align: left;
   padding-top: 15px;
+  
 }
 
 .new_apply_list {
@@ -183,6 +189,8 @@ aside {
   justify-content: flex-start;
   align-items: center;
   margin: 15px 0px;
+  width: 199px;
+  height: 48px;
 }
 
 .new_apply_list img {
@@ -198,6 +206,10 @@ aside {
   font-size: 0.75rem;
   font-weight: bold;
   color: rgb(73, 73, 73);
+  white-space: nowrap;          /* 한 줄로 표시 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100px;
 }
 
 .pagination {

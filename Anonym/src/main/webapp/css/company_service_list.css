@@ -144,6 +144,9 @@ ul {
   font-weight: bold;
   color: rgb(73, 73, 73);
   padding: 5px 0px;
+  white-space: nowrap;          /* 한 줄로 표시 */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .company_score {
@@ -156,6 +159,8 @@ ul {
 
 .company_apply {
   margin: 20px 40px;
+  width: 164px;
+  height: 179px;
 }
 
 .pagination {

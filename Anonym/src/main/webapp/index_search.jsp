@@ -55,7 +55,7 @@
 		/* searchValue와 회사명이 일치하는 회사 */
 		String sqlC = " SELECT c.company_no"
 					+ " , c.company_name"
-					+ " , c.company_logo"
+					+ " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
 					+ " , AVG(p.post_review_starrating) AS post_review_starrating"
 					+ "	FROM company c"					
 					+ "	JOIN post_review p ON c.company_no = p.company_no"
@@ -90,7 +90,7 @@
 		/* 채용공고에서 조회수 순위 4개 */
 		String sqlJp = "SELECT c.company_no"
              		 + " , c.company_name"
-            		 + " , c.company_logo"
+             		 + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
             		 + " , j.job_posting_no"
              	 	 + " , j.job_posting_title"
              	 	 + " , AVG(p.post_review_starrating) AS post_review_starrating"
@@ -108,7 +108,7 @@
 		if(!searchValue.equals("")) {
 			sqlJp = "SELECT c.company_no"
             	  + " , c.company_name"
-           		  + " , c.company_logo"
+            	  + " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
            		  + " , j.job_posting_no"
             	  + " , j.job_posting_title"
             	  + " , AVG(p.post_review_starrating) AS post_review_starrating"
@@ -202,7 +202,7 @@
         <div class="company_container">
           <div class="company_info">
           	<a href="<%= request.getContextPath() %>/companyReview/companyInfo.do?company_no=<%= companyNo %>">
-            <div><img src="<%= request.getContextPath() %>/upload/<%= companyLogo %>" width="164px" height="82px"></div>
+            <div><img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= companyLogo %>" width="164px" height="82px"></div>
             <div class="company_info_name">
               <%= companyName %>
               <div class="company_info_score">
@@ -268,7 +268,7 @@
             <div class="apply_area">
               <a href="<%= request.getContextPath() %>/jobPosting/jobView.do?job_posting_no=<%= jobPostingNo %>">
                 <div class="company_logo">
-                  <img src="<%= request.getContextPath() %>/upload/<%= companyLogo %>" width="164px" height="82px">
+                  <img src="<%= request.getContextPath() %>/user/down.do?fileName=<%= companyLogoJp %>" width="164px" height="82px">
                 </div>
                 <div class="company_name">
                   <%= companyNameJp %>

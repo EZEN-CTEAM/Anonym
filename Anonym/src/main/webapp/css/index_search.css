@@ -261,6 +261,10 @@ li:hover .dropdown_content {
   font-weight: bold;
   color: rgb(73, 73, 73);
   padding: 5px 0px;
+  white-space: nowrap;          /* 한 줄로 표시 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 164px;
 }
 
 .company_score {

@@ -333,6 +333,10 @@ li:hover .dropdown_content {
 .free_list_content {
   font-size: 0.8rem;
   margin: 5px 0px;
+  white-space: nowrap;          /* 한 줄로 표시 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 400px;
 }
 
 .free_list_nickname {

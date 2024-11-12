@@ -58,7 +58,7 @@
           <div class="apply_addr"><%= jpvo.getCompany_location() %></div>
         </div>
         <div class="apply_content_container">
-          <%= jpvo.getJob_posting_content() %>
+          <%= jpvo.getJob_posting_content().replace("\n","<br>") %>
         </div>
       </section>
       <section>

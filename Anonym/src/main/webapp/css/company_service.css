@@ -3,11 +3,11 @@ a {
   color: rgb(61, 61, 61);
 }
 
-ul {
+/* ul {
   list-style: none;
-}
+} */
 
-/* �궡鍮꾧쾶�씠�뀡 硫붾돱 */
+/* 占쎄땀�뜮袁㏃쓺占쎌뵠占쎈�� 筌롫뗀�뤀 */
 .nav-menu {
   display: flex;
   font-size: 1.1rem;
@@ -55,7 +55,7 @@ ul {
   text-decoration: underline;
 }
 
-/* 濡쒓렇�씤 �쉶�썝媛��엯 */
+/* 嚥≪뮄�젃占쎌뵥 占쎌돳占쎌뜚揶쏉옙占쎌뿯 */
 .login:hover {
   font-weight: bold;
   text-decoration: underline;
@@ -66,7 +66,7 @@ ul {
   text-decoration: underline;
 }
 
-/* 硫붿씤 而⑦뀒�씠�꼫 媛꾧꺽 議곗젙 */
+/* 筌롫뗄�뵥 �뚢뫂�믭옙�뵠占쎄섐 揶쏄쑨爰� 鈺곌퀣�젟 */
 .main-container {
   padding: 50px 20px;
 }
@@ -91,7 +91,7 @@ ul {
   border-radius: 5px;
 }
 
-/* �쁽�옱 吏꾪뻾 以묒씤 怨듦퀬 */
+/* 占쎌겱占쎌삺 筌욊쑵六� 餓λ쵐�뵥 �⑤벀�� */
 .apply_title {
   display: flex;
   justify-content: space-between;
@@ -162,7 +162,7 @@ ul {
   border-radius: 5px;
 }
 
-/* 愿묎퀬 諛곕꼫 */
+/* �꽴臾롰�� 獄쏄퀡瑗� */
 .ad_banner {
   position: absolute;
   right: 15%;

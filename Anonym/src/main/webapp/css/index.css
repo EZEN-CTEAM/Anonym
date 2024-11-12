@@ -3,11 +3,11 @@ a {
   color: rgb(61, 61, 61);
 }
 
-ul {
+/* ul {
   list-style: none;
-}
+} */
 
-.dropdown_content {
+/* .dropdown_content {
   display: none;
   position: absolute;
   background-color: white;
@@ -17,7 +17,11 @@ ul {
   padding: 0;
   margin: 0;
   font-size: 0.9rem;
-}
+  } */
+
+/* li:hover .dropdown_content {
+  display: block;
+} */
 
 .implyeement_apply {
   margin: 10px 0px;
@@ -37,9 +41,6 @@ ul {
   text-decoration: underline;
 }
 
-li:hover .dropdown_content {
-  display: block;
-}
 
 .volunteer_management {
   display: flex;

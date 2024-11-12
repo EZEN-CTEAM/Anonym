@@ -3,11 +3,16 @@ a {
   color: rgb(61, 61, 61);
 }
 
-ul {
+/* ul {
   list-style: none;
 }
-
+ */
 /* 占쎈쐻占쎈윞占쏙옙�뜝�럥�몡�넭怨λ즰占쎈쿊占쎈쐻占쎈윪�얠±�쐻占쎈윥�뜝�룞�삕 癲ル슢�닪占쏙옙�뜝�럥占� */
+
+.dropdown_content li {
+	margin: 0px 35px;
+}
+	
 .nav-menu {
   display: flex;
   font-size: 1.1rem;

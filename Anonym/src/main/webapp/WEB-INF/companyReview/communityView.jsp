@@ -61,7 +61,7 @@ if(request.getAttribute("List") != null) List = (List<PostCommentVO>)request.get
 						    {
 					        	%>
 					        	<div class="dropdown_link">
-					            	<a href="communityDelete.do?pno=<%= pvo.getPost_no() %>">삭제</a>
+					            	<a href="communityDelete.do?pno=<%= pvo.getPost_no() %>&cno=<%= cno %>">삭제</a>
 						        </div>
 					        	<%
 						    }else{

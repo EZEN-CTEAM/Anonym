@@ -395,6 +395,7 @@
 	                    <div class="joinIP">업계</div>
 	                    <select name="cindustry">
 	                    	<option value="" disabled selected>업계를 선택하세요</option>
+							<option value="IT/소프트웨어">IT/소프트웨어</option>
 							<option value="국가/공공기관">국가/공공기관</option>
 							<option value="금융업">금융업</option>
 							<option value="게임">게임</option>

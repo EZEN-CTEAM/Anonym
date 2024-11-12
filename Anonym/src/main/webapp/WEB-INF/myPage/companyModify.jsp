@@ -288,6 +288,7 @@ loginUserc = (CompanyVO)session.getAttribute("loginUserc");
                     <div class="joinIP">업계</div>
 	                    <select name="cindustry">
 	                    	<option value="<%= loginUserc.getCindustry() %>" disabled selected><%= loginUserc.getCindustry() %></option>
+							<option value="IT/소프트웨어">IT/소프트웨어</option>
 							<option value="국가/공공기관">국가/공공기관</option>
 							<option value="금융업">금융업</option>
 							<option value="게임">게임</option>

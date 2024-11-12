@@ -30,7 +30,7 @@
 	                   <input type="text" name="user_id" >
 	                   
 	                   <div class="loginIP">비밀번호</div>
-	                   <input type="password" name="user_pw" >
+	                   <input type="password" name="user_pw" value="qq11!!">
 	                   <br><br><br>
 	                   <button class="cta-button">로그인</button>
                     </form>

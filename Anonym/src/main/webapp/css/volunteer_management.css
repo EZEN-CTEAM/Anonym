@@ -119,11 +119,15 @@ li:hover .dropdown_content {
   
 }
 
+.apply_list_area {
+	margin: 0px 25px;
+}
+
 .apply_list {
   width: 75%;
   margin: 20px auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 

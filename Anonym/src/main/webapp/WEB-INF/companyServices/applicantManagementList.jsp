@@ -37,7 +37,7 @@
 				for (JobpostingVO jpvo : jpList) {
 					int jobPostingNo = jpvo.getJob_posting_no();
 				%>
-				<div>
+				<div class="apply_list_area">
 					<a href="#" onclick="searchApplicant(<%=jobPostingNo%>)"> <input
 						type="hidden" name="job_posting_no"
 						value="<%=jpvo.getJob_posting_no()%>">

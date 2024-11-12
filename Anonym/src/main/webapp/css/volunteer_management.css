@@ -29,6 +29,14 @@ ul {
   font-size: 0.9rem;
 }
 
+.dropdown_content .dropdown_1st {
+	margin: 10px 30px;
+}
+
+.dropdown_content .dropdown_2nd {
+	margin: 10px 30px;
+}
+
 .implyeement_apply {
   margin: 5px 0px;
 }

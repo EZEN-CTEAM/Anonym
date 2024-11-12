@@ -277,7 +277,7 @@ public class companyReviewController
 	            jsonArray.put(jsonObj);
 	        }
 	        
-	        // System.out.println("JSON Array: " + jsonArray.toString());
+	        System.out.println("JSON Array: " + jsonArray.toString());
 
 	        // 결과에 따라 응답
 	        response.setContentType("application/json; charset=UTF-8");

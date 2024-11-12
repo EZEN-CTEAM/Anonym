@@ -302,7 +302,7 @@ window.onclick = function(event) {
 // 기타 선택시 
 document.getElementById("reasonSelect").addEventListener("change", function() {
     var detailsTextarea = document.getElementById("detailsTextarea");
-    if (this.value === "other") {
+    if (this.value === "기타") {
         detailsTextarea.disabled = false;
         detailsTextarea.focus();
     } else {

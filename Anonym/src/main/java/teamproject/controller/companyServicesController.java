@@ -338,7 +338,7 @@ public class companyServicesController
 				// 페이징
 				String sqlTotal = "SELECT count(*) AS total"
 								+ " FROM job_posting p"
-							    + " WHERE job_posting_state = 'E'";
+							    + " WHERE job_posting_state = 'D'";
 				
 				psmtTotal = conn.prepareStatement(sqlTotal);
 				rsTotal = psmtTotal.executeQuery();

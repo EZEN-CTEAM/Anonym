@@ -70,6 +70,8 @@
       			%>
             </div>
             </div>
+            </div>
+            </div>
             <div>
 	            <aside class="aside_container">
 	            <div>
@@ -99,8 +101,6 @@
 	            </div>
 	          </aside>
 	          </div>
-            </div>
-            </div>
           </section>
           
         </div>

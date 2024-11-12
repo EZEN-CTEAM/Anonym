@@ -18,19 +18,15 @@ List<ApplicantVO> alist = (List<ApplicantVO>)request.getAttribute("alist");
                 <section class="apply-count">
                     <div class="apply-count-div">
                         <div>미열람</div>
-                        <div class="a-count">0건</div>
                     </div>
                     <div class="apply-count-div">
                         <div>합격</div>
-                        <div class="a-count">0건</div>
                     </div>
                     <div class="apply-count-div">
                         <div>불합격</div>
-                        <div class="a-count">0건</div>
                     </div>
                     <div class="apply-count-div" id="showAll">
 					    <div>전체 보기</div>
-					    <div class="a-count">0건</div>
 					</div>
                 </section>
                 <br><br><br>

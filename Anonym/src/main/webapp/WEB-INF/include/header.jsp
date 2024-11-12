@@ -32,7 +32,7 @@ CompanyVO loginUserc = (CompanyVO)session.getAttribute("loginUserc");
 								<a href="<%= request.getContextPath() %>/companyServices/cjobList.do" class="implyeement_apply">취업 공고 관리</a>
 							</li>
 							<li class="dropdown_2nd">
-								<a href="<%= request.getContextPath() %>/companyServices/applicantManagementList.do" class="volunteer_management"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" width="17px">지원자관리</a>
+								<a href="<%= request.getContextPath() %>/companyServices/applicantManagementList.do" class="volunteer_management">지원자관리</a>
 							</li>
 						</ul>
 					</li>
@@ -67,7 +67,7 @@ CompanyVO loginUserc = (CompanyVO)session.getAttribute("loginUserc");
 								<a href="<%= request.getContextPath() %>/myPage/resumeList.do?user_no=<%= loginUser.getUser_no()%>">이력서 관리</a>
 							</li>
 							<li>
-								<a href="<%= request.getContextPath() %>/myPage/applicationStatus.do?user_no=<%= loginUser.getUser_no()%>"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" alt="Icon" class="menu-icon">지원 현황</a>
+								<a href="<%= request.getContextPath() %>/myPage/applicationStatus.do?user_no=<%= loginUser.getUser_no()%>">지원 현황</a>
 							</li>
 						</ul>
 					</li>
@@ -87,10 +87,10 @@ CompanyVO loginUserc = (CompanyVO)session.getAttribute("loginUserc");
 						<a>마이페이지</a>
 						<ul class="dropdown-content">
 							<li>
-								<a href="<%= request.getContextPath() %>/myPage/admin.do"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" alt="Icon" class="menu-icon">기업 승인 관리</a>
+								<a href="<%= request.getContextPath() %>/myPage/admin.do">기업 승인 관리</a>
 							</li>
 							<li>
-								<a href="<%= request.getContextPath() %>/myPage/adminReport.do"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" alt="Icon" class="menu-icon">신고 리스트</a>
+								<a href="<%= request.getContextPath() %>/myPage/adminReport.do">신고 리스트</a>
 							</li>
 							<li>
 								<a href="<%= request.getContextPath() %>/myPage/adminUser.do">비활성 회원 리스트</a>

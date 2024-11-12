@@ -467,9 +467,17 @@ public class companyServicesController
 			PreparedStatement psmt = null;
 			ResultSet rs = null;
 			
+			PreparedStatement psmtHit = null;
+			
 			try
 			{
 				conn = DBConn.conn();
+				
+				// 조회수 증가
+				String sqlHit  = "update job_posting set job_posting_hit = job_posting_hit + 1 where job_posting_no = ?";
+				psmtHit = conn.prepareStatement(sqlHit);
+				psmtHit.setInt(1, jobPostingNo);
+				psmtHit.executeUpdate();
 				
 				String sql = " SELECT company_name"
 						   + " , company_location"
@@ -516,6 +524,7 @@ public class companyServicesController
 			{
 				try
 				{
+					DBConn.close(psmtHit, null);
 					DBConn.close(rs, psmt, conn);
 				} catch(Exception e)
 				{

@@ -61,8 +61,6 @@
         	  </div>
         	  <%
         	  if(cnt != 9) {
-        		  
-        	  
         		%>
         	  <div class="apply_list">
             	<%
@@ -104,6 +102,7 @@
             </div>
             </div>
           </section>
+          
         </div>
 		<div class="pagination">
 		<%

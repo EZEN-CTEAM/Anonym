@@ -18,6 +18,7 @@ import org.json.simple.JSONObject;
 import teamproject.util.DBConn;
 import teamproject.vo.CompanyVO;
 import teamproject.vo.JobpostingVO;
+import teamproject.vo.PagingUtil;
 import teamproject.vo.ResumeVO;
 import teamproject.vo.UserVO;
 
@@ -35,17 +36,11 @@ public class companyServicesController
 		// 채용공고관리 - 현재 진행 중 (더보기)
 		}else if(comments[comments.length-1].equals("cjobListInProgress.do"))
 		{
-			if(request.getMethod().equals("POST"))
-			{
-				cjobListInProgress(request, response);
-			}
+			cjobListInProgress(request, response);
 		// 채용공고관리 - 마감 (더보기)	
 		}else if(comments[comments.length-1].equals("cjobListClosed.do")) 
 		{
-			if(request.getMethod().equals("POST"))
-			{
-				cjobListClosed(request, response);
-			}
+				cjobListClosed(request, response);	
 		// 공고 작성
 		}else if(comments[comments.length-1].equals("cjobRegister.do")) 
 		{
@@ -220,9 +215,18 @@ public class companyServicesController
 			
 			int companyNo = loginUserc.getCno();
 			
+			// 페이징
+		    int total = 0;
+			int nowPage = 1;
+			if(request.getParameter("nowPage") != null) nowPage = Integer.parseInt(request.getParameter("nowPage"));
+			
 			Connection conn = null;
 			PreparedStatement psmt = null;
 			ResultSet rs = null;
+			
+			// 글 갯수
+			PreparedStatement psmtTotal = null;  
+			ResultSet rsTotal = null;
 			
 			try {
 				conn = DBConn.conn();
@@ -243,6 +247,21 @@ public class companyServicesController
 				psmt.setInt(1, companyNo);
 				rs = psmt.executeQuery();
 				
+				// 페이징
+				String sqlTotal = "SELECT count(*) AS total"
+								+ " FROM job_posting p"
+							    + " WHERE job_posting_state = 'E'";
+				
+				psmtTotal = conn.prepareStatement(sqlTotal);
+				rsTotal = psmtTotal.executeQuery();
+				
+				if(rsTotal.next())
+				{
+					total = rsTotal.getInt("total");
+				}
+				
+				PagingUtil paging = new PagingUtil(nowPage, total, 9);
+				
 				while(rs.next()) {
 					JobpostingVO jpIpvo = new JobpostingVO();
 					
@@ -254,9 +273,10 @@ public class companyServicesController
 					
 					jpList.add(jpIpvo);		
 				}
-					request.setAttribute("jpList", jpList);	
+					request.setAttribute("jpList", jpList);
+					request.setAttribute("paging", paging);
 					
-					response.sendRedirect(request.getContextPath()+"/companyServices/cjobListInProgress.do");
+					request.getRequestDispatcher("/WEB-INF/companyServices/cjobListInProgress.jsp").forward(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -283,9 +303,18 @@ public class companyServicesController
 			
 			int companyNo = loginUserc.getCno();
 			
+			// 페이징
+		    int total = 0;
+			int nowPage = 1;
+			if(request.getParameter("nowPage") != null) nowPage = Integer.parseInt(request.getParameter("nowPage"));
+			
 			Connection conn = null;
 			PreparedStatement psmt = null;
 			ResultSet rs = null;
+			
+			// 글 갯수
+			PreparedStatement psmtTotal = null;  
+			ResultSet rsTotal = null;
 			
 			try {
 				conn = DBConn.conn();
@@ -306,6 +335,21 @@ public class companyServicesController
 				psmt.setInt(1, companyNo);
 				rs = psmt.executeQuery();
 				
+				// 페이징
+				String sqlTotal = "SELECT count(*) AS total"
+								+ " FROM job_posting p"
+							    + " WHERE job_posting_state = 'E'";
+				
+				psmtTotal = conn.prepareStatement(sqlTotal);
+				rsTotal = psmtTotal.executeQuery();
+				
+				if(rsTotal.next())
+				{
+					total = rsTotal.getInt("total");
+				}
+				
+				PagingUtil paging = new PagingUtil(nowPage, total, 9);
+				
 				while(rs.next()) {
 					JobpostingVO jpCvo = new JobpostingVO();
 					
@@ -318,8 +362,9 @@ public class companyServicesController
 					jpList.add(jpCvo);		
 				}
 				request.setAttribute("jpList", jpList);
+				request.setAttribute("paging", paging);
 				
-				response.sendRedirect(request.getContextPath()+"/companyServices/cjobListClosed.do");
+				request.getRequestDispatcher("/WEB-INF/companyServices/cjobListClosed.jsp").forward(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();
 			} finally {

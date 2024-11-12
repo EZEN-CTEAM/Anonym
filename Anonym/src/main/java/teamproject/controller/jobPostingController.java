@@ -119,16 +119,38 @@ public class jobPostingController
 						   + " FROM company c, job_posting j"
 						   + " WHERE c.company_no = j.company_no"
 						   + " AND job_posting_state = 'E'"
-						   + " AND company_name like CONCAT('%', ?, '%')"
 						   + " GROUP BY c.company_no, company_name, company_logo, j.job_posting_no, job_posting_title"
 						   + " ORDER BY job_posting_registration_date desc"
 						   + " LIMIT ?, ?";
 				
 				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, searchValue);
-				psmt.setInt(2, paging.getStart());
-				psmt.setInt(3, paging.getPerPage());
+				psmt.setInt(1, paging.getStart());
+				psmt.setInt(2, paging.getPerPage());
+				
 				rs = psmt.executeQuery();
+				
+				if(!searchValue.equals(""))
+				{
+					sql = "SELECT c.company_no"
+						+ " , company_name"
+						+ " , (select a.company_attach_physics_file_name from anonym.company_attach a where a.company_no = c.company_no and a.company_attach_sequence = 2 ) as company_logo"
+						+ " , j.job_posting_no"
+						+ " , job_posting_title"
+						+ " FROM company c, job_posting j"
+						+ " WHERE c.company_no = j.company_no"
+						+ " AND job_posting_state = 'E'"
+						+ " AND company_name like CONCAT('%', ?, '%')"
+						+ " GROUP BY c.company_no, company_name, company_logo, j.job_posting_no, job_posting_title"
+						+ " ORDER BY job_posting_registration_date desc"
+						+ " LIMIT ?, ?";
+					
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, searchValue);
+					psmt.setInt(2, paging.getStart());
+					psmt.setInt(3, paging.getPerPage());
+					
+					rs = psmt.executeQuery();
+				}
 				
 				while(rs.next())
 				{
@@ -143,6 +165,7 @@ public class jobPostingController
 					jList.add(jpvo);
 				}
 				request.setAttribute("jList", jList);
+				request.setAttribute("paging", paging);
 				
 				String sqlL = "SELECT c.company_no"
 						   	+ " , company_name"

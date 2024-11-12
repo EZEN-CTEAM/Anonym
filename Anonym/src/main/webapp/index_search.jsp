@@ -97,15 +97,34 @@
              		 + " FROM company c"
              		 + " JOIN job_posting j ON c.company_no = j.company_no"
              		 + " LEFT JOIN post_review p ON c.company_no = p.company_no"
-             		 + " WHERE c.company_name LIKE CONCAT('%', ?, '%')"
-             		 + " AND j.job_posting_state = 'E'"
+             		 + " WHERE j.job_posting_state = 'E'"
              		 + " GROUP BY c.company_no, c.company_name, c.company_logo, j.job_posting_no, j.job_posting_title"
              		 + " ORDER BY j.job_posting_registration_date DESC"
              		 + " LIMIT 0, 4";
 					 
 	 	psmtJp = conn.prepareStatement(sqlJp);
-	 	psmtJp.setString(1, searchValue);
 		rsJp = psmtJp.executeQuery();
+		
+		if(!searchValue.equals("")) {
+			sqlJp = "SELECT c.company_no"
+            	  + " , c.company_name"
+           		  + " , c.company_logo"
+           		  + " , j.job_posting_no"
+            	  + " , j.job_posting_title"
+            	  + " , AVG(p.post_review_starrating) AS post_review_starrating"
+            	  + " FROM company c"
+            	  + " JOIN job_posting j ON c.company_no = j.company_no"
+            	  + " LEFT JOIN post_review p ON c.company_no = p.company_no"
+            	  + " WHERE j.job_posting_state = 'E'"
+            	  + " AND c.company_name LIKE CONCAT('%', ?, '%')"
+            	  + " GROUP BY c.company_no, c.company_name, c.company_logo, j.job_posting_no, j.job_posting_title"
+            	  + " ORDER BY j.job_posting_registration_date DESC"
+            	  + " LIMIT 0, 4";
+					 
+		 	psmtJp = conn.prepareStatement(sqlJp);
+		 	psmtJp.setString(1, searchValue);
+			rsJp = psmtJp.executeQuery();
+		}
 		
 		/* 자유게시판에서 조회수 순위 8개 */
 		String sqlFb = "SELECT p.post_no"
@@ -120,18 +139,40 @@
 				 	 + " LEFT JOIN post_like pl ON p.post_no = pl.post_no"
 				 	 + " LEFT JOIN post_comment pc ON p.post_no = pc.post_no"
 				 	 + " LEFT JOIN user u ON u.user_no = p.user_no"
-				 	 + " WHERE p.post_title LIKE CONCAT('%', ?, '%')"
-				 	 + " OR p.post_content LIKE CONCAT('%', ?, '%')"
-				 	 + " AND p.board_no = 1"
+				 	 + " WHERE p.board_no = 1"
 				 	 + " AND post_state = 'E'"
 				 	 + " GROUP BY p.post_no, p.post_title"
-				 	 + " ORDER BY post_hit desc";
-				 	 /* + " LIMIT 0, 8"; */
+				 	 + " ORDER BY post_hit desc"
+				 	 + " LIMIT 0, 8";
+		
+		psmtFb = conn.prepareStatement(sqlFb);
+		rsFb = psmtFb.executeQuery();
+		
+		if(!searchValue.equals("")) {
+			sqlFb = "SELECT p.post_no"
+			  	  + " , post_title"
+			  	  + " , post_content"
+				  + " , post_hit"
+				  + " , user_nickname"
+				  + " , COUNT(DISTINCT pl.user_no) AS goodCnt"
+				  + " , (SELECT COUNT(*) FROM post_comment pc WHERE pc.post_no = p.post_no AND pc.post_comment_state = 'E' ) AS commentCnt"
+				  + " , post_registration_date"
+				  + " FROM post p"
+				  + " LEFT JOIN post_like pl ON p.post_no = pl.post_no"
+				  + " LEFT JOIN post_comment pc ON p.post_no = pc.post_no"
+				  + " LEFT JOIN user u ON u.user_no = p.user_no"
+				  + " WHERE p.board_no = 1"
+				  + " AND post_state = 'E'"
+				  + " AND (p.post_title LIKE CONCAT('%', ?, '%') OR p.post_content LIKE CONCAT('%', ?, '%'))"
+				  + " GROUP BY p.post_no, p.post_title"
+				  + " ORDER BY post_hit desc"
+				  + " LIMIT 0, 8";
 		
 		psmtFb = conn.prepareStatement(sqlFb);
 		psmtFb.setString(1, searchValue);
 		psmtFb.setString(2, searchValue);
 		rsFb = psmtFb.executeQuery();
+		}
 	
 %>
 
@@ -270,7 +311,7 @@
             	postRegistrationDate = rsFb.getString("post_registration_date");
             %>
               <div class="free_list_container">
-                <a href="<%= request.getContextPath() %>/freeBoard/freeView.do?post_no=<%= freeBoardPostNo %>">
+                <a href="<%= request.getContextPath() %>/freeBoard/freeView.do?pno=<%= freeBoardPostNo %>">
                   <div class="free_list_title"><%= freeBoardPostTitle %></div>
                   <div class="free_list_content"><%= freeBoardPostContent %></div>
                   <div>
@@ -282,7 +323,7 @@
                       <div><img src="https://img.icons8.com/?size=100&id=89385&format=png&color=000000" width="17px"><%= goodCnt %></div>
                       <div><img src="https://img.icons8.com/?size=100&id=22050&format=png&color=000000" width="17px"><%= commentCnt %></div>
                     </div>
-                    <div class="free_list_rdate">작성일</div>
+                    <div class="free_list_rdate"><%= postRegistrationDate %></div>
                     <div><img scr="#"></div>
                   </div>
                 </a>

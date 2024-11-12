@@ -28,7 +28,7 @@
       </div>
       <div class="apply_title">
         <h3><img src="https://img.icons8.com/?size=100&id=39372&format=png&color=000000" width="17px"> 현재 진행 중인 공고</h3>
-        <a href="cjobListInProgress.do">더보기 ></a>
+        <a href="<%= request.getContextPath() %>/companyServices/cjobListInProgress.do">더보기 ></a>
       </div>
       <div class="apply_list">
           <%

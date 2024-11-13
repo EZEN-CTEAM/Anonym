@@ -38,13 +38,13 @@ List<ComplaintVO> cplist = (List<ComplaintVO>)request.getAttribute("cplist");
 		        <table class="table">
 		            <thead>
 		                <tr>
-		                    <th>게시판</th>
+		                    <th style="width:110px;">게시판</th>
 		                    <th>작성자 ID</th>
 		                    <th>신고 사유</th>
-		                    <th>신고 날짜</th>
-		                    <th>글 내용</th>
-		                    <th>처리 상태</th>
-		                    <th>비활성화</th>
+		                    <th style="width:120px;">신고 날짜</th>
+		                    <th style="width:450px;">글 내용</th>
+		                    <th style="width:90px;">처리 상태</th>
+		                    <th style="width:100px;">비활성화</th>
 		                </tr>
 		            </thead>
 		            <tbody id="reportTableBody">
@@ -64,11 +64,11 @@ List<ComplaintVO> cplist = (List<ComplaintVO>)request.getAttribute("cplist");
 		                    <%
 		                    if(cpvo.getBoard_no().equals("자유 게시판")){
 		                    	%>
-			                    <td><a href="<%= request.getContextPath() %>/freeBoard/freeView.do?pno=<%= cpvo.getPost_no() %>"><%= cpvo.getPost_content() %></a></td>
+			                    <td class="truncate"><a href="<%= request.getContextPath() %>/freeBoard/freeView.do?pno=<%= cpvo.getPost_no() %>"><%= cpvo.getPost_content() %></a></td>
 		                    	<%
 							}else if(cpvo.getBoard_no().equals("사내 게시판")){
 		                    	%>
-			                    <td><a href="<%= request.getContextPath() %>/companyReview/communityView.do?pno=<%= cpvo.getPost_no() %>&cno=<%= cpvo.getCompany_no() %>"><%= cpvo.getPost_content() %></a></td>
+			                    <td class="truncate"><a href="<%= request.getContextPath() %>/companyReview/communityView.do?pno=<%= cpvo.getPost_no() %>&cno=<%= cpvo.getCompany_no() %>"><%= cpvo.getPost_content() %></a></td>
 		                    	<%
 							}
 		                    %>
@@ -80,13 +80,13 @@ List<ComplaintVO> cplist = (List<ComplaintVO>)request.getAttribute("cplist");
 		                    		<%
 		                    	}else {
 		                    		%>
-		                    		<span>처리 완료</span>
+		                    		<span>처리<br>완료</span>
 		                    		<%
 		                    	}
 		                    	%>
 		                    </td>
 		                    <td>
-		                        <button class="btn" onclick="location.href='<%= request.getContextPath() %>/myPage/adminReportOk.do?user_id=<%= cpvo.getUser_id() %>'">회원 비활성</button>
+		                        <button class="btn" onclick="location.href='<%= request.getContextPath() %>/myPage/adminReportOk.do?user_id=<%= cpvo.getUser_id() %>'">회원<br>비활성</button>
 		                    </td>
 		                </tr>
 						<%	

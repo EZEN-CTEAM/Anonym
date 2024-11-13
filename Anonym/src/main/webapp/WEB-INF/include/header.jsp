@@ -29,7 +29,7 @@ CompanyVO loginUserc = (CompanyVO)session.getAttribute("loginUserc");
 					<li><a href="<%= request.getContextPath() %>/companyServices/cjobList.do" class="companyservice">기업 서비스</a>
 						<ul class="dropdown_content">
 							<li class="dropdown_1st">
-								<a href="<%= request.getContextPath() %>/companyServices/cjobList.do" class="implyeement_apply">취업 공고 관리</a>
+								<a href="<%= request.getContextPath() %>/companyServices/cjobList.do" class="implyeement_apply">채용 공고 관리</a>
 							</li>
 							<li class="dropdown_2nd">
 								<a href="<%= request.getContextPath() %>/companyServices/applicantManagementList.do" class="volunteer_management">지원자관리</a>

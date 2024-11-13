@@ -108,7 +108,7 @@ ul {
 
 /* �뜝�럩逾η뼨轅명�쀥뜝占� 占쎈뎨占쎈봾裕욃뜝�럥諭�(�뜝�럩�겱�뜝�럩占� �뇦猿딆뒩占쎈뻣�뜝�럥�냷) */
 .board-container {
-  width: 80%;
+  width: 100%;
   margin: 0px auto 100px auto;
   min-height: 250px;
 }
@@ -175,7 +175,7 @@ ul {
   width: 80%;
   margin: 20px auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 }
 
